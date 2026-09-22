@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1280, initial-scale=1">
+<title>Echo — 直投版 · 第 12.5 页</title>
+<style>
+:root{
+  --ink:#f3f5fa; --muted:rgba(219,224,238,.64); --faint:rgba(211,217,235,.42);
+  --line:rgba(220,227,255,.075); --line-strong:rgba(220,227,255,.15);
+  --blue:#5267ff; --blue-bright:#aeb9f5; --eyebrow:rgba(177,188,255,.78); --red:#ff5f52;
+  --sans:"Avenir Next","Avenir","PingFang SC","Hiragino Sans GB","Helvetica Neue",sans-serif;
+  --mono:"IBM Plex Mono","Menlo",monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{background:#000;font-family:var(--sans);color:var(--ink);-webkit-font-smoothing:antialiased}
+.slide{position:relative;width:1280px;height:720px;margin:24px auto;overflow:hidden;
+  background:
+    radial-gradient(ellipse 78% 48% at 50% -18%,rgba(69,88,255,.13),transparent 66%),
+    radial-gradient(circle at 82% 22%,rgba(0,0,242,.13),transparent 28rem),
+    linear-gradient(180deg,#050609 0%,#080a10 44%,#050609 100%);
+  display:flex;flex-direction:column;padding:46px 76px 34px}
+.slide::before{content:"";position:absolute;inset:0;opacity:.035;pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.84' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.9'/%3E%3C/svg%3E")}
+.slide>*{position:relative;z-index:1}
+.eyebrow{display:flex;align-items:center;gap:10px;font:600 12px/1.2 var(--mono);letter-spacing:.18em;text-transform:uppercase;color:var(--eyebrow)}
+.eyebrow .dot{width:6px;height:6px;border-radius:50%;background:#6075ff;box-shadow:0 0 0 4px rgba(82,103,255,.1),0 0 18px rgba(82,103,255,.62)}
+.eyebrow .brand{color:var(--ink);font-weight:700;letter-spacing:.24em}
+h1{margin-top:20px;font-size:52px;line-height:1.06;letter-spacing:-.028em;font-weight:600;white-space:nowrap}
+h1 em{font-style:normal;color:var(--blue-bright)}
+.sub{margin-top:10px;font-size:19px;line-height:1.42;color:var(--muted)}
+.sub b{color:var(--ink);font-weight:600}
+
+.panels{flex:1;min-height:0;display:grid;grid-template-columns:1fr 1fr;gap:0 44px;margin-top:18px;border-top:1px solid var(--line-strong)}
+.panel{display:flex;flex-direction:column;padding-top:18px}
+.panel+.panel{border-left:1px solid var(--line);padding-left:44px;margin-left:-44px}
+.panel .k{font:600 10.5px var(--mono);letter-spacing:.17em;text-transform:uppercase;color:var(--eyebrow)}
+.panel .k.risk{color:var(--red)}
+
+.chain{margin-top:22px;display:flex;flex-direction:column;gap:18px}
+.step{display:flex;gap:14px;align-items:baseline}
+.step .n{flex:none;width:26px;font:600 11px var(--mono);letter-spacing:.08em;color:var(--faint)}
+.step .t{font-size:23px;line-height:1.36;color:var(--ink);font-weight:500;letter-spacing:-.005em}
+.step .t span{color:var(--muted);font-weight:400}
+
+.lead{margin-top:14px;font-size:25px;line-height:1.3;font-weight:600;letter-spacing:-.012em;color:var(--ink)}
+.lead em{font-style:normal;color:var(--red)}
+.paths{margin-top:14px;display:flex;flex-direction:column;gap:10px}
+.path{display:flex;gap:14px;align-items:baseline;padding:11px 18px;border:1px solid var(--line);border-radius:10px;background:rgba(255,255,255,.015)}
+.path .n{flex:none;width:18px;font:700 12px var(--mono);color:var(--blue-bright)}
+.path .t{font-size:20px;line-height:1.4;color:var(--ink);font-weight:500}
+.path .t span{display:block;font-size:16px;color:var(--muted);font-weight:400;margin-top:2px}
+
+.hedge{margin-top:12px;font-size:14px;line-height:1.45;color:var(--muted)}
+.bottom{margin-top:auto;padding-top:12px;border-top:1px solid var(--line);font-size:19px;font-weight:600;letter-spacing:-.01em;color:var(--blue-bright)}
+.bottom .why{display:block;margin-top:5px;font-size:14px;line-height:1.45;font-weight:400;letter-spacing:0;color:var(--muted)}
+.bottom .ref{display:block;margin-top:6px;font:600 10.5px var(--mono);letter-spacing:.06em;color:var(--eyebrow)}
+
+.foot{display:flex;justify-content:flex-end;margin-top:12px;font:500 10.5px var(--mono);letter-spacing:.06em;color:var(--faint)}
+@page{size:13.333in 7.5in;margin:0}
+@media print{html,body{background:#000}.slide{margin:0}}
+@media screen{.slide{box-shadow:0 10px 40px rgba(0,0,0,.6)}}
+</style>
+</head>
+<body>
+<section class="slide">
+  <div class="eyebrow"><span class="dot"></span><span class="brand">ECHO</span><span>风险 · 说在终局之前</span></div>
+  <h1>模型吃不掉这一层。<br><em>手会沾泥。泥就是护城河。</em></h1>
+  <div class="sub">Context continuity 一直在变，还必须<b>可审计、可追溯</b>，没有哪个模型能拥有它。难的是卖：<b>agent 思维要一家一家建</b>，路很长。</div>
+
+  <div class="panels">
+    <div class="panel">
+      <div class="k">出发点 · 为什么方向没错</div>
+      <div class="chain">
+        <div class="step"><div class="n">01</div><div class="t">人们为 Agent 付钱，买的是<b>工作结果</b>。</div></div>
+        <div class="step"><div class="n">02</div><div class="t">工作是高变量、高条件的任务。</div></div>
+        <div class="step"><div class="n">03</div><div class="t">它几乎永远不可能在模型内部完成。<span>一定需要外部的记忆和 context 系统。</span></div></div>
+        <div class="step"><div class="n">04</div><div class="t">这个系统，我们做。<span>永远得有人做。</span></div></div>
+      </div>
+      <div class="bottom">它永远在变，还必须可审计、可追溯。模型拥有不了它。</div>
+    </div>
+
+    <div class="panel">
+      <div class="k risk">真风险 · 销售有多深</div>
+      <div class="lead">Agent 时代的销售，<br><em>是一条很深的 FDE 路径。</em></div>
+      <div class="paths">
+        <div class="path"><div class="n">A</div><div class="t">按行业做定制 harness 和解决方案。<span>成交更快，但每个行业都要重新驻场。</span></div></div>
+        <div class="path"><div class="n">B</div><div class="t">一支成规模的销售团队。<span>覆盖更广，但人和钱要先到位。</span></div></div>
+      </div>
+      <div class="hedge">种子轮的对冲：我们换方向按周算，不按季度算。成本够低，错得起。</div>
+      <div class="bottom">第一单最贵。之后每一单，越来越便宜。<span class="why">每次驻场留下两样东西：客户带不走的 context 连续记录，和下一家直接复用的行业 harness。</span><span class="ref">= 第 11 页那 $4M 的去处 · 第 08 页：0 个平台让 context 离开自家的墙</span></div>
+    </div>
+  </div>
+
+  <div class="foot">echoknows.com · 12.5</div>
+</section>
+</body>
+</html>

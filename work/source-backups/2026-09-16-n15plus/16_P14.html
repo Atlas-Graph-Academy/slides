@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Echo — Direct Deck · Page 14</title>
+<style>
+:root{
+  --bg:#050609; --ink:#f3f5fa;
+  --muted:rgba(219,224,238,.68); --faint:rgba(211,217,235,.42);
+  --line:rgba(220,227,255,.075); --line-strong:rgba(220,227,255,.13);
+  --blue:#5267ff; --blue-bright:#aeb9f5; --eyebrow:rgba(177,188,255,.78);
+  --sans:"Avenir Next","Avenir","PingFang SC","Hiragino Sans GB","Helvetica Neue",sans-serif;
+  --mono:"IBM Plex Mono","Menlo",monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html,body{background:#000;font-family:var(--sans);color:var(--ink);-webkit-font-smoothing:antialiased;}
+.slide{position:relative;width:1280px;height:720px;margin:24px auto;overflow:hidden;
+  background:
+    radial-gradient(ellipse 78% 48% at 50% -18%, rgba(69,88,255,.13), transparent 66%),
+    radial-gradient(circle at 84% 78%, rgba(0,0,242,.13), transparent 30rem),
+    linear-gradient(180deg,#050609 0%,#080a10 44%,#050609 100%);
+  display:flex;flex-direction:column;padding:52px 76px 40px;}
+.slide::before{content:"";position:absolute;inset:0;opacity:.035;pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.84' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.9'/%3E%3C/svg%3E");}
+.slide>*{position:relative;z-index:1;}
+
+.eyebrow{display:flex;align-items:center;gap:10px;
+  font:600 12px/1.2 var(--mono);letter-spacing:.18em;text-transform:uppercase;color:var(--eyebrow);}
+.eyebrow .dot{width:6px;height:6px;border-radius:50%;background:#6075ff;
+  box-shadow:0 0 0 4px rgba(82,103,255,.1),0 0 18px rgba(82,103,255,.62);}
+.eyebrow .brand{color:var(--ink);font-weight:700;letter-spacing:.24em;}
+
+.h1{margin-top:24px;font-weight:600;letter-spacing:-.022em;line-height:1.13;font-size:37px;color:var(--ink);}
+.h1 em{font-style:normal;color:var(--blue-bright);}
+
+.main{flex:1;display:flex;gap:52px;min-height:0;margin-top:22px;}
+
+/* left: why we exist */
+.why{flex:1.12;min-width:0;display:flex;flex-direction:column;gap:14px;}
+.beat{padding-left:16px;border-left:2px solid rgba(82,103,255,.45);}
+.beat p{font-size:15.5px;line-height:1.58;color:var(--muted);letter-spacing:-.005em;}
+.beat p b{color:var(--ink);font-weight:600;}
+.beat.last{border-left-color:rgba(174,185,245,.9);}
+.beat.last p{color:var(--ink);font-size:16px;}
+
+/* right: team */
+.team{flex:1;min-width:0;border-left:1px solid var(--line);padding-left:40px;}
+.k{font:600 11px/1.2 var(--mono);letter-spacing:.18em;text-transform:uppercase;color:var(--eyebrow);}
+.founder{margin-top:13px;padding-bottom:14px;border-bottom:1px solid var(--line);}
+.founder .nm{font-size:24px;font-weight:600;letter-spacing:-.015em;color:var(--ink);}
+.founder .nm span{font-size:13px;font-weight:500;color:var(--blue-bright);margin-left:10px;letter-spacing:0;}
+.founder .bio{margin-top:8px;font-size:13px;line-height:1.55;color:var(--muted);}
+.founder .bio b{color:var(--ink);font-weight:600;}
+.orgs{margin-top:13px;display:flex;align-items:center;gap:9px;flex-wrap:wrap;}
+.orgs .chip{background:#fff;border-radius:8px;height:30px;display:flex;align-items:center;justify-content:center;padding:0 10px;box-shadow:0 2px 10px rgba(0,0,0,.4);}
+.orgs img{width:auto;display:block;}
+.rows{margin-top:12px;display:flex;flex-direction:column;gap:8px;}
+.r{display:flex;gap:14px;align-items:baseline;}
+.r .n{flex:none;width:98px;font-size:21px;font-weight:700;letter-spacing:-.015em;color:#ff5f52;line-height:1.15;white-space:nowrap;}
+.r .t{font-size:12.8px;line-height:1.5;color:var(--muted);}
+.r .t b{color:var(--ink);font-weight:600;display:block;font-size:13.8px;margin-bottom:1px;}
+
+/* closer */
+.closer{margin-top:18px;border-top:1px solid var(--line-strong);padding-top:16px;
+  display:flex;justify-content:space-between;align-items:flex-end;gap:32px;}
+.closer .line{font-size:26px;white-space:nowrap;font-weight:600;letter-spacing:-.018em;line-height:1.3;color:var(--ink);}
+.closer .line b{color:var(--blue-bright);font-weight:600;}
+.closer .foot{flex:none;font:500 10.5px var(--mono);letter-spacing:.06em;color:var(--faint);padding-bottom:5px;}
+.closer .foot em{font-style:normal;color:var(--blue-bright);}
+
+@page{size:13.333in 7.5in;margin:0;}
+@media print{html,body{background:#000;} .slide{margin:0;}}
+@media screen{.slide{box-shadow:0 10px 40px rgba(0,0,0,.6);}}
+</style>
+</head>
+<body>
+
+<section class="slide">
+
+  <div class="eyebrow"><span class="dot"></span><span class="brand">ECHO</span><span>Why we exist</span></div>
+
+  <div class="h1">Every new medium has pushed civilization forward.<br><em>In the agent era, Echo is the medium of thought.</em></div>
+
+  <div class="main">
+
+    <div class="why">
+      <div class="beat">
+        <p>Writing preserved <b>language</b>; images preserved <b>faces</b>; video let a <b>moment</b> exist apart from the room it happened in.</p>
+      </div>
+      <div class="beat">
+        <p>Thought never had a medium like that. A person’s <b>judgment, memory and intent</b> usually vanish the moment they leave.</p>
+      </div>
+      <div class="beat">
+        <p>Today, Echo preserves <b>how a thought was formed</b>: who judged, on what basis, wanting what. Even when the person is absent, the thought can be <b>understood, used and remade</b>.</p>
+      </div>
+      <div class="beat">
+        <p>Every era gives birth to its own economy. The agent era will too. In that economy, <b>a company&rsquo;s context is its most important asset</b>, and it becomes <b>a commodity that trades and flows fast</b>. People get freer for it.</p>
+      </div>
+      <div class="beat last">
+        <p>So the work we do today is heavy. Underneath it, we are building <b>the knowledge engine for that society</b>.</p>
+      </div>
+    </div>
+
+    <div class="team">
+      <div class="k">Who is building it</div>
+
+      <div class="founder">
+        <div class="nm">Kobe Wang<span>Founder &amp; CEO</span></div>
+        <div class="bio">Former product manager, Social, at <b>Roblox</b>, where social DAU passed <b>100M</b>;
+          former PM at Renren, CMU. Three-time founder, <b>self-funding Echo</b>.</div>
+      </div>
+
+      <div class="orgs">
+        <span class="chip"><img src="deck_assets/direct/orgs/microsoft.svg" alt="Microsoft" style="height:15px;"></span>
+        <span class="chip"><img src="deck_assets/direct/orgs/amazon.svg" alt="Amazon" style="height:13px;margin-top:4px;"></span>
+        <span class="chip"><img src="deck_assets/direct/orgs/berkeley.svg" alt="UC Berkeley" style="height:24px;"></span>
+        <span class="chip"><img src="deck_assets/direct/orgs/ucla.svg" alt="UCLA" style="height:13px;"></span>
+        <span class="chip"><img src="deck_assets/direct/orgs/bu.svg" alt="Boston University" style="height:24px;"></span>
+        <span class="chip"><img src="deck_assets/direct/orgs/cmu.svg" alt="Carnegie Mellon" style="height:14px;"></span>
+      </div>
+
+      <div class="rows">
+        <div class="r">
+          <div class="n">6 ppl · 2 yr</div>
+          <div class="t"><b>Zero core-team attrition</b>Microsoft AI, Amazon, UC Berkeley, UCLA, BU, CMU</div>
+        </div>
+        <div class="r">
+          <div class="n">5 yr</div>
+          <div class="t"><b>Full-time, all-in on Echo</b>Social → knowledge management → context management, end to end</div>
+        </div>
+        <div class="r">
+          <div class="n">100%</div>
+          <div class="t"><b>AI-native by default</b>Heavy Codex / Claude Code / OpenClaw users. No outsourcing</div>
+        </div>
+        <div class="r">
+          <div class="n">SF</div>
+          <div class="t"><b>Echo House · Marina, San Francisco</b>Half the team lives together</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="closer">
+    <div class="line"></div>
+    <div class="foot"><em>kobe@iditor.com</em> &middot; echoknows.com &middot; 14</div>
+  </div>
+
+</section>
+
+</body>
+</html>

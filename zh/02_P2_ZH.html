@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>Echo — 直投版 · 第 2 页</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700&family=Lora:wght@600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#050609; --panel:#0d0f12; --ink:#f3f5fa;
+  --muted:rgba(219,224,238,.64); --faint:rgba(211,217,235,.42);
+  --line:rgba(220,227,255,.075); --line-strong:rgba(220,227,255,.13);
+  --blue:#5267ff; --blue-bright:#aeb9f5; --eyebrow:rgba(177,188,255,.78);
+  --sans:"Avenir Next","Avenir","PingFang SC","Hiragino Sans GB","Helvetica Neue",sans-serif;
+  --mono:"IBM Plex Mono","Menlo",monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html,body{background:#000;font-family:var(--sans);color:var(--ink);-webkit-font-smoothing:antialiased;}
+.slide{position:relative;width:1280px;height:720px;margin:24px auto;overflow:hidden;
+  background:
+    radial-gradient(ellipse 78% 48% at 50% -18%, rgba(69,88,255,.13), transparent 66%),
+    radial-gradient(circle at 82% 22%, rgba(0,0,242,.13), transparent 28rem),
+    linear-gradient(180deg,#050609 0%,#080a10 44%,#050609 100%);
+  display:flex;flex-direction:column;padding:52px 76px 40px;}
+.slide::before{content:"";position:absolute;inset:0;opacity:.035;pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.84' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.9'/%3E%3C/svg%3E");}
+.slide>*{position:relative;z-index:1;}
+
+/* eyebrow */
+.eyebrow{display:flex;align-items:center;gap:10px;
+  font:600 12px/1.2 var(--mono);letter-spacing:.18em;text-transform:uppercase;color:var(--eyebrow);}
+.eyebrow .dot{width:6px;height:6px;border-radius:50%;background:#6075ff;
+  box-shadow:0 0 0 4px rgba(82,103,255,.1),0 0 18px rgba(82,103,255,.62);}
+.eyebrow .brand{color:var(--ink);font-weight:700;letter-spacing:.24em;}
+
+/* headline */
+.h1{margin-top:34px;font-size:62px;font-weight:600;letter-spacing:-.026em;line-height:1.04;}
+.h1 .pos{color:var(--blue-bright);font-weight:600;}
+.statline{margin-top:18px;font:600 17px/1.5 var(--mono);letter-spacing:.08em;
+  text-transform:uppercase;color:var(--eyebrow);}
+.statline b{color:var(--ink);font-weight:600;}
+
+/* exhibits — same converged hierarchy as the P1 proof strip, scaled up */
+.exhibits{flex:1;display:flex;margin-top:26px;border-top:1px solid var(--line-strong);min-height:0;}
+.ex{flex:1;padding:24px 28px 0 0;display:flex;flex-direction:column;}
+.ex+.ex{border-left:1px solid var(--line);padding-left:28px;}
+.ex .pa{align-self:flex-start;font:600 8.5px var(--mono);letter-spacing:.14em;
+  text-transform:uppercase;color:rgba(219,224,238,.55);border:1px solid var(--line-strong);
+  border-radius:99px;padding:3px 9px;}
+.ex .co{display:flex;align-items:center;gap:11px;margin-top:20px;}
+.ex .co img{display:block;border-radius:50%;}
+.ex .co .nm{font-size:17px;}
+.ex.glean .co .nm{font:600 17px "Inter",sans-serif;letter-spacing:-.01em;}
+.ex.granola .co .nm{font:600 17.5px "Lora",serif;}
+.ex.granola .co img{border-radius:22%;}
+.ex.engram .co .nm{font:600 16.5px "Space Grotesk",sans-serif;letter-spacing:.01em;}
+.ex.engram .co img{border-radius:50%;background:#fff;padding:4px;}
+.ex .val{margin-top:14px;font-size:58px;font-weight:700;letter-spacing:-.02em;line-height:1;color:var(--ink);}
+.ex .rev{margin-top:12px;font:500 13.5px var(--mono);color:var(--muted);letter-spacing:.02em;}
+.ex .rev b{color:#ff5f52;font-weight:600;}
+.ex .rev b.ok{color:var(--blue-bright);}
+.ex .buy{margin-top:14px;font-size:15px;font-weight:500;line-height:1.5;color:var(--muted);letter-spacing:-.005em;}
+.ex .buy b{color:var(--ink);font-weight:600;}
+.ex .link{margin-top:auto;padding-bottom:18px;font:600 11.5px var(--mono);letter-spacing:.05em;color:var(--blue-bright);}
+.ex .src{padding-bottom:18px;font:500 9.5px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--faint);}
+.ex .link+.src{padding-top:6px;}
+.ex .link~.src{padding-bottom:18px;}
+
+/* closer */
+.closer{display:flex;justify-content:space-between;align-items:baseline;
+  border-top:1px solid var(--line-strong);padding-top:16px;}
+.closer .line{font-size:19px;font-weight:500;color:var(--ink);letter-spacing:-.01em;}
+.closer .line b{color:var(--blue-bright);font-weight:600;}
+.closer .foot{font:500 10.5px var(--mono);letter-spacing:.06em;color:var(--faint);}
+
+@page{size:13.333in 7.5in;margin:0;}
+@media print{html,body{background:#000;} .slide{margin:0;}}
+@media screen{.slide{box-shadow:0 10px 40px rgba(0,0,0,.6);}}
+</style>
+</head>
+<body>
+
+<section class="slide">
+
+  <div class="eyebrow"><span class="dot"></span><span class="brand">ECHO</span><span>投资人为什么提前下注</span></div>
+
+  <div class="h1">企业上下文是一门大生意。<br><span class="pos">牌桌上已经满是筹码。</span></div>
+  <div class="statline">追踪 <b>50</b> 家公司 · <b>89</b> 轮融资 · <b>$11.18B</b> 可引用投后估值 · 公开数据，截至 2026-08-26</div>
+
+  <div class="exhibits">
+
+    <!-- Glean — even the one with revenue went for 72× -->
+    <div class="ex glean">
+      <span class="pa">Wellington 领投</span>
+      <div class="co"><img src="deck_assets/direct/glean.com.png" width="30" height="30" alt="Glean"><span class="nm">Glean</span></div>
+      <div class="val">$7.2B</div>
+      <div class="rev">融资时 ARR <b class="ok">~$100M</b> &nbsp;·&nbsp; <b>72&times;</b></div>
+      <div class="buy">50 家里<b>唯一一家</b>定价时有真实收入的公司——而这个最便宜的入场券，<b>也要 72 倍收入</b>。</div>
+      <div class="src">2025-06 融资 · 当时 ARR ~$100M，如今 $300M</div>
+    </div>
+
+    <!-- Granola — priced on position -->
+    <div class="ex granola">
+      <span class="pa">比传闻价高 50% 成交</span>
+      <div class="co"><img src="deck_assets/direct/granola.ai.png" width="30" height="30" alt="Granola"><span class="nm">Granola</span></div>
+      <div class="val">$1.5B</div>
+      <div class="rev"><b>$0</b> 公开 ARR</div>
+      <div class="buy">一月还在按 $1B 谈，两个月后以 $1.5B 关轮——<b>八周内价格涨了 50%</b>，且没有任何公开收入。</div>
+      <div class="src">Forbes 2026-01 · 2026-03 关轮</div>
+    </div>
+
+    <!-- Engram — priced on narrative; ties to the P1 target ring -->
+    <div class="ex engram">
+      <span class="pa">Sequoia · General Catalyst · Amplify</span>
+      <div class="co"><img src="deck_assets/direct/engram.com.png" width="30" height="30" alt="Engram"><span class="nm">Engram</span></div>
+      <div class="val">$600M</div>
+      <div class="rev"><b>13</b> 个人 &nbsp;·&nbsp; <b>$0</b> 收入</div>
+      <div class="buy">出 stealth 第一天：<b>按 $600M 估值融了 $98M</b>。十三个人、零收入——三家顶级基金全押。</div>
+      <div class="link">= 第 01 页那个虚线 $600M 圆环</div>
+      <div class="src">2026-06 融资 · 未披露任何 ARR</div>
+    </div>
+
+  </div>
+
+  <div class="closer">
+    <div class="line">Context 五花八门，<b>但现在最重要的 context，是 agent sessions。</b></div>
+    <div class="foot">echoknows.com · 02</div>
+  </div>
+
+</section>
+</body>
+</html>

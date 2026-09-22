@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1280, initial-scale=1">
+<title>Echo — 叙事版 · Echo 如何帮 Meta 省下 10 亿</title>
+<link rel="stylesheet" href="v2.css">
+<style>
+h1{font-size:50px}
+
+/* ── the flow ─────────────────────────────────────────── */
+.viz{position:relative;margin-top:26px;width:1128px;height:404px}
+.viz>canvas.cloud,.viz>svg{position:absolute;left:0;top:0;width:1128px;height:404px}
+.viz>svg{overflow:visible;pointer-events:none}
+
+/* tools pour into one session */
+.tools{position:absolute;left:44px;top:0;display:grid;grid-template-columns:repeat(6,30px);gap:9px 10px}
+.tools i{width:30px;height:30px;border-radius:8px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center}
+.tools img{width:18px;height:18px;object-fit:contain}
+
+/* session cards */
+.card{position:absolute;width:212px;height:62px;border-radius:12px;display:flex;align-items:center;gap:10px;padding:0 12px;
+  border:1px solid var(--line-strong);background:#0d0f16}
+.card .av{width:30px;height:30px;border-radius:50%;flex:none;display:flex;align-items:center;justify-content:center;font:700 13px var(--sans);color:#0b0c10}
+.card .who{flex:1;min-width:0}
+.card .who b{display:block;font-size:15px;font-weight:700;letter-spacing:-.01em;line-height:1.1}
+.card .who u{display:block;margin-top:7px;height:4px;border-radius:2px;background:rgba(220,227,255,.13);text-decoration:none}
+.card .who u+u{margin-top:4px;width:62%}
+.card .ag{width:26px;height:26px;border-radius:50%;flex:none;display:flex;align-items:center;justify-content:center}
+.card .ag img{width:15px;height:15px}
+.ag.claude{background:#D97757}.ag.openai{background:#0b0c10;border:1px solid rgba(255,255,255,.3)}.ag.gemini{background:linear-gradient(135deg,#4f8dfd,#9b72f2)}
+.card.ghost{border-color:rgba(255,255,255,calc(.16*var(--f)));box-shadow:0 10px 24px rgba(0,0,0,.45)}
+.card.ghost>*{opacity:var(--f)}
+.card.lit{border-color:rgba(120,140,255,.55);background:linear-gradient(90deg,rgba(82,103,255,.16),rgba(82,103,255,.05) 70%),#0d0f16;
+  box-shadow:0 0 24px rgba(82,103,255,.18)}
+
+/* Echo in the middle */
+.core{position:absolute;left:548px;top:118px;width:0;height:0}
+.core .halo{position:absolute;left:-120px;top:-120px;width:240px;height:240px;border-radius:50%;
+  background:radial-gradient(circle,rgba(160,175,255,.30),rgba(82,103,255,.10) 45%,transparent 70%)}
+.core .orb{position:absolute;left:-50px;top:-50px;width:100px;height:100px;border-radius:50%;
+  background:radial-gradient(circle at 38% 32%,#dff7ff 0%,#6fd3ff 38%,#2f8dff 100%);box-shadow:0 0 44px rgba(80,160,255,.55);transition:opacity .4s}
+.core canvas{position:absolute;left:-270px;top:-270px;width:540px;height:540px;opacity:0;transition:opacity .4s}
+.core.live canvas{opacity:1}.core.live .orb{opacity:0}
+
+/* cloud axis */
+.axis{position:absolute;left:0;right:0;top:386px;display:flex;align-items:center;gap:12px;font:600 10px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--faint)}
+.axis i{flex:1;height:1px;background:linear-gradient(90deg,rgba(220,227,255,.05),rgba(220,227,255,.28))}
+.axis b{color:var(--blue-bright);font-weight:600}
+
+/* ── three beats ──────────────────────────────────────── */
+.beats{margin-top:14px;display:grid;grid-template-columns:1fr .95fr 1.05fr;gap:28px;padding-top:16px;border-top:1px solid var(--line)}
+.beat{display:flex;gap:14px;align-items:flex-start}
+.beat .no{font:600 12px/1 var(--mono);letter-spacing:.14em;color:var(--blue-bright);opacity:.8;padding-top:6px}
+.beat .h{font-size:22px;font-weight:700;letter-spacing:-.02em;line-height:1.2}
+.beat .h span{display:block;margin-top:6px;font-size:15px;font-weight:500;letter-spacing:0;color:var(--muted)}
+.money{display:flex;align-items:center;gap:18px}
+.money .big{font-size:60px;font-weight:700;letter-spacing:-.055em;line-height:.9;
+  background:linear-gradient(180deg,#fff 20%,#aeb9f5);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 0 24px rgba(96,117,255,.5))}
+.money .big small{font-size:18px;letter-spacing:0;margin-left:3px}
+.money .m{font-size:15px;line-height:1.45;color:var(--muted);white-space:nowrap}
+.money .m b{display:flex;align-items:center;gap:6px;color:var(--ink);font-size:16px}
+.money .m b img{height:13px}
+.money .m em{font-style:normal;color:var(--ink);font-weight:700}
+
+.src{position:absolute;left:76px;right:76px;bottom:11px;display:flex;justify-content:space-between;font:500 9.5px var(--mono);color:var(--faint);letter-spacing:.03em}
+</style>
+</head>
+<body>
+<section class="slide">
+  <div class="eyebrow"><span class="dot"></span><span class="brand">ECHO</span><span>第二幕 · 这件事值多少钱</span></div>
+  <h1>Echo 如何从现在起，<em>帮 Meta 省下 10 亿美元。</em></h1>
+
+  <div class="viz" id="viz">
+    <canvas class="cloud" id="cloud" width="2256" height="808"></canvas>
+    <svg id="routes" viewBox="0 0 1128 404"></svg>
+
+    <div class="tools">
+      <i><img src="deck_assets/direct/docs.google.com.png" alt=""></i>
+      <i><img src="deck_assets/direct/github.svg" alt=""></i>
+      <i><img src="deck_assets/direct/notion.so.png" alt=""></i>
+      <i><img src="deck_assets/direct/sheets.google.com.png" alt=""></i>
+      <i><img src="deck_assets/direct/granola.ai.png" alt=""></i>
+      <i><img src="deck_assets/direct/salesforce.svg" alt=""></i>
+      <i><img src="deck_assets/direct/databricks.com.png" alt=""></i>
+      <i><img src="deck_assets/direct/snowflake.com.png" alt=""></i>
+      <i><img src="deck_assets/direct/datadoghq.com.png" alt=""></i>
+      <i><img src="deck_assets/direct/slack.svg" alt=""></i>
+      <i><img src="deck_assets/direct/zoom_app.svg" alt=""></i>
+      <i><img src="deck_assets/direct/figma.com.png" alt=""></i>
+    </div>
+
+    <!-- the long row of sessions, shadowed behind the front one -->
+    <div class="card ghost" style="left:112px;top:156px;--f:.25"><div class="av" style="background:#ffbb76">R</div><div class="who"><b>ravi</b><u></u><u></u></div><div class="ag gemini"><img src="deck_assets/direct/googlegemini.svg" alt=""></div></div>
+    <div class="card ghost" style="left:96px;top:145px;--f:.4"><div class="av" style="background:#a88fff">J</div><div class="who"><b>jess</b><u></u><u></u></div><div class="ag claude"><img src="deck_assets/direct/claude.svg" alt=""></div></div>
+    <div class="card ghost" style="left:80px;top:134px;--f:.55"><div class="av" style="background:#6ecbff">T</div><div class="who"><b>tom</b><u></u><u></u></div><div class="ag openai"><img src="deck_assets/direct/openai.svg" alt=""></div></div>
+    <div class="card ghost" style="left:64px;top:123px;--f:.75"><div class="av" style="background:#78dfc1">P</div><div class="who"><b>priya</b><u></u><u></u></div><div class="ag openai"><img src="deck_assets/direct/openai.svg" alt=""></div></div>
+    <div class="card" style="left:48px;top:112px"><div class="av" style="background:#8798ff">M</div><div class="who"><b>maya</b><u></u><u></u></div><div class="ag claude"><img src="deck_assets/direct/claude.svg" alt=""></div></div>
+
+    <div class="core" id="core"><div class="halo"></div><div class="orb"></div><canvas id="echoWrite" width="1080" height="1080"></canvas></div>
+
+    <!-- memory flows back out: every session, agent and teammate shares it -->
+    <div class="card lit" style="left:830px;top:6px"><div class="av" style="background:#78dfc1">P</div><div class="who"><b>priya</b><u></u><u></u></div><div class="ag openai"><img src="deck_assets/direct/openai.svg" alt=""></div></div>
+    <div class="card lit" style="left:830px;top:84px"><div class="av" style="background:#8798ff">M</div><div class="who"><b>maya</b><u></u><u></u></div><div class="ag claude"><img src="deck_assets/direct/claude.svg" alt=""></div></div>
+    <div class="card lit" style="left:830px;top:162px"><div class="av" style="background:#ffbb76">R</div><div class="who"><b>ravi</b><u></u><u></u></div><div class="ag gemini"><img src="deck_assets/direct/googlegemini.svg" alt=""></div></div>
+
+    <div class="axis"><span>多年前</span><i></i><b>现在</b></div>
+  </div>
+
+  <div class="beats">
+    <div class="beat"><div class="no">01</div><div class="h">所有会话都灌进 Echo。<span>每个工具、每个同事、每个 agent。</span></div></div>
+    <div class="beat"><div class="no">02</div><div class="h">记忆再流回每个会话。<span>Token 花费变成公司的第二大脑。</span></div></div>
+    <div class="beat"><div class="no">03</div>
+      <div class="money"><div class="big">$1B+<small>/年</small></div>
+        <div class="m"><b><img src="deck_assets/direct/meta.svg" alt="">Meta 省下</b>全行业 <em>$40B ↗</em></div></div></div>
+  </div>
+
+  <div class="src"><span>均为估算 · Meta：$4–6B Anthropic 账单 × 约 25% 重复上下文被省掉 · 全行业：OpenAI + Anthropic 2026 年约 $100B 账单的约 40%</span><span>08</span></div>
+</section>
+
+<script>
+(function(){
+  var W=1128,NS='http://www.w3.org/2000/svg';
+  var ZH=document.documentElement.lang.indexOf('zh')===0;
+  function rng(seed){var v=seed>>>0;return function(){v+=0x6D2B79F5;var n=v;n=Math.imul(n^(n>>>15),n|1);n^=n+Math.imul(n^(n>>>7),n|61);return((n^(n>>>14))>>>0)/4294967296}}
+  function rgba(hex,a){var v=parseInt(hex.slice(1),16);return 'rgba('+(v>>16&255)+','+(v>>8&255)+','+(v&255)+','+a+')'}
+  var R=rng(20260916);
+
+  /* ── company memory: clusters laid along time, left = years ago, right = now ── */
+  var C=[
+    {en:'Product',zh:'产品',c:'#8798ff',x:70,y:318,sx:62,sy:38,t:-.2},
+    {en:'Customers',zh:'客户',c:'#78dfc1',x:215,y:338,sx:70,sy:34,t:.15},
+    {en:'Decisions',zh:'决策',c:'#a88fff',x:370,y:312,sx:66,sy:40,t:-.25},
+    {en:'Engineering',zh:'工程',c:'#68a9ff',x:540,y:334,sx:82,sy:40,t:.1},
+    {en:'Incidents',zh:'事故',c:'#ff9a8a',x:705,y:314,sx:60,sy:36,t:.25},
+    {en:'Research',zh:'研究',c:'#6ecbff',x:860,y:336,sx:70,sy:38,t:-.15},
+    {en:'People',zh:'人员',c:'#ffbb76',x:1030,y:316,sx:74,sy:40,t:.2}
+  ];
+  var nodes=[],buckets=C.map(function(){return[]});
+  C.forEach(function(k,i){var h={x:k.x,y:k.y,r:3.4,imp:1,k:i,hub:1};nodes.push(h);buckets[i].push(h)});
+  for(var n=0;n<1300;n++){
+    var ki=n%C.length,k=C[ki],a=R()*Math.PI*2,d=.08+Math.pow(R(),.7),o=R()<.08?1.3+R()*.6:1;
+    var lx=Math.cos(a)*k.sx*d*o,ly=Math.sin(a)*k.sy*d*o,co=Math.cos(k.t),si=Math.sin(k.t),imp=Math.pow(R(),4);
+    var nd={x:k.x+lx*co-ly*si+(R()-.5)*10,y:k.y+lx*si+ly*co+(R()-.5)*8,r:.7+imp*2.1,imp:imp,k:ki};
+    if(nd.y<262||nd.y>378)continue;
+    nodes.push(nd);buckets[ki].push(nd);
+  }
+  var links=[];
+  buckets.forEach(function(b,bi){
+    for(var i=1;i<b.length;i++){
+      var best=null,bd=1e9;
+      for(var j=0;j<7;j++){var p=b[Math.floor(R()*i)],dd=(p.x-b[i].x)*(p.x-b[i].x)+(p.y-b[i].y)*(p.y-b[i].y);if(dd<bd){bd=dd;best=p}}
+      links.push([b[i],R()<.12?b[0]:best,0]);
+      if(R()<.03){var ob=buckets[(bi+1)%C.length];links.push([b[i],ob[Math.floor(R()*ob.length)],1])}
+    }
+  });
+
+  var cv=document.getElementById('cloud'),g=cv.getContext('2d');g.scale(2,2);
+  g.save();g.translate(0,330);g.scale(1,.22);var haze=g.createRadialGradient(560,0,0,560,0,600);haze.addColorStop(0,'rgba(49,67,176,.2)');haze.addColorStop(1,'rgba(4,6,14,0)');
+  g.fillStyle=haze;g.fillRect(0,-1500,W,3000);g.restore();
+  g.lineWidth=.5;
+  links.forEach(function(l){g.strokeStyle=l[2]?'rgba(123,142,247,.16)':'rgba(104,122,196,.13)';g.beginPath();g.moveTo(l[0].x,l[0].y);g.lineTo(l[1].x,l[1].y);g.stroke()});
+  nodes.forEach(function(nd){
+    var col=C[nd.k].c;
+    if(nd.hub||nd.imp>.36){var gr=nd.hub?15:3+nd.imp*7,gg=g.createRadialGradient(nd.x,nd.y,0,nd.x,nd.y,gr);
+      gg.addColorStop(0,rgba(col,nd.hub?.55:.28));gg.addColorStop(1,rgba(col,0));g.fillStyle=gg;g.beginPath();g.arc(nd.x,nd.y,gr,0,7);g.fill()}
+    g.fillStyle=rgba(col,.3+nd.imp*.65);g.beginPath();g.arc(nd.x,nd.y,nd.r,0,7);g.fill();
+  });
+  g.textAlign='center';g.font=ZH?'600 11px "PingFang SC",sans-serif':'600 8.5px ui-monospace,SFMono-Regular,Menlo,monospace';
+  C.forEach(function(k){g.fillStyle=rgba(k.c,.75);g.fillText((ZH?k.zh:k.en.toUpperCase()),k.x,Math.max(268,k.y-k.sy+2))});
+
+  /* ── routes ── */
+  var svg=document.getElementById('routes');
+  svg.innerHTML='<defs><linearGradient id="bridge" x1="0" x2="1"><stop offset="0" stop-color="#aeb9f5" stop-opacity=".25"/><stop offset=".5" stop-color="#e4e9ff"/><stop offset="1" stop-color="#aeb9f5" stop-opacity=".25"/></linearGradient></defs>';
+  function el(tag,attrs,parent){var e=document.createElementNS(NS,tag);for(var k in attrs)e.setAttribute(k,attrs[k]);(parent||svg).appendChild(e);return e}
+  function route(d,o){
+    o=o||{};
+    if(o.halo!==false)el('path',{d:d,fill:'none',stroke:o.color||'#6075ff','stroke-opacity':o.ho||.12,'stroke-width':o.hw||5,'stroke-linecap':'round'});
+    el('path',{d:d,fill:'none',stroke:o.color||'#8a9bff','stroke-opacity':o.op||.55,'stroke-width':o.w||1.2,'stroke-linecap':'round'});
+    var np=o.pulses||1,dur=o.dur||1.6;
+    for(var i=0;i<np;i++){
+      var c=el('circle',{r:o.pr||2.6,fill:o.pc||'#e4e9ff'});
+      el('animateMotion',{dur:dur+'s',begin:(-dur*i/np-(o.off||0)).toFixed(2)+'s',repeatCount:'indefinite',path:d},c);
+    }
+  }
+  // tools → the front session (maya)
+  var vz=document.getElementById('viz').getBoundingClientRect();
+  document.querySelectorAll('.tools i').forEach(function(t,i){
+    var b=t.getBoundingClientRect(),x=b.left-vz.left+15,y=b.bottom-vz.top;
+    route('M'+x+' '+y+' C'+x+' '+(y+26)+' 150 88 154 110',{halo:false,op:.22,w:.8,dur:1.4+i%4*.25,off:i*.21,pr:1.6});
+  });
+  // every session in the row → Echo
+  [[260,143,.9],[276,154,.7],[292,165,.5],[308,176,.35],[324,187,.25]].forEach(function(p,i){
+    route('M'+p[0]+' '+p[1]+' C'+(p[0]+110)+' '+p[1]+' 410 118 492 118',{op:.5*p[2]+.1,ho:.1*p[2],pulses:2,dur:1.5+i*.12,off:i*.3});
+  });
+  // Echo → memory (down) · memory → Echo (up)
+  route('M520 160 C505 210 470 238 450 292',{op:.7,pulses:3,dur:1.3});
+  route('M650 300 C640 250 605 205 578 160',{color:'#78dfc1',op:.7,pulses:3,dur:1.3,pc:'#d8fff1'});
+  // Echo → every session, agent, teammate
+  [37,115,193].forEach(function(y,i){
+    route('M604 118 C700 118 740 '+y+' 828 '+y,{color:'#78dfc1',op:.6,ho:.1,pulses:2,dur:1.4,off:i*.4,pc:'#d8fff1'});
+  });
+  // and they share with each other
+  route('M1044 40 C1080 50 1080 106 1044 115',{color:'#78dfc1',op:.55,halo:false,dur:1.8,pc:'#d8fff1',pr:2});
+  route('M1044 193 C1080 183 1080 127 1044 118',{color:'#78dfc1',op:.55,halo:false,dur:1.8,off:.9,pc:'#d8fff1',pr:2});
+  route('M1044 196 C1112 170 1112 60 1044 37',{color:'#78dfc1',op:.35,halo:false,dur:2.4,off:.4,pc:'#d8fff1',pr:2});
+
+  // highlighted bridges: memory connected across years and teams
+  function pick(ci){var b=buckets[ci],best=b[1];for(var i=0;i<60;i++){var c=b[1+Math.floor(R()*(b.length-1))];if(c.imp>best.imp)best=c}return best}
+  [[0,4],[1,6],[0,2],[2,5],[3,6],[1,3]].forEach(function(pr,i){
+    var a=pick(pr[0]),b=pick(pr[1]),mx=(a.x+b.x)/2,top=Math.min(a.y,b.y)-24-Math.abs(b.x-a.x)*.07;
+    var d='M'+a.x.toFixed(1)+' '+a.y.toFixed(1)+' Q'+mx.toFixed(1)+' '+top.toFixed(1)+' '+b.x.toFixed(1)+' '+b.y.toFixed(1);
+    el('path',{d:d,fill:'none',stroke:'#aeb9f5','stroke-opacity':.14,'stroke-width':4});
+    el('path',{d:d,fill:'none',stroke:'url(#bridge)','stroke-width':1.1});
+    [a,b].forEach(function(p){el('circle',{cx:p.x,cy:p.y,r:6,fill:'#aeb9f5','fill-opacity':.18});el('circle',{cx:p.x,cy:p.y,r:2.4,fill:'#eef1ff'})});
+    var c=el('circle',{r:2,fill:'#ffffff'});el('animateMotion',{dur:(2.6+i*.3)+'s',begin:(-i*.7)+'s',repeatCount:'indefinite',path:d},c);
+  });
+})();
+</script>
+<script src="deck_assets/vendor/rive.js"></script>
+<script>
+(function(){
+  // Echo writing it all down (v21 · WritingNotes). The static orb stays if Rive fails.
+  if(!window.rive) return;
+  try{
+    rive.RuntimeLoader.setWasmUrl('deck_assets/vendor/rive.wasm');
+    var box=document.getElementById('core');
+    var r=new rive.Rive({
+      src:'deck_assets/direct/echo.riv',
+      canvas:document.getElementById('echoWrite'),
+      artboard:'Echo-GeneralFile',
+      animations:['WritingNotes-In'],
+      autoplay:true,
+      layout:new rive.Layout({fit:rive.Fit.Contain,alignment:rive.Alignment.Center}),
+      onLoad:function(){box.classList.add('live')},
+      onStop:function(){r.play(['WritingNotes-Loop','Note/1'])}
+    });
+  }catch(e){}
+})();
+</script>
+</body>
+</html>

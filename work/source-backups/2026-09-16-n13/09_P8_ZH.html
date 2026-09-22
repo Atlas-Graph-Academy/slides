@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>Echo — 直投版 · 第 8 页</title>
+<style>
+:root{
+  --ink:#f3f5fa; --muted:rgba(219,224,238,.66); --faint:rgba(211,217,235,.42);
+  --line:rgba(220,227,255,.075); --line-strong:rgba(220,227,255,.13);
+  --blue:#5267ff; --blue-bright:#aeb9f5; --eyebrow:rgba(177,188,255,.78); --red:#ff5f52;
+  --sans:"Avenir Next","Avenir","PingFang SC","Hiragino Sans GB","Helvetica Neue",sans-serif;
+  --mono:"IBM Plex Mono","Menlo",monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html,body{background:#000;font-family:var(--sans);color:var(--ink);-webkit-font-smoothing:antialiased;}
+.slide{position:relative;width:1280px;height:720px;margin:24px auto;overflow:hidden;
+  background:
+    radial-gradient(ellipse 78% 48% at 50% -18%, rgba(69,88,255,.13), transparent 66%),
+    radial-gradient(circle at 82% 22%, rgba(0,0,242,.13), transparent 28rem),
+    linear-gradient(180deg,#050609 0%,#080a10 44%,#050609 100%);
+  display:flex;flex-direction:column;padding:52px 76px 40px;}
+.slide::before{content:"";position:absolute;inset:0;opacity:.035;pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.84' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.9'/%3E%3C/svg%3E");}
+.slide>*{position:relative;z-index:1;}
+
+.eyebrow{display:flex;align-items:center;gap:10px;
+  font:600 12px/1.2 var(--mono);letter-spacing:.18em;text-transform:uppercase;color:var(--eyebrow);}
+.eyebrow .dot{width:6px;height:6px;border-radius:50%;background:#6075ff;
+  box-shadow:0 0 0 4px rgba(82,103,255,.1),0 0 18px rgba(82,103,255,.62);}
+.eyebrow .brand{color:var(--ink);font-weight:700;letter-spacing:.24em;}
+
+.h1{margin-top:22px;font-size:56px;font-weight:600;letter-spacing:-.026em;line-height:1.05;white-space:nowrap;}
+.h1 em{font-style:normal;color:var(--blue-bright);}
+
+.pillars{flex:1;display:grid;grid-template-columns:repeat(3,1fr);gap:32px;margin-top:30px;min-height:0;}
+.pillar{position:relative;display:flex;flex-direction:column;border-top:1px solid var(--line-strong);padding-top:16px;min-width:0;}
+.pillar::before{content:"";position:absolute;top:-1px;left:0;width:56px;height:2px;background:var(--blue);box-shadow:0 0 14px rgba(82,103,255,.8);}
+.pk{display:flex;align-items:baseline;gap:10px;font:600 11px var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--eyebrow);}
+.pk .en{color:var(--faint);letter-spacing:.2em;}
+.pk .n{color:var(--red);font-weight:700;}
+.ph{margin-top:14px;font-size:25px;font-weight:600;line-height:1.24;letter-spacing:-.024em;white-space:nowrap;color:var(--ink);}
+.ph em{font-style:normal;color:var(--blue-bright);}
+.pb{margin-top:14px;font-size:15.6px;font-weight:500;line-height:1.6;color:var(--muted);}
+.pb b{color:var(--ink);font-weight:600;}
+.luh{margin-top:auto;display:flex;align-items:center;gap:10px;padding-top:10px;}
+.luh img{width:34px;height:34px;border-radius:50%;object-fit:cover;object-position:50% 20%;flex:none;
+  filter:grayscale(1) contrast(1.06) brightness(.96);border:1px solid rgba(174,185,245,.45);}
+.luh span{font:500 10px/1.4 var(--mono);letter-spacing:.06em;color:var(--faint);}
+.luh span b{color:var(--muted);font-weight:600;}
+.pf{margin-top:auto;padding-top:10px;border-top:1px solid var(--line);
+  font:600 11.5px/1.5 var(--mono);letter-spacing:.06em;color:var(--blue-bright);}
+.pillar.has-luh .pf{margin-top:8px;}
+
+.src{margin-top:12px;font:500 9.5px var(--mono);letter-spacing:.05em;color:var(--faint);text-align:right;}
+
+.closer{margin-top:24px;display:flex;justify-content:space-between;align-items:baseline;
+  border-top:1px solid var(--line-strong);padding-top:14px;}
+.closer .line{font-size:20px;font-weight:500;color:var(--ink);letter-spacing:-.01em;white-space:nowrap;}
+.closer .line b{color:var(--blue-bright);font-weight:600;}
+.closer .foot{font:500 10.5px var(--mono);letter-spacing:.06em;color:var(--faint);white-space:nowrap;margin-left:24px;}
+
+@page{size:13.333in 7.5in;margin:0;}
+@media print{html,body{background:#000;} .slide{margin:0;}}
+@media screen{.slide{box-shadow:0 10px 40px rgba(0,0,0,.6);}}
+</style>
+</head>
+<body>
+
+<section class="slide">
+
+  <div class="eyebrow"><span class="dot"></span><span class="brand">ECHO</span><span>护城河</span></div>
+
+  <div class="h1">护城河：<em>定位 + 核心技术 + 文化</em></div>
+
+  <div class="pillars">
+
+    <!-- 01 · 位置 -->
+    <div class="pillar">
+      <div class="pk"><span class="n">01</span><span>定位</span><span class="en">Position</span></div>
+      <div class="ph">公司级智能体上下文管理<br>是空白领域，<em>我们领先。</em></div>
+      <div class="pb">Labs 不会给自己修出口：<b>0 个平台</b>允许上下文离开自家的墙。智能体公司只记自己：Sierra 记客服，Cognition 记代码。记忆创业公司卖 SDK，按仓库、按机器存。下一页六条硬标准，<b>只有 Echo 全过。</b></div>
+    </div>
+
+    <!-- 02 · 引擎 -->
+    <div class="pillar has-luh">
+      <div class="pk"><span class="n">02</span><span>核心技术</span><span class="en">Core Tech</span></div>
+      <div class="ph">95.8%，公开第一。<br><em>卢曼的卡片盒，做成了 AI。</em></div>
+      <div class="pb">这台引擎 2021 年就开始做，<b>比 ChatGPT 早一年</b>。底子是卢曼的卡片盒：每条记忆是一张卡片，带来源、带链接，不是向量库里的一段文本。压缩、召回、审计从第一天就在里面。别家的记忆产品是贴在模型上的检索层，Echo 是<b>一台知识引擎</b>。95.8% 是架构的结果，不是调参的结果。</div>
+      <div class="luh"><img src="deck_assets/direct/luhmann.png" alt="Niklas Luhmann"><span>卢曼：<b>9 万张卡片 → 70 本书</b>。他的第二记忆，我们造给了 Agent。</span></div>
+      <div class="pf">2021 卡片盒引擎 → LongMemEval 95.8% · 公开第一</div>
+    </div>
+
+    <!-- 03 · 信念 -->
+    <div class="pillar">
+      <div class="pk"><span class="n">03</span><span>文化</span><span class="en">Culture</span></div>
+      <div class="ph">不做概念，只看结果。<br><em>让公司强 10 倍。</em></div>
+      <div class="pb">模型让每个人快了 10 倍，公司没有，差的那 9 倍卡在等待、复核和重复解释里。Echo 存在的唯一目的，是让用它的公司变得<b>10 倍更高效、10 倍更强</b>：基本单位是一条带 owner、证据和验收标准的决策，指标是<b>每个被接受的结果的成本</b>，不是席位。我们自己 5 个人 100% 在 agent 里工作，是这套方法的第一个客户。</div>
+      <div class="pf">7 → 17 并行项目 · 1.5 → 4.8 会话/天 · 828 会话实测</div>
+    </div>
+
+  </div>
+
+  <div class="closer">
+    <div class="line">模型越强，<b>帮公司把智能变成结果的活就越多。</b></div>
+    <div class="foot">echoknows.com · 08</div>
+  </div>
+
+</section>
+
+</body>
+</html>

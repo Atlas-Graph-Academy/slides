@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Echo — Direct Deck · Page 4.5</title>
+<style>
+:root{
+  --ink:#f3f5fa; --muted:rgba(219,224,238,.64); --faint:rgba(211,217,235,.42);
+  --line:rgba(220,227,255,.075); --line-strong:rgba(220,227,255,.13);
+  --blue:#5267ff; --blue-bright:#aeb9f5; --eyebrow:rgba(177,188,255,.78); --red:#ff5f52;
+  --sans:"Avenir Next","Avenir","PingFang SC","Hiragino Sans GB","Helvetica Neue",sans-serif;
+  --mono:"IBM Plex Mono","Menlo",monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html,body{background:#000;font-family:var(--sans);color:var(--ink);-webkit-font-smoothing:antialiased;}
+.slide{position:relative;width:1280px;height:720px;margin:24px auto;overflow:hidden;
+  background:
+    radial-gradient(ellipse 78% 48% at 50% -18%, rgba(69,88,255,.13), transparent 66%),
+    radial-gradient(circle at 82% 22%, rgba(0,0,242,.13), transparent 28rem),
+    linear-gradient(180deg,#050609 0%,#080a10 44%,#050609 100%);
+  display:flex;flex-direction:column;padding:52px 76px 40px;}
+.slide::before{content:"";position:absolute;inset:0;opacity:.035;pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.84' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.9'/%3E%3C/svg%3E");}
+.slide>*{position:relative;z-index:1;}
+
+.eyebrow{display:flex;align-items:center;gap:10px;
+  font:600 12px/1.2 var(--mono);letter-spacing:.18em;text-transform:uppercase;color:var(--eyebrow);}
+.eyebrow .dot{width:6px;height:6px;border-radius:50%;background:#6075ff;
+  box-shadow:0 0 0 4px rgba(82,103,255,.1),0 0 18px rgba(82,103,255,.62);}
+.eyebrow .brand{color:var(--ink);font-weight:700;letter-spacing:.24em;}
+
+.h1{margin-top:22px;font-size:46px;font-weight:600;letter-spacing:-.024em;line-height:1.05;}
+.h1 em{font-style:normal;color:var(--red);}
+.subline{margin-top:10px;font-size:17px;font-weight:500;line-height:1.45;color:var(--muted);}
+.subline b{color:var(--ink);font-weight:600;}
+
+/* three reasons — one visual, one claim, one line of evidence each */
+.reasons{flex:1;display:flex;gap:36px;margin-top:24px;padding-top:24px;border-top:1px solid var(--line-strong);min-height:0;}
+.rs{flex:1;display:flex;flex-direction:column;min-width:0;}
+.rs+.rs{border-left:1px solid var(--line);padding-left:36px;}
+.rs .chip{align-self:flex-start;font:600 9.5px var(--mono);letter-spacing:.16em;text-transform:uppercase;
+  color:rgba(219,224,238,.55);border:1px solid var(--line-strong);border-radius:99px;padding:3px 10px;}
+.rs svg{display:block;width:100%;height:136px;margin-top:18px;}
+.rs .t{margin-top:16px;font-size:21.6px;font-weight:600;letter-spacing:-.018em;line-height:1.2;color:var(--ink);}
+.rs .t em{font-style:normal;color:var(--blue-bright);}
+.rs .s{margin-top:10px;font-size:13.8px;font-weight:500;line-height:1.5;color:var(--muted);}
+.rs .s b{color:var(--ink);font-weight:600;}
+.rs .ev{margin-top:14px;padding-top:10px;border-top:1px solid var(--line);font:500 9.7px/1.55 var(--mono);letter-spacing:.02em;color:var(--faint);}
+.rs .ev b{color:var(--muted);font-weight:600;}
+
+.closer{display:flex;justify-content:space-between;align-items:baseline;gap:24px;
+  border-top:1px solid var(--line-strong);padding-top:14px;margin-top:auto;}
+.closer .line{font-size:19px;font-weight:500;color:var(--ink);letter-spacing:-.01em;}
+.closer .line b{color:var(--blue-bright);font-weight:600;}
+.closer .foot{flex:none;white-space:nowrap;font:500 10.5px var(--mono);letter-spacing:.06em;color:var(--faint);}
+
+@page{size:13.333in 7.5in;margin:0;}
+@media print{html,body{background:#000;} .slide{margin:0;}}
+@media screen{.slide{box-shadow:0 10px 40px rgba(0,0,0,.6);}}
+</style>
+</head>
+<body>
+
+<section class="slide">
+
+  <div class="eyebrow"><span class="dot"></span><span class="brand">ECHO</span><span>Why zero · Three reasons</span></div>
+
+  <div class="h1">Such an obvious gap. <em>Why has nobody built it?</em></div>
+  <div class="subline">The demand is new; last-generation memory is too coarse to <b>hold it</b>; and doing it right is <b>hard</b>.</div>
+
+  <div class="reasons">
+
+    <!-- 01 · the demand is brand new -->
+    <div class="rs">
+      <span class="chip">Reason 01 · Too new</span>
+      <svg viewBox="0 0 340 136" xmlns="http://www.w3.org/2000/svg" font-family="IBM Plex Mono,Menlo,monospace">
+        <!-- baseline -->
+        <line x1="14" y1="108" x2="326" y2="108" stroke="rgba(174,185,245,.3)" stroke-width="1.5"/>
+        <!-- flat: one person + one agent, for years -->
+        <path d="M14,104 C90,102 150,100 200,92" fill="none" stroke="rgba(174,185,245,.55)" stroke-width="2.5" stroke-linecap="round"/>
+        <!-- explosion: teams of people, each with agents -->
+        <path d="M200,92 C240,80 270,50 300,18" fill="none" stroke="#5267ff" stroke-width="3" stroke-linecap="round"/>
+        <circle cx="300" cy="18" r="5" fill="#5267ff"/>
+        <!-- marker -->
+        <line x1="200" y1="24" x2="200" y2="108" stroke="#ff5f52" stroke-width="1.5" stroke-dasharray="4 4"/>
+        <text x="200" y="128" text-anchor="middle" font-size="9.5" fill="#ff5f52" letter-spacing=".12em">2026</text>
+        <!-- labels -->
+        <text x="18" y="88" font-size="9.5" fill="rgba(219,224,238,.6)" letter-spacing=".08em">ONE PERSON + ONE AGENT</text>
+        <text x="18" y="100" font-size="9" fill="rgba(211,217,235,.42)" letter-spacing=".06em">CONTEXT LOST, BUT ONLY YOURS</text>
+        <text x="262" y="38" text-anchor="end" font-size="9.5" fill="#aeb9f5" letter-spacing=".08em">A TEAM · EVERYONE + AGENT</text>
+        <text x="262" y="50" text-anchor="end" font-size="9" fill="rgba(211,217,235,.42)" letter-spacing=".06em">CONTEXT MUST FLOW</text>
+      </svg>
+      <div class="t">This demand <em>only exploded this year.</em></div>
+      <div class="s">A year ago an agent was a personal tool; losing context only hurt you. “A team, everyone with an agent, delivering one thing together” is a 2026 pattern. <b>The problem is under a year old — of course the product doesn’t exist yet.</b></div>
+      <div class="ev"><b>PAGE 03</b> · enterprise agent use Feb→Aug: Legal ×108, Sales ×41, Marketing ×26<br><b>PAGE 04</b> · 81% of the G2000 run 3+ model families</div>
+    </div>
+
+    <!-- 02 · last generation describes the person; granularity too coarse -->
+    <div class="rs">
+      <span class="chip">Reason 02 · Granularity</span>
+      <svg viewBox="0 0 340 136" xmlns="http://www.w3.org/2000/svg" font-family="IBM Plex Mono,Menlo,monospace">
+        <!-- left: one big profile block -->
+        <rect x="8" y="14" width="150" height="100" rx="10" fill="rgba(255,255,255,.02)" stroke="rgba(220,227,255,.2)"/>
+        <text x="83" y="34" text-anchor="middle" font-size="9" fill="rgba(211,217,235,.5)" letter-spacing=".12em">LAST GEN · ABOUT THE PERSON</text>
+        <rect x="24" y="46" width="118" height="52" rx="6" fill="rgba(174,185,245,.35)"/>
+        <text x="83" y="76" text-anchor="middle" font-size="11" font-weight="600" fill="#f3f5fa">“Likes short answers”</text>
+        <text x="83" y="130" text-anchor="middle" font-size="9" fill="#ff5f52" letter-spacing=".1em">ONE BLOCK · STATIC</text>
+        <!-- arrow -->
+        <text x="170" y="68" text-anchor="middle" font-size="14" fill="rgba(219,224,238,.45)">≠</text>
+        <!-- right: fine-grained work ledger -->
+        <rect x="182" y="14" width="150" height="100" rx="10" fill="rgba(82,103,255,.06)" stroke="rgba(82,103,255,.55)"/>
+        <text x="257" y="34" text-anchor="middle" font-size="9" fill="#aeb9f5" letter-spacing=".12em">WORK · ABOUT PROGRESS</text>
+        <g font-size="8.5" fill="rgba(219,224,238,.75)">
+          <rect x="196" y="44" width="122" height="11" rx="2" fill="rgba(82,103,255,.28)"/><text x="200" y="52.5">Mon · price $40 · why…</text>
+          <rect x="196" y="59" width="122" height="11" rx="2" fill="rgba(82,103,255,.28)"/><text x="200" y="67.5">Wed · now $30 · why…</text>
+          <rect x="196" y="74" width="122" height="11" rx="2" fill="rgba(82,103,255,.28)"/><text x="200" y="82.5">Thu · open: legal sign-off</text>
+          <rect x="196" y="89" width="122" height="11" rx="2" fill="#5267ff"/><text x="200" y="97.5" fill="#f3f5fa">Next · send to Unlimit</text>
+        </g>
+        <text x="257" y="130" text-anchor="middle" font-size="9" fill="#aeb9f5" letter-spacing=".1em">OWNER · TIME · WHY</text>
+      </svg>
+      <div class="t">Last-generation products <em>describe the person</em>, not the work in progress.</div>
+      <div class="s">Their unit of memory is one sentence about you: a single block, static, no time. Work state is a chain of steps, each with an owner, a time and a reason. <b>The granularity is off by an order of magnitude — not unwilling, just unable to hold it.</b></div>
+      <div class="ev"><b>MEM0 / CHATGPT / CLAUDE / GEMINI</b> · memory scoped by user_id, storing facts about the person<br><b>MEM0</b> · temporal conflict resolution listed as a “future feature” · checked 2026-09-02</div>
+    </div>
+
+    <!-- 03 · it is genuinely hard: compress AND retain detail -->
+    <div class="rs">
+      <span class="chip">Reason 03 · Hard</span>
+      <svg viewBox="0 0 340 136" xmlns="http://www.w3.org/2000/svg" font-family="IBM Plex Mono,Menlo,monospace">
+        <!-- two forces pulling apart -->
+        <text x="14" y="30" font-size="9.5" fill="rgba(219,224,238,.6)" letter-spacing=".1em">COMPRESS HARD</text>
+        <text x="326" y="30" text-anchor="end" font-size="9.5" fill="rgba(219,224,238,.6)" letter-spacing=".1em">KEEP DETAIL</text>
+        <line x1="14" y1="48" x2="150" y2="48" stroke="rgba(174,185,245,.5)" stroke-width="2.5" stroke-linecap="round"/>
+        <path d="M22,42 L14,48 L22,54" fill="none" stroke="rgba(174,185,245,.5)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <line x1="190" y1="48" x2="326" y2="48" stroke="rgba(174,185,245,.5)" stroke-width="2.5" stroke-linecap="round"/>
+        <path d="M318,42 L326,48 L318,54" fill="none" stroke="rgba(174,185,245,.5)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <!-- the two failure modes -->
+        <text x="14" y="72" font-size="9" fill="#ff5f52" letter-spacing=".06em">Summarize → detail gone</text>
+        <text x="326" y="72" text-anchor="end" font-size="9" fill="#ff5f52" letter-spacing=".06em">Keep all → tokens explode</text>
+        <!-- the only way through: structured state -->
+        <rect x="120" y="86" width="100" height="34" rx="8" fill="rgba(82,103,255,.12)" stroke="#5267ff" stroke-width="1.5"/>
+        <text x="170" y="101" text-anchor="middle" font-size="9" fill="#aeb9f5" letter-spacing=".12em">WRITE AS STATE</text>
+        <text x="170" y="113" text-anchor="middle" font-size="9" fill="#f3f5fa" font-weight="600" letter-spacing=".06em">SMALL · AND KEPT</text>
+        <line x1="170" y1="56" x2="170" y2="84" stroke="#5267ff" stroke-width="1.5" stroke-dasharray="3 3"/>
+      </svg>
+      <div class="t">It has to be <em>small</em> and <em>keep every detail</em>, at once.</div>
+      <div class="s">Compress by summarizing and the detail is gone before you know it mattered; keep everything and tokens explode. The only way through is to compress work into structured state at the moment it is written. <b>That is the genuinely hard part — and Echo’s core technology.</b></div>
+      <div class="ev"><b>ANTHROPIC DOCS</b> · after compaction, tool outputs and intermediate reasoning are not retained · <b>TIERMEM</b> ICLR 2026<br><b>NEXT PAGE</b> · 99.5% input · 66% re-reads — the cost of not compressing</div>
+    </div>
+
+  </div>
+
+  <div class="closer">
+    <div class="line">The demand just appeared, the old products can’t hold it, the new way is hard — <b>that’s why the gap is still open.</b></div>
+    <div class="foot">echoknows.com · 04.5</div>
+  </div>
+
+</section>
+
+</body>
+</html>

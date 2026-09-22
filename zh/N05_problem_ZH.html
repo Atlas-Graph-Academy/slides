@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1280, initial-scale=1">
+<title>Echo — 叙事版 · agent 记性太差</title>
+<link rel="stylesheet" href="v2.css">
+<style>
+.body{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.col{padding:26px 26px 22px;display:flex;flex-direction:column}
+.col .k{font:700 44px/1 var(--sans);letter-spacing:-.04em;color:rgba(174,185,245,.35)}
+.col h3{margin-top:16px;font-size:25px;line-height:1.2;font-weight:600;letter-spacing:-.02em}
+.col p{margin-top:12px;font-size:15.5px;line-height:1.6;color:var(--muted)}
+.col p b{color:var(--ink);font-weight:600}
+.viz{margin-top:auto;padding-top:18px;height:132px;display:flex;align-items:flex-end}
+/* 01: sessions all restarting */
+.loops{display:flex;gap:10px;width:100%}
+.loop{flex:1;border:1px solid var(--line-strong);border-radius:10px;padding:10px 8px;text-align:center;font:500 10.5px/1.5 var(--mono);color:var(--faint)}
+.loop b{display:block;color:var(--warn);font-weight:600}
+/* 02: window stack */
+.stack{width:100%;display:flex;flex-direction:column;gap:4px}
+.stack i{display:block;height:13px;border-radius:3px;background:rgba(220,227,255,.10)}
+.stack i.live{background:#6075ff;box-shadow:0 0 14px rgba(82,103,255,.5)}
+.stack .cap{margin-top:6px;font:500 10.5px/1.3 var(--mono);color:var(--faint)}
+/* 03: broken links */
+.links{width:100%;display:flex;flex-direction:column;gap:9px}
+.link{display:flex;justify-content:space-between;align-items:center;border-bottom:1px dashed var(--line-strong);padding-bottom:7px;font-size:15px;font-weight:500}
+.link span{font:700 12px/1 var(--mono);color:var(--warn);letter-spacing:.1em}
+</style>
+</head>
+<body>
+<section class="slide">
+  <div class="eyebrow"><span class="dot"></span><span class="brand">ECHO</span><span>第二幕 · 问题</span></div>
+  <h1>Agent 有记忆，<em>但记性太差。</em></h1>
+  <div class="sub">所以每一次会话，都从头开始。<b>活越多，越接不上。</b></div>
+
+  <div class="body">
+    <div class="col card">
+      <div class="k">01</div>
+      <h3>粗放：靠蛮力找回上下文</h3>
+      <p>没有好的记忆系统，agent 只能<b>重新读文件、重新搜索、重新跑命令</b>，把结果一条条堆进窗口。昨天做过的，今天再做一遍。</p>
+      <div class="viz"><div class="loops">
+        <div class="loop">周一<b>重读</b></div><div class="loop">周二<b>重读</b></div><div class="loop">周三<b>重读</b></div>
+      </div></div>
+    </div>
+
+    <div class="col card">
+      <div class="k">02</div>
+      <h3>太能写：产出快过人能消化</h3>
+      <p>agent 一小时写出的东西，人一天读不完。窗口越堆越大，<b>真正有用的判断被旧日志和过期文件淹没</b>；压缩一次，细节又丢一次。</p>
+      <div class="viz"><div class="stack">
+        <i></i><i></i><i class="live" style="width:18%"></i><i></i><i></i><i></i>
+        <div class="cap">一个窗口里，真正在用的只有约 12%</div>
+      </div></div>
+    </div>
+
+    <div class="col card">
+      <div class="k">03</div>
+      <h3>断开：没有连续性层</h3>
+      <p>工作一旦换了地方就断了。每一次，都要有人<b>翻记录、摘结论、重新解释</b>，再喂给下一个 agent。</p>
+      <div class="viz"><div class="links">
+        <div class="link">跨平台 · Claude → Codex<span>断</span></div>
+        <div class="link">跨人 · 我 → 同事<span>断</span></div>
+        <div class="link">跨会话 · 昨天 → 今天<span>断</span></div>
+      </div></div>
+    </div>
+  </div>
+
+  <div class="closer" style="margin-top:22px">
+    <div class="line-copy">窗口越大，能装的干草越多。<b>针并不会因此更好找。</b></div>
+    <div class="foot">窗口构成：Echo 对真实 Codex 会话的逐 token 归因 · 05</div>
+  </div>
+</section>
+</body>
+</html>

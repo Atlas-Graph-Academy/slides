@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1280, initial-scale=1">
+<title>Echo — Narrative · Comparison</title>
+<link rel="stylesheet" href="v2.css">
+<style>
+@font-face{font-family:"Echo Poppins";src:url("assets/brand/poppins-600.ttf") format("truetype");font-weight:600;font-display:swap}
+h1{font-size:48px}
+
+/* ── the comparison ── */
+.mx{position:relative;margin-top:26px;display:grid;grid-template-columns:352px repeat(7,1fr);grid-template-rows:84px;grid-auto-rows:60px}
+.mx .hl{position:absolute;top:0;bottom:0;right:0;width:calc((100% - 352px)/7);border-radius:14px;pointer-events:none;
+  border:1px solid rgba(160,172,255,.38);background:linear-gradient(180deg,rgba(120,135,255,.18),rgba(120,135,255,.05));box-shadow:0 0 40px rgba(96,117,255,.18)}
+.c{position:relative;display:flex;align-items:center;justify-content:center;border-bottom:1px solid var(--line)}
+.c.last{border-bottom:0}
+.hd{border-bottom:1px solid var(--line-strong)}
+.hd.v{flex-direction:column;gap:7px;font-size:12px;font-weight:600;color:rgba(243,245,250,.72);text-align:center;line-height:1.15}
+.lg{width:34px;height:34px;border-radius:9px;background:#fff;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.lg img{width:100%;height:100%;object-fit:contain;padding:5px}
+.lg.dark{background:#16181f;border:1px solid rgba(255,255,255,.18)}
+.lg.dark img{padding:8px}
+.lg img.word{padding:8px 3px}
+.wm{font-family:"Echo Poppins","Poppins",var(--sans);font-size:28px;font-weight:600;letter-spacing:-.035em;color:#f7f8ff}
+.wm span{color:#6075ff;text-shadow:0 0 13px rgba(82,103,255,.8)}
+.hd.l{justify-content:flex-start;align-items:flex-end;padding-bottom:12px;font:600 10px var(--mono);letter-spacing:.16em;color:var(--faint);text-transform:uppercase}
+
+.rl{justify-content:flex-start;gap:13px;padding-right:12px}
+.ic{width:30px;height:30px;flex:none;border-radius:9px;display:flex;align-items:center;justify-content:center;background:rgba(120,135,255,.12);border:1px solid rgba(160,172,255,.22)}
+.ic svg{width:16px;height:16px;fill:none;stroke:#b8c1ff;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.rl b{display:block;font-size:15px;font-weight:700;letter-spacing:-.01em;line-height:1.2;white-space:nowrap}
+.rl div span{display:block;font-size:12px;color:var(--faint);white-space:nowrap;margin-top:1px}
+
+/* marks */
+.m{display:block}
+.m.y{width:10px;height:10px;border-radius:50%;background:rgba(232,236,246,.8)}
+.m.p{width:13px;height:13px;border-radius:50%;border:1.5px solid rgba(211,217,235,.5);background:linear-gradient(90deg,rgba(211,217,235,.5) 50%,transparent 50%)}
+.m.n{width:12px;height:1.5px;background:rgba(211,217,235,.22)}
+.m.u{width:12px;height:12px;border-radius:50%;border:1.5px dashed rgba(211,217,235,.3)}
+.e .m.y{width:13px;height:13px;background:#c4ccff;box-shadow:0 0 0 5px rgba(96,117,255,.14),0 0 18px rgba(96,117,255,.7)}
+
+.src{position:absolute;left:76px;right:76px;bottom:11px;display:flex;justify-content:space-between;align-items:center;font:500 9.5px var(--mono);color:var(--faint);letter-spacing:.03em}
+.key{display:flex;gap:16px;align-items:center}
+.key i{display:inline-flex;align-items:center;gap:6px;font-style:normal}
+.key .m{display:inline-block}
+.key .m.y{width:8px;height:8px}.key .m.p{width:10px;height:10px}.key .m.u{width:10px;height:10px}
+</style>
+</head>
+<body>
+<section class="slide">
+  <div class="eyebrow"><span class="dot"></span><span class="brand">ECHO</span><span>Act IV · Comparison</span></div>
+  <h1>Others each solve a piece; <em>Echo holds all of it at once.</em></h1>
+  <div class="mx" id="mx"><div class="hl"></div></div>
+  <div class="src">
+    <span class="key"><i><b class="m y"></b>Native</i><i><b class="m p"></b>Partial</i><i><b class="m n"></b>None</i></span>
+    <span>Official product docs, checked Sep 2026 · 12</span>
+  </div>
+</section>
+<script>
+(function(){
+  var zh=document.documentElement.lang==='zh';
+  function T(en,z){return zh?z:en}
+  var I={
+    work:'<circle cx="8" cy="8" r="3"/><circle cx="16" cy="8" r="3"/><path d="M2 19c0-3 2.7-5 6-5s6 2 6 5M14 14c3.3 0 6 2 6 5"/>',
+    agents:'<rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/><path d="M10 6.5h4M10 17.5h4M6.5 10v4M17.5 10v4"/>',
+    cmp:'<path d="M4 4l5 5M9 5v4H5M20 20l-5-5M15 19v-4h4M20 4l-5 5M15 5v4h4M4 20l5-5M5 15h4v4"/>',
+    enc:'<rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/>',
+    prv:'<circle cx="9" cy="8" r="3"/><path d="M3 19c0-3 2.7-5 6-5"/><path d="M14 13h7M14 17h7M17.5 11v8"/>',
+    aud:'<path d="M6 3h9l4 4v14H6z"/><path d="M9 11h7M9 15h5"/>',
+    crd:'<path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6z"/><path d="M9 12l2.2 2.2L15.5 10"/>'
+  };
+  var COLS=[
+    ['ChatGPT Business','<div class="lg"><img src="assets/logos/openai.png" alt="" style="padding:4px"></div>'],
+    ['Claude Enterprise','<div class="lg"><img src="assets/logos/anthropic.png" alt=""></div>'],
+    ['GitHub Copilot','<div class="lg dark"><img src="deck_assets/direct/github.svg" alt=""></div>'],
+    ['Glean','<div class="lg"><img class="word" src="assets/logos-competitive/glean.svg" alt=""></div>'],
+    ['Supermemory','<div class="lg"><img src="assets/logos-competitive/supermemory.svg" alt=""></div>'],
+    ['Mem0','<div class="lg"><img src="deck_assets/direct/mem0.ai.png" alt="" style="padding:0"></div>']
+  ];
+  // y native · p partial · n none · u not disclosed — order: ChatGPT, Claude, Copilot, Glean, Supermemory, Mem0, Echo
+  var ROWS=[
+    ['work',T('Team work in progress','团队的工作进度'),T('Captured from agent sessions, not facts about you','从 agent 会话里捕获，不是“你是谁”'),'npnppp'],
+    ['agents',T('One memory, every agent','所有 agent 共用一份记忆'),T('Claude Code · Codex · ChatGPT · Cursor','Claude Code · Codex · ChatGPT · Cursor'),'nnnpyy'],
+    ['cmp',T('Compression, nothing lost','压得小，细节不丢'),T('Small enough for every turn','小到每一轮都能带上'),'pppnpp'],
+    ['enc',T('Encryption','加密'),T('Even the provider can’t read it','连服务商也读不到'),'nnnnnn'],
+    ['prv',T('Privacy control','隐私控制'),T('The owner shares item by item','由主人逐条决定分享'),'nnnppp'],
+    ['aud',T('Auditability','可审计'),T('Who wrote it, who read it, when','谁写的、谁读过、什么时候'),'nnpppp'],
+    ['crd',T('Credibility','可信度'),T('Every fact traces to its source','每条结论都能追到出处'),'pppppp']
+  ];
+  var mx=document.getElementById('mx'),html='';
+  html+='<div class="c hd l">'+T('What a team needs','团队需要的能力')+'</div>';
+  COLS.forEach(function(c){html+='<div class="c hd v">'+c[1]+'<span>'+c[0]+'</span></div>'});
+  html+='<div class="c hd v e"><div class="wm">echo<span>.</span></div></div>';
+  ROWS.forEach(function(r,i){
+    var last=i===ROWS.length-1?' last':'';
+    html+='<div class="c rl'+last+'"><span class="ic"><svg viewBox="0 0 24 24">'+I[r[0]]+'</svg></span><div><b>'+r[1]+'</b><span>'+r[2]+'</span></div></div>';
+    (r[3]+'y').split('').forEach(function(v,j){html+='<div class="c'+(j===6?' e':'')+last+'"><i class="m '+v+'"></i></div>'});
+  });
+  mx.insertAdjacentHTML('beforeend',html);
+})();
+</script>
+</body>
+</html>

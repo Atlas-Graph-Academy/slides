@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>Echo — 直投版 · 第 3 页</title>
+<style>
+:root{
+  --ink:#f3f5fa; --muted:rgba(219,224,238,.64); --faint:rgba(211,217,235,.42);
+  --line:rgba(220,227,255,.075); --line-strong:rgba(220,227,255,.13);
+  --blue:#5267ff; --blue-bright:#aeb9f5; --eyebrow:rgba(177,188,255,.78); --red:#ff5f52;
+  --sans:"Avenir Next","Avenir","PingFang SC","Hiragino Sans GB","Helvetica Neue",sans-serif;
+  --mono:"IBM Plex Mono","Menlo",monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html,body{background:#000;font-family:var(--sans);color:var(--ink);-webkit-font-smoothing:antialiased;}
+.slide{position:relative;width:1280px;height:720px;margin:24px auto;overflow:hidden;
+  background:
+    radial-gradient(ellipse 78% 48% at 50% -18%, rgba(69,88,255,.13), transparent 66%),
+    radial-gradient(circle at 82% 22%, rgba(0,0,242,.13), transparent 28rem),
+    linear-gradient(180deg,#050609 0%,#080a10 44%,#050609 100%);
+  display:flex;flex-direction:column;padding:52px 76px 40px;}
+.slide::before{content:"";position:absolute;inset:0;opacity:.035;pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.84' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.9'/%3E%3C/svg%3E");}
+.slide>*{position:relative;z-index:1;}
+
+.eyebrow{display:flex;align-items:center;gap:10px;
+  font:600 12px/1.2 var(--mono);letter-spacing:.18em;text-transform:uppercase;color:var(--eyebrow);}
+.eyebrow .dot{width:6px;height:6px;border-radius:50%;background:#6075ff;
+  box-shadow:0 0 0 4px rgba(82,103,255,.1),0 0 18px rgba(82,103,255,.62);}
+.eyebrow .brand{color:var(--ink);font-weight:700;letter-spacing:.24em;}
+
+.h1{margin-top:18px;font-size:50px;font-weight:600;letter-spacing:-.026em;line-height:1.04;white-space:nowrap;}
+.h1 .pos{color:var(--blue-bright);font-weight:600;}
+
+/* main split — stat rail left, chart right */
+.main{flex:1;display:flex;gap:36px;margin-top:18px;min-height:0;align-items:stretch;}
+.rail{width:452px;flex:none;display:flex;flex-direction:column;gap:8px;margin-bottom:16px;}
+.st{flex:1;display:grid;grid-template-columns:52px 1fr;gap:16px;align-items:center;padding:12px 18px;
+  border:1px solid var(--line-strong);border-radius:14px;background:linear-gradient(180deg,rgba(255,255,255,.035),rgba(255,255,255,.012));}
+.st .ic{width:52px;height:52px;border-radius:12px;display:flex;align-items:center;justify-content:center;}
+.st .ic img{width:30px;height:30px;}
+.st .ic.an{background:#f0eee6;}
+.st .ic.oa{background:#000;border:1px solid rgba(255,255,255,.22);}
+.st .ic.kp{background:#1e49e2;font:800 13px/1 var(--sans);letter-spacing:.02em;color:#fff;}
+.st .n{font-size:36px;font-weight:700;letter-spacing:-.03em;color:var(--ink);line-height:1;white-space:nowrap;}
+.st .n .from{color:var(--muted);font-weight:600;}
+.st .n .arr{color:var(--red);font-weight:600;margin:0 4px;}
+.st .n .to{color:var(--red);}
+.st .n small{font-size:18px;font-weight:600;letter-spacing:0;margin-left:2px;}
+.st .l{margin-top:7px;font-size:14.5px;line-height:1.4;color:var(--muted);}
+.st .l b{color:var(--ink);font-weight:600;}
+.st .l i{font-style:normal;font:500 10.5px var(--mono);color:var(--faint);margin-left:6px;}
+
+.chart{flex:1;min-width:0;display:flex;flex-direction:column;}
+.fig-title{font:600 11px/1.5 var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--eyebrow);}
+.chart svg{display:block;width:100%;height:auto;margin-top:6px;}
+
+/* closer */
+.closer{display:flex;justify-content:space-between;align-items:baseline;
+  border-top:1px solid var(--line-strong);padding-top:16px;}
+.closer .line{font-size:20px;font-weight:500;color:var(--ink);letter-spacing:-.01em;}
+.closer .line b{color:var(--blue-bright);font-weight:600;}
+.closer .foot{font:500 10.5px var(--mono);letter-spacing:.06em;color:var(--faint);}
+
+@page{size:13.333in 7.5in;margin:0;}
+@media print{html,body{background:#000;} .slide{margin:0;}}
+@media screen{.slide{box-shadow:0 10px 40px rgba(0,0,0,.6);}}
+</style>
+</head>
+<body>
+
+<section class="slide">
+
+  <div class="eyebrow"><span class="dot"></span><span class="brand">ECHO</span><span>第一幕 · The world we are in</span></div>
+
+  <div class="h1">Agent 正在从 coding <span class="pos">向全行业扩散。</span></div>
+
+  <div class="main">
+
+    <!-- LEFT · four numbers, no adjectives -->
+    <div class="rail">
+      <div class="st">
+        <div class="ic an"><img src="deck_assets/direct/anthropic.svg" alt="Anthropic"></div>
+        <div><div class="n"><span class="from">$90亿</span><span class="arr">→</span><span class="to">$650亿</span></div>
+        <div class="l"><b>Anthropic</b> 年化收入，<b>只用了 7 个月</b></div></div>
+      </div>
+      <div class="st">
+        <div class="ic oa"><img src="deck_assets/direct/openai.svg" alt="OpenAI"></div>
+        <div><div class="n"><span class="from">$200亿</span><span class="arr">→</span><span class="to">$400亿</span></div>
+        <div class="l"><b>OpenAI</b> 年化收入，<b>一年翻倍</b></div></div>
+      </div>
+      <div class="st">
+        <div class="ic oa"><img src="deck_assets/direct/openai.svg" alt="Codex"></div>
+        <div><div class="n"><span class="to">2,500</span><small>万</small></div>
+        <div class="l"><b>Codex</b> 活跃用户 · 2 月才 100 万<br><b>最近 10 天，新增 500 万</b><i>2026.08.31</i></div></div>
+      </div>
+      <div class="st">
+        <div class="ic kp">KPMG</div>
+        <div><div class="n"><span class="to">$2亿</span></div>
+        <div class="l">美国大企业平均每年的 AI 预算，<b>几乎翻倍</b></div></div>
+      </div>
+    </div>
+
+    <!-- RIGHT · the fan — usage growth by function, log scale.
+         Straight lines on a log axis = steady exponential growth.
+         y(v) = 396 − (log10(v) / log10(120)) × 362 · x: 46 (Feb) → 620 (Aug) -->
+    <div class="chart">
+      <div class="fig-title">企业 Codex 周活，按职能 · 2026 年 2 月 = 1&times; · 对数刻度</div>
+      <svg viewBox="0 0 780 446" xmlns="http://www.w3.org/2000/svg" font-family="IBM Plex Mono,Menlo,monospace">
+        <defs>
+          <filter id="glow" x="-40%" y="-40%" width="180%" height="180%">
+            <feGaussianBlur stdDeviation="4" result="b"/>
+            <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+        </defs>
+
+        <!-- grid -->
+        <line x1="46" y1="396" x2="620" y2="396" stroke="rgba(220,227,255,.13)" stroke-width="1"/>
+        <line x1="46" y1="222" x2="620" y2="222" stroke="rgba(220,227,255,.075)" stroke-width="1"/>
+        <line x1="46" y1="48"  x2="620" y2="48"  stroke="rgba(220,227,255,.075)" stroke-width="1"/>
+        <text x="38" y="400" text-anchor="end" font-size="11" fill="rgba(211,217,235,.42)">1&#215;</text>
+        <text x="38" y="226" text-anchor="end" font-size="11" fill="rgba(211,217,235,.42)">10&#215;</text>
+        <text x="38" y="52"  text-anchor="end" font-size="11" fill="rgba(211,217,235,.42)">100&#215;</text>
+
+        <!-- month ticks -->
+        <text x="46"  y="420" font-size="11" fill="rgba(211,217,235,.42)">2月</text>
+        <text x="620" y="420" text-anchor="end" font-size="11" fill="rgba(211,217,235,.42)">8月</text>
+        <g stroke="rgba(220,227,255,.13)" stroke-width="1">
+          <line x1="141.7" y1="396" x2="141.7" y2="401"/><line x1="237.3" y1="396" x2="237.3" y2="401"/>
+          <line x1="333"   y1="396" x2="333"   y2="401"/><line x1="428.7" y1="396" x2="428.7" y2="401"/>
+          <line x1="524.3" y1="396" x2="524.3" y2="401"/>
+        </g>
+
+        <!-- muted lines -->
+        <line x1="46" y1="396" x2="620" y2="274" stroke="rgba(174,185,245,.34)" stroke-width="2"/>
+        <line x1="46" y1="396" x2="620" y2="150" stroke="rgba(174,185,245,.34)" stroke-width="2"/>
+        <line x1="46" y1="396" x2="620" y2="115" stroke="rgba(174,185,245,.34)" stroke-width="2"/>
+        <circle cx="620" cy="274" r="3.5" fill="rgba(174,185,245,.5)"/>
+        <circle cx="620" cy="150" r="3.5" fill="rgba(174,185,245,.5)"/>
+        <circle cx="620" cy="115" r="3.5" fill="rgba(174,185,245,.5)"/>
+
+        <!-- Legal — the emphasized line -->
+        <line x1="46" y1="396" x2="620" y2="42" stroke="#8b9cff" stroke-width="2.5" filter="url(#glow)"/>
+        <circle cx="620" cy="42" r="4.5" fill="#aeb9f5" filter="url(#glow)"/>
+
+        <!-- direct labels, line ends -->
+        <g font-family="Avenir Next,Avenir,Helvetica Neue,sans-serif">
+          <text x="634" y="47" font-size="15" font-weight="600" fill="#f3f5fa">法务</text>
+          <text x="680" y="47" font-size="15" font-weight="700" fill="#ff5f52">&#215;108</text>
+
+          <text x="634" y="112" font-size="13.5" font-weight="600" fill="rgba(219,224,238,.64)">销售 &#183; 招聘</text>
+          <text x="634" y="129" font-size="13.5" font-weight="700" fill="#f3f5fa">&#215;41</text>
+
+          <text x="634" y="155" font-size="13.5" font-weight="600" fill="rgba(219,224,238,.64)">市场 <tspan font-weight="700" fill="#f3f5fa">&#215;26</tspan></text>
+
+          <text x="634" y="272" font-size="13.5" font-weight="600" fill="rgba(219,224,238,.64)">工程 <tspan font-weight="700" fill="#f3f5fa">&#215;5</tspan></text>
+          <text x="634" y="289" font-size="10.5" fill="rgba(211,217,235,.42)">早已是主流 —</text>
+          <text x="634" y="303" font-size="10.5" fill="rgba(211,217,235,.42)">一切从这里开始</text>
+        </g>
+
+        <!-- annotation — the empty upper-left is the message -->
+        <g font-family="Avenir Next,Avenir,Helvetica Neue,sans-serif">
+          <text x="70" y="80" font-size="23" font-weight="600" fill="#f3f5fa">从程序员开始。</text>
+          <text x="70" y="112" font-size="23" font-weight="600" fill="#aeb9f5">现在，是所有人。</text>
+        </g>
+
+        <!-- source -->
+        <text x="46" y="442" font-size="9.5" letter-spacing=".08em" fill="rgba(211,217,235,.42)">OPENAI 企业 CODEX 周活增长，2026 年 2 月 &#8594; 8 月</text>
+      </svg>
+    </div>
+
+  </div>
+
+  <div class="closer">
+    <div class="line">而这，只是<b>趋势一。</b></div>
+    <div class="foot">Anthropic 2025 年底 → 2026.07 · Reuters · OpenAI · KPMG AI Pulse 2026 Q1（营收 $10 亿+ 企业）· 03</div>
+  </div>
+
+</section>
+
+</body>
+</html>

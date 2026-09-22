@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1280, initial-scale=1">
+<title>Echo — Narrative · Path to $600M</title>
+<link rel="stylesheet" href="v2.css">
+<style>
+h1{font-size:50px}
+.main{margin-top:40px;display:grid;grid-template-columns:292px 1fr;gap:44px;height:404px}
+
+/* the public pull */
+.proof{position:relative;border-radius:16px;overflow:hidden;border:1px solid var(--line-strong);background:#fff}
+.proof img.shot{display:block;width:100%;height:100%;object-fit:cover;object-position:top}
+.proof .ov{position:absolute;left:0;right:0;bottom:0;padding:48px 18px 18px;
+  background:linear-gradient(180deg,rgba(8,10,16,0),rgba(8,10,16,.92) 38%,#080a10)}
+.proof .who{display:flex;align-items:center;gap:10px}
+.proof .who img{width:34px;height:34px;border-radius:9px}
+.proof .who b{font-size:16px;font-weight:700;line-height:1.15}
+.proof .who span{display:block;font-size:12.5px;color:var(--muted);font-weight:500}
+.proof q{display:block;margin-top:12px;font-size:22px;font-weight:600;letter-spacing:-.02em;quotes:"“" "”"}
+
+/* the path */
+.road{position:relative}
+.road svg{position:absolute;left:0;top:0;width:100%;height:320px;overflow:visible}
+.pt{position:absolute;transform:translateX(-50%);text-align:center;white-space:nowrap}
+.pt b{display:block;font-size:26px;font-weight:700;letter-spacing:-.03em}
+.pt span{display:block;margin-top:2px;font:600 10.5px var(--mono);letter-spacing:.14em;color:var(--faint)}
+.pt.fin b{font-size:34px}
+.pt.fin span{color:var(--blue-bright)}
+.pt .ul{display:inline-flex;align-items:center;gap:7px}
+.pt .ul img{width:24px;height:24px;border-radius:6px}
+.val{position:absolute;right:0;top:118px;text-align:right}
+.val b{display:block;font-size:64px;font-weight:700;letter-spacing:-.05em;line-height:1;
+  background:linear-gradient(180deg,#fff 20%,#aeb9f5);-webkit-background-clip:text;background-clip:text;color:transparent}
+.val span{display:block;margin-top:6px;font:600 11px var(--mono);letter-spacing:.14em;color:var(--blue-bright)}
+
+/* the math */
+.eq{position:absolute;left:0;right:0;bottom:0;display:flex;align-items:center;justify-content:space-between;gap:10px;
+  padding:14px 18px;border-radius:14px;border:1px solid rgba(160,172,255,.3);background:linear-gradient(180deg,rgba(120,135,255,.1),rgba(120,135,255,.02)),#0b0d15}
+.eq div{text-align:center}
+.eq b{display:block;font-size:22px;font-weight:700;letter-spacing:-.02em;white-space:nowrap}
+.eq span{display:block;font:600 9.5px var(--mono);letter-spacing:.12em;color:var(--faint);white-space:nowrap;margin-top:2px}
+.eq i{font-style:normal;font-size:20px;color:var(--faint)}
+.eq .last b{color:#c4ccff}
+
+.closer{margin-top:auto}
+.src{position:absolute;left:76px;right:76px;bottom:11px;display:flex;justify-content:space-between;font:500 9.5px var(--mono);color:var(--faint);letter-spacing:.03em}
+</style>
+</head>
+<body>
+<section class="slide">
+  <div class="eyebrow"><span class="dot"></span><span class="brand">ECHO</span><span>第五幕 · 通往 6 亿美元</span></div>
+  <h1>1 万个付费席位，<em>撑起 6 亿美元估值。</em></h1>
+
+  <div class="main">
+    <figure class="proof">
+      <img class="shot" src="assets/unlimit-linkedin.png" alt="">
+      <figcaption class="ov">
+        <div class="who"><img src="assets/logos/unlimit.png" alt=""><div><b>Unlimit CCO → CTO</b><span>在 LinkedIn 上公开喊话</span></div></div>
+        <q>交给你们俩了。</q>
+      </figcaption>
+    </figure>
+
+    <div class="road">
+      <svg viewBox="0 0 792 320" preserveAspectRatio="none">
+        <defs><filter id="gl" x="-80%" y="-80%" width="260%" height="260%"><feGaussianBlur stdDeviation="8" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
+        <path d="M40 240 C150 232 190 214 240 204 S390 168 440 146 S560 80 600 56" fill="none" stroke="#6075ff" stroke-width="8" stroke-opacity=".14" stroke-linecap="round"/>
+        <path d="M40 240 C150 232 190 214 240 204 S390 168 440 146 S560 80 600 56" fill="none" stroke="#aeb9f5" stroke-width="3" stroke-linecap="round"/>
+        <circle cx="40" cy="240" r="7" fill="#c9f24a"/>
+        <circle cx="240" cy="204" r="7" fill="#0a0c12" stroke="#aeb9f5" stroke-width="2.5"/>
+        <circle cx="440" cy="146" r="7" fill="#0a0c12" stroke="#aeb9f5" stroke-width="2.5"/>
+        <circle cx="600" cy="56" r="36" fill="rgba(96,117,255,.14)" stroke="rgba(174,185,245,.35)" stroke-dasharray="3 4"/>
+        <circle cx="600" cy="56" r="10" fill="#8f98ff" filter="url(#gl)"/>
+      </svg>
+      <div class="pt" style="left:40px;top:258px;transform:translateX(-18px);text-align:left"><b class="ul"><img src="assets/logos/unlimit.png" alt="">650</b><span>今天 · UNLIMIT</span></div>
+      <div class="pt" style="left:240px;top:222px"><b>~1,500</b><span>第 6 个月</span></div>
+      <div class="pt" style="left:440px;top:164px"><b>~5,000</b><span>第 12 个月</span></div>
+      <div class="pt fin" style="left:556px;top:-2px;transform:translateX(-100%);text-align:right"><b>~10,000 席位</b><span>第 18 个月</span></div>
+      <div class="val"><b>$600M</b><span>估值</span></div>
+
+      <div class="eq">
+        <div><b>10,000</b><span>付费席位</span></div><i>×</i>
+        <div><b>$100</b><span>每席位 / 月</span></div><i>→</i>
+        <div><b>$10M+</b><span>实收 ARR</span></div><i>×</i>
+        <div><b>60×</b><span>倍数</span></div><i>=</i>
+        <div class="last"><b>$600M</b><span>估值</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="closer"><div class="line-copy">Unlimit 是最先的 650 个席位，<b>然后我们把这套打法复制下去。</b></div></div>
+  <div class="src"><span>1 万席位名义 ARR $12M，折扣后实收 $10M+ · 截图：Wolf Ruzicka（Unlimit CCO），LinkedIn</span><span>15</span></div>
+</section>
+</body>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1280, initial-scale=1">
+<title>Echo — Direct Deck · Page 12.5</title>
+<style>
+:root{
+  --ink:#f3f5fa; --muted:rgba(219,224,238,.64); --faint:rgba(211,217,235,.42);
+  --line:rgba(220,227,255,.075); --line-strong:rgba(220,227,255,.15);
+  --blue:#5267ff; --blue-bright:#aeb9f5; --eyebrow:rgba(177,188,255,.78); --red:#ff5f52;
+  --sans:"Avenir Next","Avenir","PingFang SC","Hiragino Sans GB","Helvetica Neue",sans-serif;
+  --mono:"IBM Plex Mono","Menlo",monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{background:#000;font-family:var(--sans);color:var(--ink);-webkit-font-smoothing:antialiased}
+.slide{position:relative;width:1280px;height:720px;margin:24px auto;overflow:hidden;
+  background:
+    radial-gradient(ellipse 78% 48% at 50% -18%,rgba(69,88,255,.13),transparent 66%),
+    radial-gradient(circle at 82% 22%,rgba(0,0,242,.13),transparent 28rem),
+    linear-gradient(180deg,#050609 0%,#080a10 44%,#050609 100%);
+  display:flex;flex-direction:column;padding:46px 76px 34px}
+.slide::before{content:"";position:absolute;inset:0;opacity:.035;pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.84' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.9'/%3E%3C/svg%3E")}
+.slide>*{position:relative;z-index:1}
+.eyebrow{display:flex;align-items:center;gap:10px;font:600 12px/1.2 var(--mono);letter-spacing:.18em;text-transform:uppercase;color:var(--eyebrow)}
+.eyebrow .dot{width:6px;height:6px;border-radius:50%;background:#6075ff;box-shadow:0 0 0 4px rgba(82,103,255,.1),0 0 18px rgba(82,103,255,.62)}
+.eyebrow .brand{color:var(--ink);font-weight:700;letter-spacing:.24em}
+h1{margin-top:18px;font-size:46px;line-height:1.06;letter-spacing:-.028em;font-weight:600;white-space:nowrap}
+h1 em{font-style:normal;color:var(--blue-bright)}
+.sub{margin-top:9px;font-size:17.5px;line-height:1.42;color:var(--muted)}
+.sub b{color:var(--ink);font-weight:600}
+
+.panels{flex:1;min-height:0;display:grid;grid-template-columns:1fr 1fr;gap:0 44px;margin-top:16px;border-top:1px solid var(--line-strong)}
+.panel{display:flex;flex-direction:column;padding-top:18px}
+.panel+.panel{border-left:1px solid var(--line);padding-left:44px;margin-left:-44px}
+.panel .k{font:600 10.5px var(--mono);letter-spacing:.17em;text-transform:uppercase;color:var(--eyebrow)}
+.panel .k.risk{color:var(--red)}
+
+.chain{margin-top:12px;display:flex;flex-direction:column;gap:9px}
+.step{display:flex;gap:14px;align-items:baseline}
+.step .n{flex:none;width:26px;font:600 11px var(--mono);letter-spacing:.08em;color:var(--faint)}
+.step .t{font-size:19px;line-height:1.36;color:var(--ink);font-weight:500;letter-spacing:-.005em}
+.step .t span{color:var(--muted);font-weight:400}
+
+.lead{margin-top:10px;font-size:23px;line-height:1.3;font-weight:600;letter-spacing:-.012em;color:var(--ink)}
+.lead em{font-style:normal;color:var(--red)}
+.paths{margin-top:10px;display:flex;flex-direction:column;gap:8px}
+.path{display:flex;gap:14px;align-items:baseline;padding:11px 18px;border:1px solid var(--line);border-radius:10px;background:rgba(255,255,255,.015)}
+.path .n{flex:none;width:18px;font:700 12px var(--mono);color:var(--blue-bright)}
+.path .t{font-size:17px;line-height:1.4;color:var(--ink);font-weight:500}
+.path .t span{display:block;font-size:16px;color:var(--muted);font-weight:400;margin-top:2px}
+
+.hedge{margin-top:10px;font-size:13.5px;line-height:1.45;color:var(--muted)}
+.bottom{margin-top:auto;padding-top:10px;border-top:1px solid var(--line);font-size:18px;font-weight:600;letter-spacing:-.01em;color:var(--blue-bright)}
+.bottom .why{display:block;margin-top:4px;font-size:13.5px;line-height:1.45;font-weight:400;letter-spacing:0;color:var(--muted)}
+.bottom .ref{display:block;margin-top:6px;font:600 10.5px var(--mono);letter-spacing:.06em;color:var(--eyebrow)}
+
+.foot{display:flex;justify-content:flex-end;margin-top:12px;font:500 10.5px var(--mono);letter-spacing:.06em;color:var(--faint)}
+@page{size:13.333in 7.5in;margin:0}
+@media print{html,body{background:#000}.slide{margin:0}}
+@media screen{.slide{box-shadow:0 10px 40px rgba(0,0,0,.6)}}
+</style>
+</head>
+<body>
+<section class="slide">
+  <div class="eyebrow"><span class="dot"></span><span class="brand">ECHO</span><span>Risk · Before the endgame</span></div>
+  <h1>The model won&rsquo;t eat this layer.<br><em>Our hands get muddy. The mud is the moat.</em></h1>
+  <div class="sub">Context continuity keeps changing and must stay <b>auditable and traceable</b>, so no model will own it. Selling it is the long road: <b>an agent mindset, one company at a time</b>.</div>
+
+  <div class="panels">
+    <div class="panel">
+      <div class="k">Premise · Why the direction holds</div>
+      <div class="chain">
+        <div class="step"><div class="n">01</div><div class="t">People pay for agents to buy <b>finished work</b>.</div></div>
+        <div class="step"><div class="n">02</div><div class="t">Work is high-variance and highly conditional.</div></div>
+        <div class="step"><div class="n">03</div><div class="t">It almost never completes inside the model. <span>It needs an external memory and context system.</span></div></div>
+        <div class="step"><div class="n">04</div><div class="t">We build that system. <span>Someone always will.</span></div></div>
+      </div>
+      <div class="bottom">Always changing, always auditable. No model owns that.</div>
+    </div>
+
+    <div class="panel">
+      <div class="k risk">The real risk · How deep the sale goes</div>
+      <div class="lead">Agent-era sales run down<br><em>a deep forward-deployed path.</em></div>
+      <div class="paths">
+        <div class="path"><div class="n">A</div><div class="t">Industry-specific harnesses and solutions. <span>Faster to close. Every vertical means another deployment.</span></div></div>
+        <div class="path"><div class="n">B</div><div class="t">A sales team at scale. <span>Wider reach. People and money have to land first.</span></div></div>
+      </div>
+      <div class="hedge">The seed-stage hedge: we turn in weeks, not quarters. Cheap enough to be wrong.</div>
+      <div class="bottom">The first deal costs the most. Each one after gets cheaper.<span class="why">Each deployment leaves two things behind: a context record the customer can&rsquo;t take, and a harness the next customer reuses.</span><span class="ref">= the $4M on p.11 &middot; p.08: 0 platforms let context leave their wall</span></div>
+    </div>
+  </div>
+
+  <div class="foot">echoknows.com · 12.5</div>
+</section>
+</body>
+</html>

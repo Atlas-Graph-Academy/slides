@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>Echo — 直投版 · 第 4.5 页</title>
+<style>
+:root{
+  --ink:#f3f5fa; --muted:rgba(219,224,238,.64); --faint:rgba(211,217,235,.42);
+  --line:rgba(220,227,255,.075); --line-strong:rgba(220,227,255,.13);
+  --blue:#5267ff; --blue-bright:#aeb9f5; --eyebrow:rgba(177,188,255,.78); --red:#ff5f52;
+  --sans:"Avenir Next","Avenir","PingFang SC","Hiragino Sans GB","Helvetica Neue",sans-serif;
+  --mono:"IBM Plex Mono","Menlo",monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html,body{background:#000;font-family:var(--sans);color:var(--ink);-webkit-font-smoothing:antialiased;}
+.slide{position:relative;width:1280px;height:720px;margin:24px auto;overflow:hidden;
+  background:
+    radial-gradient(ellipse 78% 48% at 50% -18%, rgba(69,88,255,.13), transparent 66%),
+    radial-gradient(circle at 82% 22%, rgba(0,0,242,.13), transparent 28rem),
+    linear-gradient(180deg,#050609 0%,#080a10 44%,#050609 100%);
+  display:flex;flex-direction:column;padding:52px 76px 40px;}
+.slide::before{content:"";position:absolute;inset:0;opacity:.035;pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.84' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.9'/%3E%3C/svg%3E");}
+.slide>*{position:relative;z-index:1;}
+
+.eyebrow{display:flex;align-items:center;gap:10px;
+  font:600 12px/1.2 var(--mono);letter-spacing:.18em;text-transform:uppercase;color:var(--eyebrow);}
+.eyebrow .dot{width:6px;height:6px;border-radius:50%;background:#6075ff;
+  box-shadow:0 0 0 4px rgba(82,103,255,.1),0 0 18px rgba(82,103,255,.62);}
+.eyebrow .brand{color:var(--ink);font-weight:700;letter-spacing:.24em;}
+
+.h1{margin-top:22px;font-size:46px;font-weight:600;letter-spacing:-.024em;line-height:1.05;}
+.h1 em{font-style:normal;color:var(--red);}
+.subline{margin-top:10px;font-size:17px;font-weight:500;line-height:1.45;color:var(--muted);}
+.subline b{color:var(--ink);font-weight:600;}
+
+/* three reasons — one visual, one claim, one line of evidence each */
+.reasons{flex:1;display:flex;gap:36px;margin-top:24px;padding-top:24px;border-top:1px solid var(--line-strong);min-height:0;}
+.rs{flex:1;display:flex;flex-direction:column;min-width:0;}
+.rs+.rs{border-left:1px solid var(--line);padding-left:36px;}
+.rs .chip{align-self:flex-start;font:600 9.5px var(--mono);letter-spacing:.16em;text-transform:uppercase;
+  color:rgba(219,224,238,.55);border:1px solid var(--line-strong);border-radius:99px;padding:3px 10px;}
+.rs svg{display:block;width:100%;height:136px;margin-top:18px;}
+.rs .t{margin-top:16px;font-size:24px;font-weight:600;letter-spacing:-.018em;line-height:1.2;color:var(--ink);}
+.rs .t em{font-style:normal;color:var(--blue-bright);}
+.rs .s{margin-top:10px;font-size:15px;font-weight:500;line-height:1.5;color:var(--muted);}
+.rs .s b{color:var(--ink);font-weight:600;}
+.rs .ev{margin-top:14px;padding-top:10px;border-top:1px solid var(--line);font:500 10.5px/1.55 var(--mono);letter-spacing:.02em;color:var(--faint);}
+.rs .ev b{color:var(--muted);font-weight:600;}
+
+.closer{display:flex;justify-content:space-between;align-items:baseline;gap:24px;
+  border-top:1px solid var(--line-strong);padding-top:14px;margin-top:auto;}
+.closer .line{font-size:19px;font-weight:500;color:var(--ink);letter-spacing:-.01em;}
+.closer .line b{color:var(--blue-bright);font-weight:600;}
+.closer .foot{flex:none;white-space:nowrap;font:500 10.5px var(--mono);letter-spacing:.06em;color:var(--faint);}
+
+@page{size:13.333in 7.5in;margin:0;}
+@media print{html,body{background:#000;} .slide{margin:0;}}
+@media screen{.slide{box-shadow:0 10px 40px rgba(0,0,0,.6);}}
+</style>
+</head>
+<body>
+
+<section class="slide">
+
+  <div class="eyebrow"><span class="dot"></span><span class="brand">ECHO</span><span>为什么是 0 · 三个原因</span></div>
+
+  <div class="h1">这么明显的空缺，<em>为什么没人做？</em></div>
+  <div class="subline">需求太新；上一代记忆产品的颗粒度太粗，<b>做不了</b>；而真正做对它，<b>很难</b>。</div>
+
+  <div class="reasons">
+
+    <!-- 01 · the demand is brand new -->
+    <div class="rs">
+      <span class="chip">原因 01 · 太新</span>
+      <svg viewBox="0 0 340 136" xmlns="http://www.w3.org/2000/svg" font-family="IBM Plex Mono,Menlo,monospace">
+        <!-- baseline -->
+        <line x1="14" y1="108" x2="326" y2="108" stroke="rgba(174,185,245,.3)" stroke-width="1.5"/>
+        <!-- flat: one person + one agent, for years -->
+        <path d="M14,104 C90,102 150,100 200,92" fill="none" stroke="rgba(174,185,245,.55)" stroke-width="2.5" stroke-linecap="round"/>
+        <!-- explosion: teams of people, each with agents -->
+        <path d="M200,92 C240,80 270,50 300,18" fill="none" stroke="#5267ff" stroke-width="3" stroke-linecap="round"/>
+        <circle cx="300" cy="18" r="5" fill="#5267ff"/>
+        <!-- marker -->
+        <line x1="200" y1="24" x2="200" y2="108" stroke="#ff5f52" stroke-width="1.5" stroke-dasharray="4 4"/>
+        <text x="200" y="128" text-anchor="middle" font-size="9.5" fill="#ff5f52" letter-spacing=".12em">2026</text>
+        <!-- labels -->
+        <text x="18" y="88" font-size="9.5" fill="rgba(219,224,238,.6)" letter-spacing=".08em">一个人 + 一个 AGENT</text>
+        <text x="18" y="100" font-size="9" fill="rgba(211,217,235,.42)" letter-spacing=".06em">CONTEXT 丢在自己手里</text>
+        <text x="296" y="40" text-anchor="end" font-size="9.5" fill="#aeb9f5" letter-spacing=".08em">一个团队 · 人人带 AGENT</text>
+        <text x="296" y="52" text-anchor="end" font-size="9" fill="rgba(211,217,235,.42)" letter-spacing=".06em">CONTEXT 要在人之间流动</text>
+      </svg>
+      <div class="t">这个需求，<em>今年才爆炸。</em></div>
+      <div class="s">一年前 Agent 是个人工具，context 丢了只影响自己。「一个团队、人人带 Agent、共同交付一件事」是 2026 年才出现的模式。<b>问题出现不到一年，产品当然还没有。</b></div>
+      <div class="ev"><b>第 03 页</b> · 企业 Agent 使用量 2 月→8 月：法务 ×108、销售 ×41、市场 ×26<br><b>第 04 页</b> · 81% 的 G2000 同时用 3 个以上模型家族</div>
+    </div>
+
+    <!-- 02 · last generation describes the person; granularity too coarse -->
+    <div class="rs">
+      <span class="chip">原因 02 · 颗粒度</span>
+      <svg viewBox="0 0 340 136" xmlns="http://www.w3.org/2000/svg" font-family="IBM Plex Mono,Menlo,monospace">
+        <!-- left: one big profile block -->
+        <rect x="8" y="14" width="150" height="100" rx="10" fill="rgba(255,255,255,.02)" stroke="rgba(220,227,255,.2)"/>
+        <text x="83" y="34" text-anchor="middle" font-size="9" fill="rgba(211,217,235,.5)" letter-spacing=".12em">上一代 · 描述人</text>
+        <rect x="24" y="46" width="118" height="52" rx="6" fill="rgba(174,185,245,.35)"/>
+        <text x="83" y="76" text-anchor="middle" font-size="11" font-weight="600" fill="#f3f5fa">“他喜欢短回答”</text>
+        <text x="83" y="130" text-anchor="middle" font-size="9" fill="#ff5f52" letter-spacing=".1em">一块 · 静态 · 无时间</text>
+        <!-- arrow -->
+        <text x="170" y="68" text-anchor="middle" font-size="14" fill="rgba(219,224,238,.45)">≠</text>
+        <!-- right: fine-grained work ledger -->
+        <rect x="182" y="14" width="150" height="100" rx="10" fill="rgba(82,103,255,.06)" stroke="rgba(82,103,255,.55)"/>
+        <text x="257" y="34" text-anchor="middle" font-size="9" fill="#aeb9f5" letter-spacing=".12em">工作 · 描述推进</text>
+        <g font-size="8.5" fill="rgba(219,224,238,.75)">
+          <rect x="196" y="44" width="122" height="11" rx="2" fill="rgba(82,103,255,.28)"/><text x="200" y="52.5">周一 · 定价 $40 · 因为…</text>
+          <rect x="196" y="59" width="122" height="11" rx="2" fill="rgba(82,103,255,.28)"/><text x="200" y="67.5">周三 · 改成 $30 · 因为…</text>
+          <rect x="196" y="74" width="122" height="11" rx="2" fill="rgba(82,103,255,.28)"/><text x="200" y="82.5">周四 · 还开着：法务确认</text>
+          <rect x="196" y="89" width="122" height="11" rx="2" fill="#5267ff"/><text x="200" y="97.5" fill="#f3f5fa">下一步 · 发给 Unlimit</text>
+        </g>
+        <text x="257" y="130" text-anchor="middle" font-size="9" fill="#aeb9f5" letter-spacing=".1em">每一步 · 带 owner · 带时间 · 带理由</text>
+      </svg>
+      <div class="t">上一代产品在<em>描述人</em>，不是描述推进中的工作。</div>
+      <div class="s">它们的记忆单位是关于你的一句话：一块、静态、没有时间。工作 state 是一串带 owner、时间和理由的步骤。<b>颗粒度差了一个量级，不是不想做，是装不下。</b></div>
+      <div class="ev"><b>MEM0 / CHATGPT / CLAUDE / GEMINI</b> · 记忆按 user_id 分域，存关于人的事实<br><b>MEM0</b> · 时间冲突解决列为「未来功能」 · 2026-09-02 核对</div>
+    </div>
+
+    <!-- 03 · it is genuinely hard: compress AND retain detail -->
+    <div class="rs">
+      <span class="chip">原因 03 · 难度</span>
+      <svg viewBox="0 0 340 136" xmlns="http://www.w3.org/2000/svg" font-family="IBM Plex Mono,Menlo,monospace">
+        <!-- two forces pulling apart -->
+        <text x="14" y="30" font-size="9.5" fill="rgba(219,224,238,.6)" letter-spacing=".1em">高效压缩</text>
+        <text x="326" y="30" text-anchor="end" font-size="9.5" fill="rgba(219,224,238,.6)" letter-spacing=".1em">细节保留</text>
+        <line x1="14" y1="48" x2="150" y2="48" stroke="rgba(174,185,245,.5)" stroke-width="2.5" stroke-linecap="round"/>
+        <path d="M22,42 L14,48 L22,54" fill="none" stroke="rgba(174,185,245,.5)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <line x1="190" y1="48" x2="326" y2="48" stroke="rgba(174,185,245,.5)" stroke-width="2.5" stroke-linecap="round"/>
+        <path d="M318,42 L326,48 L318,54" fill="none" stroke="rgba(174,185,245,.5)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <!-- the two failure modes -->
+        <text x="14" y="72" font-size="9" fill="#ff5f52" letter-spacing=".06em">摘要 → 细节没了</text>
+        <text x="326" y="72" text-anchor="end" font-size="9" fill="#ff5f52" letter-spacing=".06em">全留 → token 炸了</text>
+        <!-- the only way through: structured state -->
+        <rect x="120" y="86" width="100" height="34" rx="8" fill="rgba(82,103,255,.12)" stroke="#5267ff" stroke-width="1.5"/>
+        <text x="170" y="101" text-anchor="middle" font-size="9" fill="#aeb9f5" letter-spacing=".12em">写入时结构化</text>
+        <text x="170" y="113" text-anchor="middle" font-size="9" fill="#f3f5fa" font-weight="600" letter-spacing=".06em">压得小 · 留得住</text>
+        <line x1="170" y1="56" x2="170" y2="84" stroke="#5267ff" stroke-width="1.5" stroke-dasharray="3 3"/>
+      </svg>
+      <div class="t">要同时做到<em>压得小</em>和<em>留得住细节</em>。</div>
+      <div class="s">靠摘要压缩，细节在知道它重要之前就丢了；全部保留，token 立刻爆炸。唯一的路是在写入那一刻就把工作压成结构化的 state。<b>这是真正难的地方，也是 Echo 的核心技术。</b></div>
+      <div class="ev"><b>ANTHROPIC 文档</b> · 压缩后工具输出与中间推理不再保留 · <b>TIERMEM</b> ICLR 2026<br><b>下一页</b> · 99.5% 输入 · 66% 重读——不压缩的代价</div>
+    </div>
+
+  </div>
+
+  <div class="closer">
+    <div class="line">需求刚出现，旧产品装不下，新做法很难——<b>这就是空缺还在的原因。</b></div>
+    <div class="foot">echoknows.com · 04.5</div>
+  </div>
+
+</section>
+
+</body>
+</html>

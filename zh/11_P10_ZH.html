@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1280, initial-scale=1">
+<title>Echo — Narrative · 创始人销售</title>
+<link rel="stylesheet" href="v2.css">
+<style>
+h1{font-size:50px}
+
+.zones{margin-top:50px;display:grid;grid-template-columns:2fr 3fr;gap:0 44px}
+.zh{display:flex;align-items:baseline;gap:14px}
+.zh .n{font-size:84px;font-weight:700;letter-spacing:-.05em;line-height:.9;
+  background:linear-gradient(180deg,#fff 20%,#aeb9f5);-webkit-background-clip:text;background-clip:text;color:transparent}
+.signed .zh .n{background:linear-gradient(180deg,#fff 20%,#9fdcff);-webkit-background-clip:text;background-clip:text}
+.zh b{font-size:26px;font-weight:700;letter-spacing:-.02em}
+.zh span{display:block;font-size:15px;font-weight:500;color:var(--muted);margin-top:2px}
+.cards{margin-top:26px;display:flex;gap:16px}
+
+.co{position:relative;width:178px;height:214px;border-radius:16px;padding:18px 16px;display:flex;flex-direction:column;
+  border:1px solid var(--line-strong);background:linear-gradient(180deg,rgba(255,255,255,.035),rgba(255,255,255,.01)),#0a0c12}
+.co .lg{width:60px;height:60px;border-radius:14px;overflow:hidden;background:#fff}
+.co .lg img{width:100%;height:100%;object-fit:cover}
+.co .lg img.pad{object-fit:contain;padding:6px;background:#e9ebf0}
+.co b{margin-top:auto;font-size:17px;font-weight:700;letter-spacing:-.01em;line-height:1.15}
+.co span{margin-top:3px;font-size:13px;color:var(--muted)}
+.pill{align-self:flex-start;margin-top:12px;display:flex;align-items:center;gap:5px;padding:4px 9px;border-radius:99px;font:600 10px var(--mono);letter-spacing:.1em}
+.signed .co{border-color:rgba(111,207,255,.45);background:linear-gradient(180deg,rgba(111,207,255,.12),rgba(111,207,255,.02)),#0a0c12;box-shadow:0 0 30px rgba(111,207,255,.12)}
+.signed .pill{background:rgba(111,207,255,.14);color:#9fdcff}
+.talks .co{border-color:rgba(160,172,255,.3)}
+.talks .pill{background:rgba(120,135,255,.14);color:#c4ccff}
+.talks .pill i{width:6px;height:6px;border-radius:50%;background:#8f98ff;box-shadow:0 0 8px #8f98ff;animation:bl 1.6s ease-in-out infinite}
+@keyframes bl{50%{opacity:.3}}
+
+/* weeks */
+.track{position:relative;margin-top:46px;height:40px}
+.track .ln{position:absolute;left:0;right:0;top:8px;height:2px;background:linear-gradient(90deg,#6fcfff,#6075ff 45%,rgba(96,117,255,.25))}
+.wk{position:absolute;top:0;transform:translateX(-50%);text-align:center}
+.wk::before{content:"";display:block;margin:3px auto 0;width:12px;height:12px;border-radius:50%;background:#0a0c12;border:2px solid #8f98ff}
+.wk.a::before{border-color:#6fcfff;background:#6fcfff;box-shadow:0 0 12px #6fcfff}
+.wk.z::before{background:#8f98ff;box-shadow:0 0 12px #8f98ff}
+.wk em{display:block;margin-top:7px;font:600 11px var(--mono);font-style:normal;letter-spacing:.12em;color:var(--faint);white-space:nowrap}
+.wk.a em,.wk.z em{color:var(--ink)}
+.wk.a{transform:none;text-align:left}.wk.a::before{margin-left:0}
+.wk.z{transform:none;text-align:right}.wk.z::before{margin-right:0}
+
+.closer{margin-top:auto}
+.src{position:absolute;left:76px;right:76px;bottom:11px;display:flex;justify-content:space-between;font:500 9.5px var(--mono);color:var(--faint);letter-spacing:.03em}
+</style>
+</head>
+<body>
+<section class="slide">
+  <div class="eyebrow"><span class="dot"></span><span class="brand">ECHO</span><span>第五幕 · 进展</span></div>
+  <h1>创始人亲自卖了 3 周：<em>签下 2 家，3 家在谈。</em></h1>
+
+  <div class="zones">
+    <div class="signed">
+      <div class="zh"><div class="n">2</div><div><b>已签约</b><span>已付费 · 共 25 人</span></div></div>
+      <div class="cards">
+        <div class="co"><div class="lg"><img src="assets/logos-traction/0n1-force.png" alt=""></div><b>0N1 Force</b><span>15 人</span><span class="pill">✓ 已签约</span></div>
+        <div class="co"><div class="lg"><img src="assets/logos-traction/executive-intelligence.png" alt=""></div><b>Executive Intelligence</b><span>10 人</span><span class="pill">✓ 已签约</span></div>
+      </div>
+    </div>
+    <div class="talks">
+      <div class="zh"><div class="n">3</div><div><b>在谈</b><span>可覆盖 788 个席位</span></div></div>
+      <div class="cards">
+        <div class="co"><div class="lg"><img class="pad" src="assets/logos-traction/etalytics.png" alt=""></div><b>etalytics</b><span>74 人</span><span class="pill"><i></i>在谈</span></div>
+        <div class="co"><div class="lg"><img src="assets/logos/unlimit.png" alt=""></div><b>Unlimit</b><span>650 个席位</span><span class="pill"><i></i>在谈</span></div>
+        <div class="co"><div class="lg"><img src="assets/logos-traction/xola.png" alt=""></div><b>Xola</b><span>64 人</span><span class="pill"><i></i>在谈</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="track">
+    <div class="ln"></div>
+    <div class="wk a" style="left:0"><em>第 0 周</em></div>
+    <div class="wk" style="left:33.3%"><em>第 1 周</em></div>
+    <div class="wk" style="left:66.6%"><em>第 2 周</em></div>
+    <div class="wk z" style="right:0"><em>第 3 周</em></div>
+  </div>
+
+  <div class="closer"><div class="line-copy">现在还没有销售团队，<b>这 400 万美元就用来组建它。</b></div></div>
+  <div class="src"><span>公司规模按员工数；Unlimit 按可覆盖席位 · 2026 年 8 月</span><span>14</span></div>
+</section>
+</body>
+</html>

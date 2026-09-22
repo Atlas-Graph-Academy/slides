@@ -1,0 +1,38 @@
+/* Shared base for the 2026-09-16 narrative pages. Mirrors the Echo Direct deck system. */
+:root{
+  --ink:#f3f5fa; --muted:rgba(219,224,238,.64); --faint:rgba(211,217,235,.40);
+  --line:rgba(220,227,255,.09); --line-strong:rgba(220,227,255,.17);
+  --blue:#5267ff; --blue-bright:#aeb9f5; --eyebrow:rgba(177,188,255,.78);
+  --warn:#ff8a7a;
+  --sans:"Avenir Next","Avenir","PingFang SC","Hiragino Sans GB","Helvetica Neue",sans-serif;
+  --mono:"IBM Plex Mono","Menlo",monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{background:#000;font-family:var(--sans);color:var(--ink);-webkit-font-smoothing:antialiased}
+.slide{position:relative;width:1280px;height:720px;margin:0 auto;overflow:hidden;
+  background:
+    radial-gradient(ellipse 78% 48% at 50% -18%,rgba(69,88,255,.13),transparent 66%),
+    radial-gradient(circle at 76% 46%,rgba(0,0,242,.10),transparent 31rem),
+    linear-gradient(180deg,#050609 0%,#080a10 44%,#050609 100%);
+  display:flex;flex-direction:column;padding:44px 76px 32px}
+.slide::before{content:"";position:absolute;inset:0;opacity:.035;pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.84' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.9'/%3E%3C/svg%3E")}
+.slide>*{position:relative;z-index:1}
+.eyebrow{display:flex;align-items:center;gap:10px;font:600 12px/1.2 var(--mono);letter-spacing:.18em;text-transform:uppercase;color:var(--eyebrow)}
+.eyebrow .dot{width:6px;height:6px;border-radius:50%;background:#6075ff;box-shadow:0 0 0 4px rgba(82,103,255,.1),0 0 18px rgba(82,103,255,.62)}
+.eyebrow .brand{color:var(--ink);font-weight:700;letter-spacing:.24em}
+h1{margin-top:17px;font-size:50px;line-height:1.06;letter-spacing:-.03em;font-weight:600;white-space:nowrap}
+h1 em{font-style:normal;color:var(--blue-bright)}
+.sub{margin-top:10px;font-size:18px;line-height:1.4;color:var(--muted)}
+.sub b{color:var(--ink);font-weight:600}
+.body{flex:1;min-height:0;margin-top:30px}
+.label{font:700 10.5px/1.2 var(--mono);letter-spacing:.17em;text-transform:uppercase;color:var(--blue-bright)}
+.mono{font-family:var(--mono)}
+.card{border:1px solid var(--line-strong);border-radius:14px;background:linear-gradient(180deg,rgba(255,255,255,.035),rgba(255,255,255,.012))}
+.closer{display:flex;justify-content:space-between;align-items:baseline;gap:24px;border-top:1px solid var(--line-strong);padding-top:12px}
+.closer .line-copy{font-size:18px;font-weight:500;color:var(--ink);letter-spacing:-.008em}
+.closer .line-copy b{color:var(--blue-bright);font-weight:600}
+.closer .foot{font:500 10px/1.4 var(--mono);letter-spacing:.05em;color:var(--faint);text-align:right;white-space:nowrap}
+@page{size:13.333in 7.5in;margin:0}
+@media print{html,body{background:#000}.slide{margin:0}}
+@media screen{.slide{box-shadow:0 10px 40px rgba(0,0,0,.6)}}

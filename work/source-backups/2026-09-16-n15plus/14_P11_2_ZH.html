@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1280, initial-scale=1">
+<title>Echo — 直投版 · 第 11.2 页</title>
+<style>
+:root{
+  --ink:#f3f5fa; --muted:rgba(219,224,238,.64); --faint:rgba(211,217,235,.42);
+  --line:rgba(220,227,255,.075); --line-strong:rgba(220,227,255,.15);
+  --blue-bright:#aeb9f5; --eyebrow:rgba(177,188,255,.78);
+  --sans:"Avenir Next","Avenir","PingFang SC","Hiragino Sans GB","Helvetica Neue",sans-serif;
+  --mono:"IBM Plex Mono","Menlo",monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{background:#000;font-family:var(--sans);color:var(--ink);-webkit-font-smoothing:antialiased}
+.slide{position:relative;width:1280px;height:720px;margin:0 auto;overflow:hidden;
+  background:
+    radial-gradient(ellipse 78% 48% at 50% -18%,rgba(69,88,255,.13),transparent 66%),
+    radial-gradient(circle at 82% 22%,rgba(0,0,242,.13),transparent 28rem),
+    linear-gradient(180deg,#050609 0%,#080a10 44%,#050609 100%);
+  display:flex;flex-direction:column;padding:44px 76px 32px}
+.slide::before{content:"";position:absolute;inset:0;opacity:.035;pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.84' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.9'/%3E%3C/svg%3E")}
+.slide>*{position:relative;z-index:1}
+.eyebrow{display:flex;align-items:center;gap:10px;font:600 12px/1.2 var(--mono);letter-spacing:.18em;text-transform:uppercase;color:var(--eyebrow)}
+.eyebrow .dot{width:6px;height:6px;border-radius:50%;background:#6075ff;box-shadow:0 0 0 4px rgba(82,103,255,.1),0 0 18px rgba(82,103,255,.62)}
+.eyebrow .brand{color:var(--ink);font-weight:700;letter-spacing:.24em}
+h1{margin-top:14px;font-size:44px;line-height:1.1;letter-spacing:-.028em;font-weight:600;white-space:nowrap}
+h1 em{font-style:normal;color:var(--blue-bright)}
+.sub{margin-top:8px;font-size:17px;line-height:1.35;color:var(--muted)}
+.sub b{color:var(--ink);font-weight:600}
+.matrix-wrap{flex:1;min-height:0;display:flex;align-items:center;margin-top:17px}
+.matrix{width:100%;display:grid;grid-template-columns:repeat(7,1fr);border-top:1px solid var(--line-strong);border-left:1px solid var(--line)}
+.company{height:99px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;padding:7px 6px;border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
+.mark{width:44px;height:44px;flex:none;border-radius:11px;background:rgba(247,247,242,.96);display:flex;align-items:center;justify-content:center;overflow:hidden;box-shadow:0 5px 18px rgba(0,0,0,.16)}
+.mark img{width:37px;height:37px;object-fit:contain;display:block}
+.company-name{max-width:145px;text-align:center;font-size:12px;line-height:1.08;font-weight:600;letter-spacing:.002em;color:rgba(243,245,250,.9)}
+.headcount{display:block;margin-top:3px;font:500 9.5px/1 var(--mono);letter-spacing:.025em;color:rgba(188,197,224,.56);white-space:nowrap}
+.closer{display:flex;justify-content:space-between;align-items:baseline;border-top:1px solid var(--line-strong);padding-top:12px}
+.closer .line-copy{font-size:18px;font-weight:500;color:var(--ink);letter-spacing:-.008em}
+.closer .line-copy b{color:var(--blue-bright);font-weight:600}
+.closer .foot{font:500 10.5px var(--mono);letter-spacing:.06em;color:var(--faint)}
+@page{size:13.333in 7.5in;margin:0}
+@media print{html,body{background:#000}.slide{margin:0}}
+@media screen{.slide{box-shadow:0 10px 40px rgba(0,0,0,.6)}}
+</style>
+</head>
+<body>
+<section class="slide">
+  <div class="eyebrow"><span class="dot"></span><span class="brand">ECHO</span><span>市场证据 · 招聘信号</span></div>
+  <h1><em>≈85,000 个席位</em>，来自 28 家<br>已经在招人解决 <em>context sharing</em> 的公司。</h1>
+  <div class="sub"><b>Context sharing 是我们的切入点。</b>这是起步的楔子——不是整个市场。</div>
+
+  <div class="matrix-wrap">
+    <div class="matrix" aria-label="Companies currently hiring context management, AI enablement, and agent workflow roles">
+      <div class="company"><div class="mark"><img src="assets/logos-hiring/baseten.png" alt="Baseten logo"></div><div class="company-name">Baseten<span class="headcount">408 人</span></div></div>
+      <div class="company"><div class="mark"><img src="assets/logos-hiring/abridge.png" alt="Abridge logo"></div><div class="company-name">Abridge<span class="headcount">648 人</span></div></div>
+      <div class="company"><div class="mark"><img src="assets/logos-hiring/legora.png" alt="Legora logo"></div><div class="company-name">Legora<span class="headcount">777 人</span></div></div>
+      <div class="company"><div class="mark"><img src="assets/logos-hiring/commure.png" alt="Commure logo"></div><div class="company-name">Commure<span class="headcount">~1,200 人</span></div></div>
+      <div class="company"><div class="mark"><img src="assets/logos-hiring/vanta.png" alt="Vanta logo"></div><div class="company-name">Vanta<span class="headcount">1,964 人</span></div></div>
+      <div class="company"><div class="mark"><img src="assets/logos-hiring/voize.png" alt="voize logo"></div><div class="company-name">voize<span class="headcount">~170 人</span></div></div>
+      <div class="company"><div class="mark"><img src="assets/logos-hiring/justworks.png" alt="Justworks logo"></div><div class="company-name">Justworks<span class="headcount">1,641 人</span></div></div>
+
+      <div class="company"><div class="mark"><img src="assets/logos-hiring/grafana.png" alt="Grafana logo"></div><div class="company-name">Grafana<span class="headcount">1,899 人</span></div></div>
+      <div class="company"><div class="mark"><img src="assets/logos-hiring/ambience.png" alt="Ambience logo"></div><div class="company-name">Ambience<span class="headcount">244 人</span></div></div>
+      <div class="company"><div class="mark"><img src="assets/logos-hiring/benepass.png" alt="Benepass logo"></div><div class="company-name">Benepass<span class="headcount">116 人</span></div></div>
+      <div class="company"><div class="mark"><img src="assets/logos-hiring/scale-ai.png" alt="Scale AI logo"></div><div class="company-name">Scale AI<span class="headcount">6,997 人</span></div></div>
+      <div class="company"><div class="mark"><img src="assets/logos-hiring/alpaca.png" alt="Alpaca logo"></div><div class="company-name">Alpaca<span class="headcount">~197 人</span></div></div>
+      <div class="company"><div class="mark"><img src="assets/logos-hiring/ramp.png" alt="Ramp logo"></div><div class="company-name">Ramp<span class="headcount">2,557 人</span></div></div>
+      <div class="company"><div class="mark"><img src="assets/logos-hiring/notion.png" alt="Notion logo"></div><div class="company-name">Notion<span class="headcount">~1,100 人</span></div></div>
+
+      <div class="company"><div class="mark"><img src="assets/logos-hiring/stripe.png" alt="Stripe logo"></div><div class="company-name">Stripe<span class="headcount">16,850 人</span></div></div>
+      <div class="company"><div class="mark"><img src="assets/logos-hiring/canary.png" alt="Canary Technologies logo"></div><div class="company-name">Canary<span class="headcount">400 人</span></div></div>
+      <div class="company"><div class="mark"><img src="assets/logos-hiring/instacart.png" alt="Instacart logo"></div><div class="company-name">Instacart<span class="headcount">25,164 人</span></div></div>
+      <div class="company"><div class="mark"><img src="assets/logos-hiring/datadog.png" alt="Datadog logo"></div><div class="company-name">Datadog<span class="headcount">10,866 人</span></div></div>
+      <div class="company"><div class="mark"><img src="assets/logos-hiring/taktile.png" alt="Taktile logo"></div><div class="company-name">Taktile<span class="headcount">236 人</span></div></div>
+      <div class="company"><div class="mark"><img src="assets/logos-hiring/tailscale.png" alt="Tailscale logo"></div><div class="company-name">Tailscale<span class="headcount">351 人</span></div></div>
+      <div class="company"><div class="mark"><img src="assets/logos-hiring/forter.png" alt="Forter logo"></div><div class="company-name">Forter<span class="headcount">714 人</span></div></div>
+
+      <div class="company"><div class="mark"><img src="assets/logos-hiring/deepgram.png" alt="Deepgram logo"></div><div class="company-name">Deepgram<span class="headcount">362 人</span></div></div>
+      <div class="company"><div class="mark"><img src="assets/logos-hiring/gusto.png" alt="Gusto logo"></div><div class="company-name">Gusto<span class="headcount">4,701 人</span></div></div>
+      <div class="company"><div class="mark"><img src="assets/logos-hiring/anthropic.png" alt="Anthropic logo"></div><div class="company-name">Anthropic<span class="headcount">~4,000 人</span></div></div>
+      <div class="company"><div class="mark"><img src="assets/logos-hiring/abacum.png" alt="Abacum logo"></div><div class="company-name">Abacum<span class="headcount">100+ 人</span></div></div>
+      <div class="company"><div class="mark"><img src="assets/logos-hiring/clara.png" alt="Clara logo"></div><div class="company-name">Clara<span class="headcount">733 人</span></div></div>
+      <div class="company"><div class="mark"><img src="assets/logos-hiring/shepherd.png" alt="Shepherd logo"></div><div class="company-name">Shepherd<span class="headcount">100 人</span></div></div>
+      <div class="company"><div class="mark"><img src="assets/logos-hiring/aera.png" alt="Aera Technology logo"></div><div class="company-name">Aera Technology<span class="headcount">437 人</span></div></div>
+    </div>
+  </div>
+
+  <div class="closer">
+    <div class="line-copy"></div>
+    <div class="foot">公开资料员工数 · 2026-08-26 · 11.2</div>
+  </div>
+</section>
+</body>
+</html>

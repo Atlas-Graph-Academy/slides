@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1280, initial-scale=1">
+<title>Echo — 叙事版 · Echo 如何帮 Meta 省下 10 亿</title>
+<link rel="stylesheet" href="v2.css">
+<style>
+h1{font-size:50px}
+.body{flex:1;min-height:0;margin-top:10px;display:grid;grid-template-columns:1fr 44px 1fr 44px 1.05fr;align-content:center;padding-bottom:20px}
+.col{display:flex;flex-direction:column}
+.no{font:600 13px/1 var(--mono);letter-spacing:.14em;color:var(--blue-bright);opacity:.8}
+.vis{height:300px;display:flex;align-items:center;justify-content:center}
+.h{font-size:24px;font-weight:700;letter-spacing:-.02em;line-height:1.2}
+.h span{display:block;margin-top:8px;font-size:16px;font-weight:500;letter-spacing:0;line-height:1.4;color:var(--muted)}
+.arrow{display:flex;align-items:center;justify-content:center;color:rgba(220,227,255,.3);font-size:28px;height:300px;margin-top:13px}
+
+/* shared bits */
+.ic{border-radius:50%;display:flex;align-items:center;justify-content:center;flex:none}
+.ic img{width:56%;height:56%}
+.ic.claude{background:#D97757}
+.ic.openai{background:#0b0c10;border:1px solid rgba(255,255,255,.28)}
+.ic.gemini{background:linear-gradient(135deg,#4f8dfd,#9b72f2)}
+.echo{border-radius:50%;flex:none;display:flex;align-items:center;justify-content:center;
+  background:radial-gradient(circle at 38% 32%,#dff7ff 0%,#6fd3ff 38%,#2f8dff 100%);
+  box-shadow:0 0 0 10px rgba(96,160,255,.10),0 0 0 22px rgba(96,160,255,.05),0 0 44px rgba(80,160,255,.55)}
+.echo i{width:7px;height:10px;border-radius:50%;background:#0b0c10;margin:0 6px 8px}
+
+/* 1 · sessions → memory */
+.v1{display:flex;align-items:center;gap:18px}
+.stack{display:flex;flex-direction:column;gap:14px}
+.win{width:132px;height:52px;border-radius:11px;border:1px solid var(--line-strong);background:rgba(255,255,255,.035);display:flex;align-items:center;gap:10px;padding:0 11px}
+.win .ic{width:32px;height:32px}
+.win u{display:block;height:5px;border-radius:3px;background:rgba(220,227,255,.16);text-decoration:none}
+.win .ln{flex:1;display:flex;flex-direction:column;gap:5px}
+.win .ln u:last-child{width:60%}
+.flow{width:46px;height:2px;background:repeating-linear-gradient(90deg,rgba(174,185,245,.7) 0 6px,transparent 6px 11px);position:relative}
+.flow:after{content:"";position:absolute;right:-2px;top:-4px;border:5px solid transparent;border-left:7px solid rgba(174,185,245,.8);border-right:0}
+.v1 .echo{width:112px;height:112px}
+.v1 .echo i{width:9px;height:13px;margin:0 8px 10px}
+.scribe{position:relative;width:140px;height:140px;flex:none;display:flex;align-items:center;justify-content:center}
+.scribe canvas{position:absolute;left:50%;top:50%;width:620px;height:620px;margin:-310px 0 0 -310px;pointer-events:none;opacity:0;transition:opacity .4s}
+.scribe.live canvas{opacity:1}
+.scribe.live .echo{opacity:0}
+
+/* 2 · agents get the whole picture */
+.v2{display:flex;flex-direction:column;align-items:center;gap:22px}
+.v2 .top{display:flex;align-items:center;gap:14px}
+.v2 .top .ic{width:56px;height:56px}
+.v2 .top .echo{width:48px;height:48px;box-shadow:0 0 0 7px rgba(96,160,255,.10),0 0 26px rgba(80,160,255,.5)}
+.v2 .top .echo i{width:4px;height:6px;margin:0 3px 4px}
+.v2 .top .plus{color:var(--faint);font-size:22px}
+.gains{display:flex;flex-direction:column;gap:11px;width:268px}
+.gain{display:flex;align-items:center;gap:12px;padding:12px 16px;border-radius:10px;background:rgba(96,117,255,.09);border:1px solid rgba(96,117,255,.28);font-size:17px;font-weight:600}
+.gain svg{width:20px;height:20px;flex:none;stroke:var(--blue-bright);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+
+/* 3 · the money */
+.v3{flex-direction:column;align-items:flex-start;justify-content:center}
+.big{font-size:124px;font-weight:700;letter-spacing:-.06em;line-height:1;
+  background:linear-gradient(180deg,#fff 20%,#aeb9f5);-webkit-background-clip:text;background-clip:text;color:transparent;
+  filter:drop-shadow(0 0 34px rgba(96,117,255,.5))}
+.big small{font-size:28px;letter-spacing:-.01em;margin-left:6px}
+.bigl{margin-top:10px;display:flex;align-items:center;gap:10px;font-size:19px;font-weight:600}
+.bigl img{height:18px;width:auto}
+.ind{margin-top:22px;padding-top:16px;border-top:1px solid var(--line-strong);display:flex;align-items:center;gap:14px;width:100%}
+.ind .n{font-size:40px;font-weight:700;letter-spacing:-.04em;line-height:1}
+.ind svg{width:74px;height:34px;flex:none}
+.ind .t{font-size:15px;line-height:1.3;color:var(--muted)}
+
+.src{position:absolute;left:76px;right:76px;bottom:11px;display:flex;justify-content:space-between;font:500 9.5px var(--mono);color:var(--faint);letter-spacing:.03em}
+</style>
+</head>
+<body>
+<section class="slide">
+  <div class="eyebrow"><span class="dot"></span><span class="brand">ECHO</span><span>第二幕 · 这件事值多少钱</span></div>
+  <h1>Echo 如何从现在起，<em>帮 Meta 省下 10 亿美元。</em></h1>
+
+  <div class="body">
+    <div class="col">
+      <div class="no">01</div>
+      <div class="vis"><div class="v1">
+        <div class="stack">
+          <div class="win"><div class="ic claude"><img src="deck_assets/direct/claude.svg" alt=""></div><div class="ln"><u></u><u></u></div></div>
+          <div class="win"><div class="ic openai"><img src="deck_assets/direct/openai.svg" alt=""></div><div class="ln"><u></u><u></u></div></div>
+          <div class="win"><div class="ic gemini"><img src="deck_assets/direct/googlegemini.svg" alt=""></div><div class="ln"><u></u><u></u></div></div>
+        </div>
+        <div class="flow"></div>
+        <div class="scribe" id="scribe"><div class="echo"><i></i><i></i></div><canvas id="echoWrite" width="1240" height="1240"></canvas></div>
+      </div></div>
+      <div class="h">会话变成记忆。<span>不用再逐个会话重建上下文，<br>换工具也能接着干。</span></div>
+    </div>
+
+    <div class="arrow">→</div>
+
+    <div class="col">
+      <div class="no">02</div>
+      <div class="vis"><div class="v2">
+        <div class="top">
+          <div class="echo"><i></i><i></i></div><span class="plus">→</span>
+          <div class="ic claude"><img src="deck_assets/direct/claude.svg" alt=""></div>
+          <div class="ic openai"><img src="deck_assets/direct/openai.svg" alt=""></div>
+        </div>
+        <div class="gains">
+          <div class="gain"><svg viewBox="0 0 24 24"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg>做成更多事</div>
+          <div class="gain"><svg viewBox="0 0 24 24"><circle cx="6" cy="12" r="3"/><circle cx="18" cy="6" r="3"/><circle cx="18" cy="18" r="3"/><path d="m8.6 10.5 6.8-3M8.6 13.5l6.8 3"/></svg>决策大家共享</div>
+          <div class="gain"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><circle cx="17" cy="9" r="2.5"/><path d="M16 14.2c2.9.1 5 2.4 5 5.3"/></svg>看清整个团队</div>
+        </div>
+      </div></div>
+      <div class="h">Token 花费变成公司资产。</div>
+    </div>
+
+    <div class="arrow">→</div>
+
+    <div class="col">
+      <div class="no">03</div>
+      <div class="vis v3">
+        <div class="big">$1B+<small>/年</small></div>
+        <div class="bigl"><img src="deck_assets/direct/meta.svg" alt="Meta">Meta 省下</div>
+        <div class="ind">
+          <div class="n">$40B</div>
+          <svg viewBox="0 0 74 34"><path d="M2 30 C24 29 40 24 54 14 S68 4 72 2" fill="none" stroke="#6075ff" stroke-width="2.2" stroke-linecap="round"/><path d="M64 2h8v8" fill="none" stroke="#6075ff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <div class="t">全行业，<br>还在往上涨</div>
+        </div>
+      </div>
+      <div class="h">花得更少，做得更好，<br>产出更多。</div>
+    </div>
+  </div>
+
+  <div class="src"><span>均为估算 · Meta：$4–6B Anthropic 账单 × 约 25% 重复上下文被省掉 · 全行业：OpenAI + Anthropic 2026 年约 $100B 账单的约 40%</span><span>08</span></div>
+</section>
+<script src="deck_assets/vendor/rive.js"></script>
+<script>
+(function(){
+  // Echo writing notes (v21 · Echo-GeneralFile · WritingNotes-In → WritingNotes-Loop). Static orb stays if Rive fails.
+  if(!window.rive) return;
+  try{
+    rive.RuntimeLoader.setWasmUrl('deck_assets/vendor/rive.wasm');
+    var box=document.getElementById('scribe');
+    var r=new rive.Rive({
+      src:'deck_assets/direct/echo.riv',
+      canvas:document.getElementById('echoWrite'),
+      artboard:'Echo-GeneralFile',
+      animations:['WritingNotes-In'],
+      autoplay:true,
+      layout:new rive.Layout({fit:rive.Fit.Contain,alignment:rive.Alignment.Center}),
+      onLoad:function(){box.classList.add('live')},
+      onStop:function(){r.play(['WritingNotes-Loop','Note/1'])}
+    });
+  }catch(e){}
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1280, initial-scale=1">
+<title>Echo — Direct Deck · Page 10</title>
+<style>
+:root{
+  --ink:#f3f5fa; --muted:rgba(219,224,238,.64); --faint:rgba(211,217,235,.40);
+  --line:rgba(220,227,255,.09); --line-strong:rgba(220,227,255,.17);
+  --blue:#5267ff; --blue-bright:#aeb9f5; --eyebrow:rgba(177,188,255,.78);
+  --sans:"Avenir Next","Avenir","Helvetica Neue",sans-serif;
+  --mono:"IBM Plex Mono","Menlo",monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{background:#000;font-family:var(--sans);color:var(--ink);-webkit-font-smoothing:antialiased}
+.slide{position:relative;width:1280px;height:720px;margin:0 auto;overflow:hidden;
+  background:
+    radial-gradient(ellipse 78% 48% at 50% -18%,rgba(69,88,255,.13),transparent 66%),
+    radial-gradient(circle at 76% 46%,rgba(0,0,242,.10),transparent 31rem),
+    linear-gradient(180deg,#050609 0%,#080a10 44%,#050609 100%);
+  display:flex;flex-direction:column;padding:44px 76px 32px}
+.slide::before{content:"";position:absolute;inset:0;opacity:.035;pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.84' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.9'/%3E%3C/svg%3E")}
+.slide>*{position:relative;z-index:1}
+.eyebrow{display:flex;align-items:center;gap:10px;font:600 12px/1.2 var(--mono);letter-spacing:.18em;text-transform:uppercase;color:var(--eyebrow)}
+.eyebrow .dot{width:6px;height:6px;border-radius:50%;background:#6075ff;box-shadow:0 0 0 4px rgba(82,103,255,.1),0 0 18px rgba(82,103,255,.62)}
+.eyebrow .brand{color:var(--ink);font-weight:700;letter-spacing:.24em}
+h1{margin-top:17px;font-size:53px;line-height:1.04;letter-spacing:-.03em;font-weight:600;white-space:nowrap}
+h1 em{font-style:normal;color:var(--blue-bright)}
+.sub{margin-top:9px;font-size:17px;line-height:1.35;color:var(--muted)}
+.sub b{color:var(--ink);font-weight:600}
+
+.traction{flex:1;min-height:0;display:grid;grid-template-columns:402px 1fr;gap:54px;align-items:start;margin-top:31px;position:relative}
+.traction::before{content:"";position:absolute;left:0;right:0;top:202px;height:1px;background:linear-gradient(90deg,rgba(220,227,255,.08),rgba(174,185,245,.40) 47%,rgba(82,103,255,.72) 100%)}
+.traction::after{content:"";position:absolute;right:-2px;top:198px;width:9px;height:9px;border-radius:50%;background:var(--blue-bright);box-shadow:0 0 0 8px rgba(82,103,255,.09),0 0 28px rgba(82,103,255,.62)}
+.group{position:relative;height:364px}
+.status{font:700 10.5px/1.2 var(--mono);letter-spacing:.17em;text-transform:uppercase;color:var(--blue-bright)}
+.metric{display:flex;align-items:baseline;gap:14px;margin-top:5px}
+.metric .num{font-size:106px;line-height:.9;letter-spacing:-.07em;font-weight:600;color:var(--ink)}
+.metric .word{font-size:26px;line-height:1.02;letter-spacing:-.022em;font-weight:560;color:var(--ink)}
+.metric .word span{display:block;margin-top:7px;font:500 10px/1.25 var(--mono);letter-spacing:.08em;color:var(--faint)}
+.logos{display:flex;align-items:flex-start;gap:22px;margin-top:31px}
+.talks .logos{gap:14px}
+.company{width:154px}
+.talks .company{width:140px}
+.icon{width:62px;height:62px;border-radius:15px;display:flex;align-items:center;justify-content:center;overflow:hidden;background:#fff;border:1px solid rgba(255,255,255,.16);box-shadow:0 10px 31px rgba(0,0,0,.30),0 0 26px rgba(82,103,255,.13)}
+.talks .icon{width:54px;height:54px;border-radius:13px;background:rgba(255,255,255,.94);opacity:.88;box-shadow:0 8px 24px rgba(0,0,0,.28)}
+.icon img{width:100%;height:100%;display:block;object-fit:contain}
+.icon img.pad{padding:8px}
+.company-name{margin-top:10px;font-size:14px;line-height:1.16;font-weight:600;letter-spacing:-.01em;color:var(--ink)}
+.talks .company-name{font-size:12.5px;color:rgba(243,245,250,.82)}
+.company-note{margin-top:5px;font:500 9.5px/1.4 var(--mono);letter-spacing:.02em;color:var(--faint)}
+.talks{padding-left:0}
+.week{position:absolute;top:193px;font:600 10px/1 var(--mono);letter-spacing:.12em;color:var(--faint);text-transform:uppercase}
+.signed .week{left:82px}
+.talks .week{right:0;color:var(--blue-bright)}
+.week::before{content:"";display:inline-block;width:5px;height:5px;border-radius:50%;background:currentColor;margin:0 8px 1px 0}
+.closer{display:flex;justify-content:space-between;align-items:baseline;border-top:1px solid var(--line-strong);padding-top:12px}
+.closer .line-copy{font-size:18px;font-weight:500;color:var(--ink);letter-spacing:-.008em}
+.closer .line-copy b{color:var(--blue-bright);font-weight:600}
+.closer .foot{font:500 10.5px var(--mono);letter-spacing:.06em;color:var(--faint)}
+@page{size:13.333in 7.5in;margin:0}
+@media print{html,body{background:#000}.slide{margin:0}}
+@media screen{.slide{box-shadow:0 10px 40px rgba(0,0,0,.6)}}
+</style>
+</head>
+<body>
+<section class="slide">
+  <div class="eyebrow"><span class="dot"></span><span class="brand">ECHO</span><span>Traction · Week 3</span></div>
+  <h1><em>2 signed.</em> 3 in conversation.</h1>
+  <div class="sub"><b>Three weeks</b> from the first line of code.</div>
+
+  <div class="traction">
+    <section class="group signed">
+      <div class="status">Signed</div>
+      <div class="metric"><span class="num">2</span><span class="word">companies<span>PAID</span></span></div>
+      <div class="logos">
+        <div class="company">
+          <div class="icon"><img src="assets/logos-traction/0n1-force.png" alt="0N1 Force logo"></div>
+          <div class="company-name">0N1 Force</div>
+          <div class="company-note">15 EMPLOYEES</div>
+        </div>
+        <div class="company">
+          <div class="icon"><img src="assets/logos-traction/executive-intelligence.png" alt="Executive Intelligence logo"></div>
+          <div class="company-name">Executive<br>Intelligence</div>
+          <div class="company-note">10 EMPLOYEES</div>
+        </div>
+      </div>
+      <div class="week">Week 0</div>
+    </section>
+
+    <section class="group talks">
+      <div class="status">In conversation</div>
+      <div class="metric"><span class="num">3</span><span class="word">companies<span>ACTIVE PIPELINE</span></span></div>
+      <div class="logos">
+        <div class="company">
+          <div class="icon"><img class="pad" src="assets/logos-traction/etalytics.png" alt="etalytics logo"></div>
+          <div class="company-name">etalytics</div>
+          <div class="company-note">74 EMPLOYEES</div>
+        </div>
+        <div class="company">
+          <div class="icon"><img src="assets/logos/unlimit.png" alt="Unlimit logo"></div>
+          <div class="company-name">Unlimit</div>
+          <div class="company-note">650 SEATS</div>
+        </div>
+        <div class="company">
+          <div class="icon"><img src="assets/logos-traction/xola.png" alt="Xola logo"></div>
+          <div class="company-name">Xola</div>
+          <div class="company-note">64 EMPLOYEES</div>
+        </div>
+      </div>
+      <div class="week">Week 3</div>
+    </section>
+  </div>
+
+  <div class="closer">
+    <div class="line-copy">No sales team yet. <b>$4M scales it.</b></div>
+    <div class="foot">Employee count / addressable seats · Aug 2026 · 10</div>
+  </div>
+</section>
+</body>
+</html>

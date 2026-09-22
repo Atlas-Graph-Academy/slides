@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1280, initial-scale=1">
+<title>Echo — Narrative · What Echo is</title>
+<link rel="stylesheet" href="v2.css">
+<style>
+.body{display:flex;flex-direction:column;gap:18px}
+.grid{flex:1;display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.f{padding:24px 22px;display:flex;flex-direction:column}
+.f .n{font-size:52px;line-height:1;font-weight:600;letter-spacing:-.05em;color:var(--blue-bright);white-space:nowrap}
+.f h3{margin-top:16px;font-size:21px;line-height:1.25;font-weight:600;letter-spacing:-.015em}
+.f p{margin-top:10px;font-size:14.5px;line-height:1.55;color:var(--muted)}
+.f p b{color:var(--ink);font-weight:600}
+.f .src{margin-top:auto;padding-top:14px;font:500 10px/1.4 var(--mono);color:var(--faint);letter-spacing:.03em}
+.f.goal{border-color:rgba(96,117,255,.55);background:radial-gradient(circle at 50% 0%,rgba(82,103,255,.22),transparent 70%),rgba(255,255,255,.02)}
+.f.goal .tag{display:inline-block;margin-left:8px;font:700 10px var(--mono);letter-spacing:.14em;color:var(--eyebrow);vertical-align:middle}
+.strip{display:flex;align-items:center;gap:10px;flex-wrap:nowrap;padding:14px 18px}
+.strip .label{margin-right:8px}
+.chip{border:1px solid var(--line-strong);border-radius:999px;padding:6px 12px;font-size:13.5px;white-space:nowrap}
+.chip img{width:14px;height:14px;vertical-align:-2px;margin-right:6px}
+</style>
+</head>
+<body>
+<section class="slide">
+  <div class="eyebrow"><span class="dot"></span><span class="brand">ECHO</span><span>Act III · The product</span></div>
+  <h1 style="font-size:44px">Echo. <em>The enterprise continuity layer for agent sessions.</em></h1>
+  <div class="sub">What one person and their agent did, <b>the next person and the next agent pick up.</b></div>
+
+  <div class="body" style="margin-top:26px">
+    <div class="grid">
+      <div class="f card">
+        <div class="n">−60–70%</div>
+        <h3>Tokens saved</h3>
+        <p>No more rereading, re-searching, re-explaining. <b>Measured −60% input tokens per turn</b>; modeled at −66–70% with shared team context.</p>
+        <div class="src">828 sessions measured · 5-person team model</div>
+      </div>
+      <div class="f card">
+        <div class="n">3.2×</div>
+        <h3>The business moves faster</h3>
+        <p>Agents start working on turn one. Sessions per day: 1.5 → <b>4.8</b>. Active projects: 7 → <b>17</b>.</p>
+        <div class="src">founding team · before vs. after Echo</div>
+      </div>
+      <div class="f card">
+        <div class="n" style="font-size:40px">Cost→Asset</div>
+        <h3>Wasted tokens become assets</h3>
+        <p>Every piece of reasoning is kept: <b>who decided, on what basis, under what conditions</b>. Spend becomes memory you can put to work.</p>
+        <div class="src">source · owner · time · rationale</div>
+      </div>
+      <div class="f card goal">
+        <div class="n">10×<span class="tag">GOAL</span></div>
+        <h3>10× team efficiency</h3>
+        <p>What one person figures out with AI, <b>the whole team can build on</b>. Individual AI speed becomes team output.</p>
+        <div class="src">validated in 3–5 person pilots</div>
+      </div>
+    </div>
+
+    <div class="strip card">
+      <span class="label">Works out of the box</span>
+      <span class="chip"><img src="deck_assets/direct/claude.svg" alt="">Claude Code</span>
+      <span class="chip"><img src="deck_assets/direct/openai.svg" alt="">Codex · ChatGPT</span>
+      <span class="chip">MCP</span>
+      <span class="chip">Per-item sharing</span>
+      <span class="chip">Provenance · audit</span>
+      <span class="chip">Encryption</span>
+    </div>
+  </div>
+
+  <div class="closer" style="margin-top:18px">
+    <div class="line-copy">Tokens are a cost. <b>Memory you can put to work is an asset.</b></div>
+    <div class="foot">echoknows.com/research · 09</div>
+  </div>
+</section>
+</body>
+</html>

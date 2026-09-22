@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1280, initial-scale=1">
+<title>Echo — Narrative · Use of funds</title>
+<link rel="stylesheet" href="v2.css">
+<style>
+h1{font-size:46px}
+.flow{margin-top:64px;display:flex;align-items:center}
+.stg{position:relative;flex:1;border-radius:18px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;
+  border:1px solid rgba(160,172,255,.3);background:linear-gradient(180deg,rgba(120,135,255,.16),rgba(120,135,255,.04)),#0b0d15}
+.stg b{font-size:50px;font-weight:700;letter-spacing:-.045em;line-height:1;
+  background:linear-gradient(180deg,#fff 20%,#aeb9f5);-webkit-background-clip:text;background-clip:text;color:transparent}
+.stg span{margin-top:8px;font-size:18px;font-weight:600;color:rgba(243,245,250,.86);white-space:nowrap}
+.stg.first{flex:1.3;height:370px}
+.stg.goal{flex:1.25;height:300px}
+.stg.goal b{font-size:50px}
+.stg.goal span{font-size:20px}
+.stg.win{border-color:rgba(111,207,255,.55);background:linear-gradient(180deg,rgba(111,207,255,.22),rgba(111,207,255,.05)),#0b0d15;box-shadow:0 0 36px rgba(111,207,255,.2)}
+.stg.win b{background:linear-gradient(180deg,#fff 20%,#9fdcff);-webkit-background-clip:text;background-clip:text}
+.chev{position:relative;flex:none;width:28px;height:2px;background:linear-gradient(90deg,rgba(143,152,255,.3),#8f98ff)}
+.chev::after{content:"";position:absolute;right:-1px;top:-5px;border:6px solid transparent;border-left:8px solid #8f98ff;border-right:0}
+.chev.last{background:linear-gradient(90deg,#8f98ff,#6fcfff)}.chev.last::after{border-left-color:#6fcfff}
+.lg9{margin-top:22px;display:grid;grid-template-columns:repeat(3,44px);gap:10px}
+.lg9 i{width:44px;height:44px;border-radius:11px;background:#f7f7f2;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.lg9 img{width:38px;height:38px;object-fit:contain}
+.stg .note{margin-top:12px;font-size:13.5px;font-weight:500;color:var(--muted)}
+
+.closer{margin-top:auto}
+.src{position:absolute;left:76px;right:76px;bottom:11px;display:flex;justify-content:space-between;font:500 9.5px var(--mono);color:var(--faint);letter-spacing:.03em}
+</style>
+</head>
+<body>
+<section class="slide">
+  <div class="eyebrow"><span class="dot"></span><span class="brand">ECHO</span><span>第五幕 · 资金用途</span></div>
+  <h1>这 400 万美元只干一件事：<em>18 个月拿下 1 万个付费席位。</em></h1>
+
+  <div class="flow">
+    <div class="stg first"><b>400</b><span>个目标客户</span><div class="lg9"><i><img src="assets/logos/openai.png" alt=""></i><i><img src="assets/logos/anthropic.png" alt=""></i><i><img src="assets/logos/salesforce.png" alt="" style="width:32px;height:32px"></i><i><img src="assets/logos/ramp.png" alt=""></i><i><img src="assets/logos/commure.png" alt=""></i><i><img src="assets/logos/gecko-robotics.png" alt=""></i><i><img src="assets/logos/lindy.png" alt=""></i><i><img src="assets/logos/runway.png" alt=""></i><i><img src="assets/logos/unlimit.png" alt=""></i></div><div class="note">已经在招人部署 agent</div></div>
+    <div class="chev"></div>
+    <div class="stg" style="height:270px"><b>60</b><span>次付费诊断</span></div>
+    <div class="chev"></div>
+    <div class="stg" style="height:210px"><b>30</b><span>个试点</span></div>
+    <div class="chev"></div>
+    <div class="stg" style="height:170px"><b>20</b><span>份年度合同</span><div class="note">每份约 500 个席位</div></div>
+    <div class="chev last"></div>
+    <div class="stg win goal"><b>10,000</b><span>个付费席位</span><div class="note">18 个月内</div></div>
+  </div>
+
+  <div class="closer"><div class="line-copy">1 万个席位 × 每月 $100，<b>就是第 15 页的 $10M+ ARR。</b></div></div>
+  <div class="src"><span>计划：诊断转化约 15%，试点 50%，签约约 67%，每份合同约 500 席位 · 招聘信号：FDE 与 agent 工作流岗位公开职位，2026 年 7–8 月</span><span>17</span></div>
+</section>
+</body>
+</html>

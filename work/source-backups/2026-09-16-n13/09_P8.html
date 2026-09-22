@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Echo — Direct Deck · Page 8</title>
+<style>
+:root{
+  --ink:#f3f5fa; --muted:rgba(219,224,238,.66); --faint:rgba(211,217,235,.42);
+  --line:rgba(220,227,255,.075); --line-strong:rgba(220,227,255,.13);
+  --blue:#5267ff; --blue-bright:#aeb9f5; --eyebrow:rgba(177,188,255,.78); --red:#ff5f52;
+  --sans:"Avenir Next","Avenir","PingFang SC","Hiragino Sans GB","Helvetica Neue",sans-serif;
+  --mono:"IBM Plex Mono","Menlo",monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html,body{background:#000;font-family:var(--sans);color:var(--ink);-webkit-font-smoothing:antialiased;}
+.slide{position:relative;width:1280px;height:720px;margin:24px auto;overflow:hidden;
+  background:
+    radial-gradient(ellipse 78% 48% at 50% -18%, rgba(69,88,255,.13), transparent 66%),
+    radial-gradient(circle at 82% 22%, rgba(0,0,242,.13), transparent 28rem),
+    linear-gradient(180deg,#050609 0%,#080a10 44%,#050609 100%);
+  display:flex;flex-direction:column;padding:52px 76px 40px;}
+.slide::before{content:"";position:absolute;inset:0;opacity:.035;pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.84' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.9'/%3E%3C/svg%3E");}
+.slide>*{position:relative;z-index:1;}
+
+.eyebrow{display:flex;align-items:center;gap:10px;
+  font:600 12px/1.2 var(--mono);letter-spacing:.18em;text-transform:uppercase;color:var(--eyebrow);}
+.eyebrow .dot{width:6px;height:6px;border-radius:50%;background:#6075ff;
+  box-shadow:0 0 0 4px rgba(82,103,255,.1),0 0 18px rgba(82,103,255,.62);}
+.eyebrow .brand{color:var(--ink);font-weight:700;letter-spacing:.24em;}
+
+.h1{margin-top:22px;font-size:56px;font-weight:600;letter-spacing:-.026em;line-height:1.05;white-space:nowrap;}
+.h1 em{font-style:normal;color:var(--blue-bright);}
+
+.pillars{flex:1;display:grid;grid-template-columns:repeat(3,1fr);gap:32px;margin-top:30px;min-height:0;}
+.pillar{position:relative;display:flex;flex-direction:column;border-top:1px solid var(--line-strong);padding-top:16px;min-width:0;}
+.pillar::before{content:"";position:absolute;top:-1px;left:0;width:56px;height:2px;background:var(--blue);box-shadow:0 0 14px rgba(82,103,255,.8);}
+.pk{display:flex;align-items:baseline;gap:10px;font:600 11px var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--eyebrow);}
+.pk .en{color:var(--faint);letter-spacing:.2em;}
+.pk .n{color:var(--red);font-weight:700;}
+.ph{margin-top:14px;font-size:23px;font-weight:600;line-height:1.22;letter-spacing:-.022em;color:var(--ink);}
+.ph em{font-style:normal;color:var(--blue-bright);}
+.pb{margin-top:12px;font-size:14.2px;font-weight:500;line-height:1.5;color:var(--muted);}
+.pb b{color:var(--ink);font-weight:600;}
+.luh{margin-top:auto;display:flex;align-items:center;gap:10px;padding-top:10px;}
+.luh img{width:34px;height:34px;border-radius:50%;object-fit:cover;object-position:50% 20%;flex:none;
+  filter:grayscale(1) contrast(1.06) brightness(.96);border:1px solid rgba(174,185,245,.45);}
+.luh span{font:500 10px/1.4 var(--mono);letter-spacing:.06em;color:var(--faint);}
+.luh span b{color:var(--muted);font-weight:600;}
+.pf{margin-top:auto;padding-top:10px;border-top:1px solid var(--line);
+  font:600 11.5px/1.5 var(--mono);letter-spacing:.06em;color:var(--blue-bright);}
+.pillar.has-luh .pf{margin-top:8px;}
+
+.src{margin-top:12px;font:500 9.5px var(--mono);letter-spacing:.05em;color:var(--faint);text-align:right;}
+
+.closer{margin-top:24px;display:flex;justify-content:space-between;align-items:baseline;
+  border-top:1px solid var(--line-strong);padding-top:14px;}
+.closer .line{font-size:20px;font-weight:500;color:var(--ink);letter-spacing:-.01em;white-space:nowrap;}
+.closer .line b{color:var(--blue-bright);font-weight:600;}
+.closer .foot{font:500 10.5px var(--mono);letter-spacing:.06em;color:var(--faint);white-space:nowrap;margin-left:24px;}
+
+@page{size:13.333in 7.5in;margin:0;}
+@media print{html,body{background:#000;} .slide{margin:0;}}
+@media screen{.slide{box-shadow:0 10px 40px rgba(0,0,0,.6);}}
+</style>
+</head>
+<body>
+
+<section class="slide">
+
+  <div class="eyebrow"><span class="dot"></span><span class="brand">ECHO</span><span>The moat</span></div>
+
+  <div class="h1">Moat: <em>Position + Core Tech + Culture</em></div>
+
+  <div class="pillars">
+
+    <!-- 01 · Position -->
+    <div class="pillar">
+      <div class="pk"><span class="n">01</span><span>Position</span></div>
+      <div class="ph">Company-level agent context<br>management is an empty field.<br><em>We lead it.</em></div>
+      <div class="pb">Labs won’t build their own exit: <b>0 platforms</b> let context leave their walls. Agent companies only remember themselves: Sierra remembers support, Cognition remembers code. Memory startups sell SDKs, stored per repo, per machine. Six hard criteria on the next page — <b>only Echo passes them all.</b></div>
+    </div>
+
+    <!-- 02 · Core Tech -->
+    <div class="pillar has-luh">
+      <div class="pk"><span class="n">02</span><span>Core Tech</span></div>
+      <div class="ph">95.8%, publicly #1.<br><em>Luhmann’s card box,<br>rebuilt as AI.</em></div>
+      <div class="pb">We started building this engine in 2021, <b>a year before ChatGPT</b>. Its foundation is Luhmann’s Zettelkasten: every memory is a card with a source and links, not a chunk in a vector store. Compression, recall and audit were in it from day one. Other memory products are retrieval layers bolted onto a model; Echo is <b>a knowledge engine</b>. 95.8% is the result of architecture, not tuning.</div>
+      <div class="luh"><img src="deck_assets/direct/luhmann.png" alt="Niklas Luhmann"><span>Luhmann: <b>90,000 cards → 70 books</b>. His second memory — we built it for agents.</span></div>
+      <div class="pf">2021 engine → LongMemEval 95.8% · #1</div>
+    </div>
+
+    <!-- 03 · Culture -->
+    <div class="pillar">
+      <div class="pk"><span class="n">03</span><span>Culture</span></div>
+      <div class="ph">No concepts. Only results.<br><em>Make companies<br>10× stronger.</em></div>
+      <div class="pb">Models made every person 10× faster; the company isn’t. The missing 9× is stuck in waiting, review and re-explaining. Echo exists for one reason: to make the companies that use it <b>10× more efficient and 10× stronger</b>. The unit is a decision with an owner, evidence and acceptance criteria; the metric is <b>cost per accepted outcome</b>, not seats. Our own team of five works 100% inside agents — customer zero for this method.</div>
+      <div class="pf">7→17 projects · 1.5→4.8 sessions/day</div>
+    </div>
+
+  </div>
+
+  <div class="closer">
+    <div class="line">The stronger the models, <b>the more work there is turning intelligence into results.</b></div>
+    <div class="foot">echoknows.com · 08</div>
+  </div>
+
+</section>
+
+</body>
+</html>

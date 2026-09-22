@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Echo — Narrative cover</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700&family=Lora:wght@600;700&family=Space+Grotesk:wght@500;600;700&family=Poppins:wght@500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#050609; --panel:#0d0f12; --ink:#f3f5fa;
+  --muted:rgba(219,224,238,.64); --faint:rgba(211,217,235,.42);
+  --line:rgba(220,227,255,.075); --line-strong:rgba(220,227,255,.13);
+  --blue:#5267ff; --blue-bright:#aeb9f5; --eyebrow:rgba(177,188,255,.78);
+  --sans:"Avenir Next","Avenir","PingFang SC","Hiragino Sans GB","Helvetica Neue",sans-serif;
+  --mono:"IBM Plex Mono","Menlo",monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html,body{background:#000;font-family:var(--sans);color:var(--ink);-webkit-font-smoothing:antialiased;}
+.slide{position:relative;width:1280px;height:720px;margin:24px auto;overflow:hidden;
+  background:
+    radial-gradient(ellipse 78% 48% at 50% -18%, rgba(69,88,255,.13), transparent 66%),
+    radial-gradient(circle at 82% 22%, rgba(0,0,242,.13), transparent 28rem),
+    linear-gradient(180deg,#050609 0%,#080a10 44%,#050609 100%);
+  display:flex;flex-direction:column;padding:52px 76px 40px;}
+.slide::before{content:"";position:absolute;inset:0;opacity:.035;pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.84' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.9'/%3E%3C/svg%3E");}
+.slide>*{position:relative;z-index:1;}
+
+/* eyebrow */
+.eyebrow{display:flex;align-items:center;gap:10px;
+  font:600 12px/1.2 var(--mono);letter-spacing:.18em;text-transform:uppercase;color:var(--eyebrow);}
+.eyebrow .dot{width:6px;height:6px;border-radius:50%;background:#6075ff;
+  box-shadow:0 0 0 4px rgba(82,103,255,.1),0 0 18px rgba(82,103,255,.62);}
+.eyebrow .brand{color:var(--ink);font-weight:700;letter-spacing:.24em;}
+
+/* main split */
+.main{flex:1;display:flex;align-items:center;gap:56px;min-height:0;}
+.left{flex:1.1;min-width:0;}
+.right{flex:1;min-width:0;display:flex;justify-content:flex-end;}
+
+/* the ask */
+.name{font:600 96px/1 "Poppins",var(--sans);letter-spacing:-.04em;color:var(--ink);text-transform:lowercase;}
+.name span{color:var(--blue);text-shadow:0 0 18px rgba(82,103,255,.8);}
+.def{margin-top:14px;font-size:31px;font-weight:600;letter-spacing:-.016em;line-height:1.2;color:var(--ink);}
+.def-zh{margin-top:6px;font-size:22px;font-weight:500;letter-spacing:-.01em;line-height:1.3;color:var(--muted);}
+.url{margin-top:10px;font:600 15px var(--mono);letter-spacing:.1em;color:var(--blue-bright);}
+.ask{margin-top:24px;display:flex;align-items:baseline;gap:14px;font-weight:600;letter-spacing:-.02em;line-height:1;font-size:40px;color:var(--ink);}
+.ask .safe{font-weight:500;color:var(--blue-bright);}
+.ask .cap{font-size:17px;font-weight:500;letter-spacing:-.005em;color:var(--muted);}
+.ask .cap b{color:var(--ink);font-weight:600;}
+
+/* proof strip — three Firsts, converged hierarchy */
+.strip-intro{margin-top:34px;font:600 11px/1.2 var(--mono);letter-spacing:.18em;
+  text-transform:uppercase;color:var(--eyebrow);}
+.proof{display:flex;margin-top:12px;border-top:1px solid var(--line-strong);}
+.proof .p{flex:1;padding:16px 16px 0 0;}
+.proof .p+.p{border-left:1px solid var(--line);padding-left:16px;}
+.proof .rank{font-size:28px;font-weight:700;letter-spacing:-.015em;color:#ff5f52;line-height:1;}
+.proof .sup{margin-top:3px;font-size:18px;font-weight:600;letter-spacing:-.012em;color:var(--ink);white-space:nowrap;}
+.proof .n{margin-top:8px;font:500 13px var(--mono);color:var(--muted);letter-spacing:.02em;}
+.proof .n b{color:var(--ink);font-weight:600;}
+.proof .pa{display:inline-block;margin-top:10px;font:600 8.5px var(--mono);letter-spacing:.14em;
+  text-transform:uppercase;color:rgba(219,224,238,.55);border:1px solid var(--line-strong);
+  border-radius:99px;padding:3px 9px;}
+
+/* ── valuation bubbles · circle area = post-money valuation ── */
+.bubbles{position:relative;width:490px;height:540px;}
+.bubbles .fig-title{position:absolute;top:2px;left:0;font:600 11px/1.5 var(--mono);letter-spacing:.16em;
+  text-transform:uppercase;color:var(--eyebrow);max-width:210px;}
+.bub{position:absolute;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 4px 22px rgba(0,0,0,.5);
+  filter:blur(var(--bl,0)) saturate(.88);opacity:.9;}
+.bub img{display:block;}
+/* depth of field — the industry is out of focus; only Echo is on the focal plane */
+.bub.glean{--bl:2.4px;}
+.bub.granola{--bl:1.7px;}
+.bub.engram{--bl:1.1px;}
+.bub.mem0{--bl:1px;}
+.bub-label{opacity:.72;}
+.focus{position:absolute;border-radius:50%;pointer-events:none;
+  background:radial-gradient(circle, rgba(82,133,255,.2) 0%, rgba(82,103,255,.07) 45%, transparent 70%);}
+/* bubble background = the logo's own background color, sampled from the icon */
+.bub.glean{background:#343CED;flex-direction:column;gap:5px;}
+.bub.glean .tag{font:600 11.5px var(--mono);color:rgba(255,255,255,.88);letter-spacing:.02em;}
+.orbit{position:absolute;border-radius:50%;border:1px dashed rgba(220,227,255,.14);}
+.bub.granola{background:#99A741;}
+.bub.engram{background:#ffffff;}
+.bub.mem0{background:#CBB2FF;}
+/* brand labels — each in its company's (approx) official face & color, valuation stacked below */
+.bub-label{position:absolute;transform:translateX(-50%);text-align:center;white-space:nowrap;}
+.bub-label .nm{display:block;font-size:14.5px;line-height:1.15;}
+.bub-label .vl{display:block;margin-top:2px;font-size:12.5px;opacity:.82;}
+.bl-glean .nm{font:600 15px "Inter",sans-serif;letter-spacing:-.01em;color:#fff;}
+.bl-glean .vl{font:500 12.5px "Inter",sans-serif;color:rgba(255,255,255,.85);}
+.bl-granola .nm{font:600 15.5px "Lora",serif;color:#C7D65B;}
+.bl-granola .vl{font:600 12.5px "Lora",serif;color:#DDE8A0;}
+.bl-engram .nm{font:600 14.5px "Space Grotesk",sans-serif;letter-spacing:.01em;color:#EDEEF2;}
+.bl-engram .vl{font:500 12.5px "Space Grotesk",sans-serif;color:rgba(237,238,242,.8);}
+.bl-mem0 .nm{font:700 14.5px "Manrope",sans-serif;color:#CBB2FF;}
+.bl-mem0 .vl{font:600 12.5px "Manrope",sans-serif;color:#E0D2FF;}
+
+/* echo — dead center, with a legible growth transition to the dashed target ring */
+.ring{position:absolute;border-radius:50%;border:2px dashed rgba(174,185,245,.8);
+  display:flex;align-items:center;justify-content:center;}
+.ring .halo{position:absolute;inset:0;border-radius:50%;
+  background:radial-gradient(circle, rgba(82,133,255,.42) 0%, rgba(82,103,255,.16) 46%, rgba(82,103,255,.05) 68%, transparent 76%);}
+.ring .today{position:absolute;border-radius:50%;border:1.5px solid rgba(174,185,245,.55);
+  background:rgba(82,103,255,.18);}
+.ring canvas{position:relative;z-index:2;}
+.ring-label{position:absolute;font:600 13px var(--mono);color:var(--blue-bright);letter-spacing:.04em;white-space:nowrap;}
+.ring-label small{display:block;font-size:10.5px;color:var(--muted);font-weight:500;margin-top:3px;letter-spacing:.02em;}
+.echo-label{position:absolute;transform:translateX(-50%);text-align:center;white-space:nowrap;
+  font:700 34px/1 var(--sans);letter-spacing:.06em;color:var(--ink);
+  text-shadow:0 0 26px rgba(82,133,255,.75),0 0 60px rgba(82,103,255,.4);}
+.echo-label small{display:block;font:600 12px var(--mono);font-size:12px;color:var(--blue-bright);
+  font-weight:600;margin-top:7px;letter-spacing:.08em;text-shadow:none;}
+
+/* closer */
+.closer{display:flex;justify-content:space-between;align-items:baseline;
+  border-top:1px solid var(--line-strong);padding-top:16px;}
+.closer .line{font-size:19px;font-weight:500;color:var(--ink);letter-spacing:-.01em;}
+.closer .line b{color:var(--blue-bright);font-weight:600;}
+.closer .foot{font:500 10.5px var(--mono);letter-spacing:.06em;color:var(--faint);}
+
+@page{size:13.333in 7.5in;margin:0;}
+@media print{html,body{background:#000;} .slide{margin:0;}}
+@media screen{.slide{box-shadow:0 10px 40px rgba(0,0,0,.6);}}
+.def{margin-top:16px;font-size:29px;font-weight:600;letter-spacing:-.018em;line-height:1.18;color:var(--ink);}
+.url a{color:inherit;text-decoration:none;border-bottom:1px solid rgba(174,185,245,.35);}
+.url a:hover{color:#fff;border-color:#fff;}
+.url .sep{margin:0 12px;color:var(--faint);}
+.def em{font-style:normal;color:var(--blue-bright);}
+.for{margin-top:8px;font-size:17px;font-weight:500;color:var(--muted);letter-spacing:-.005em;}
+.meta-case{margin-top:26px;padding:18px 0 18px 20px;border-left:2px solid var(--blue);}
+.meta-case .if{font-size:19px;font-weight:500;color:var(--muted);line-height:1.4;}
+.meta-case .save{margin-top:6px;display:flex;align-items:baseline;gap:12px;}
+.meta-case .save .v{font-size:58px;font-weight:600;letter-spacing:-.05em;line-height:1;color:var(--ink);}
+.meta-case .save .t{font-size:19px;font-weight:600;color:var(--ink);}
+.meta-case .better{margin-top:8px;font-size:21px;font-weight:600;color:var(--blue-bright);}
+.meta-case .fn{margin-top:8px;font:500 10px/1.4 var(--mono);color:var(--faint);letter-spacing:.03em;}
+.legend{position:absolute;bottom:0;left:0;font:500 10.5px/1.6 var(--mono);color:var(--faint);letter-spacing:.03em}
+.legend i{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:6px;vertical-align:-1px}
+.bub.est{--bl:.8px;}
+.bl-est .nm{font:600 13.5px var(--sans);color:var(--ink);}
+.bl-est .vl{font:500 11.5px var(--mono);color:var(--blue-bright);}
+</style>
+</head>
+<body>
+
+<section class="slide">
+
+  <div class="eyebrow"><span class="dot"></span><span class="brand">ECHO</span><span>Seed · Open now</span></div>
+
+  <div class="main">
+
+    <!-- LEFT · the ask + level in the industry -->
+    <div class="left">
+      <div class="name">echo<span>.</span></div>
+      <div class="def">Agent continuity across people, sessions,<br>and platforms. <em>Like nothing else.</em></div>
+      <div class="for">For teams and super individuals.</div>
+      <div class="url"><a href="https://echoknows.com" target="_blank" rel="noopener">echoknows.com ↗</a><span class="sep">·</span><a href="mailto:kobe@iditor.com">kobe@iditor.com</a></div>
+
+      <div class="meta-case">
+        <div class="if">Put every Meta employee on Echo today.</div>
+        <div class="save"><span class="t">By year end, Meta saves</span><span class="v">≈$0.6–1.0B</span></div>
+        <div class="better">And the work gets better, and faster.</div>
+        <div class="fn">Estimate · the math comes later</div>
+      </div>
+
+      <div class="ask">$4M <span class="safe">SAFE</span><span class="cap">Seed</span></div>
+    </div>
+
+    <!-- RIGHT · the industry orbits Echo.
+         Every company's CENTER sits on one orbit circle (R=150) around Echo at (245,275).
+         Circle area = post-money valuation (r ∝ √v, k=1.18). -->
+    <div class="right">
+      <div class="bubbles">
+
+        <!-- the orbit itself, faint -->
+        <div class="orbit" style="width:300px;height:300px;left:95px;top:125px;"></div>
+
+        <!-- counter-clockwise by valuation from the left, smallest → largest, every center on the R=150 orbit -->
+        <!-- SageOx ~$75M · d20 · θ=280° → (271,127) -->
+        <div class="bub est sageox" style="width:20px;height:20px;left:85.6px;top:278.1px;background:#eef1ec;"><img src="deck_assets/direct/sageox.ai.png" width="20" height="20" alt="SageOx" style="border-radius:50%;"></div>
+        <div class="bub-label bl-est" style="left:96px;top:244px;"><span class="nm">SageOx</span><span class="vl">~$75M</span></div>
+        <!-- Mastra ~$110M · d25 · θ=305° → (331,152) -->
+        <div class="bub est mastra" style="width:25px;height:25px;left:109.6px;top:348.5px;background:#000;"><img src="deck_assets/direct/mastra.ai.png" width="25" height="25" alt="Mastra" style="border-radius:50%;"></div>
+        <div class="bub-label bl-est" style="left:72px;top:345px;"><span class="nm">Mastra</span><span class="vl">~$110M</span></div>
+        <!-- Mem0 ~$130M · d27 · θ=330° → (375,200) -->
+        <div class="bub mem0" style="width:27px;height:27px;left:168.1px;top:397.4px;"><img src="deck_assets/direct/mem0.ai.png" width="27" height="27" alt="Mem0" style="border-radius:50%;"></div>
+        <div class="bub-label bl-mem0" style="left:182px;top:427px;"><span class="nm">mem0</span><span class="vl">~$130M</span></div>
+        <!-- Dust ~$250M · d37 · θ=0° → (395,275) -->
+        <div class="bub est dust" style="width:37px;height:37px;left:252.5px;top:404.2px;background:#2b3645;"><img src="deck_assets/direct/dust.tt.png" width="37" height="37" alt="Dust" style="border-radius:50%;"></div>
+        <div class="bub-label bl-est" style="left:271px;top:444px;"><span class="nm">Dust</span><span class="vl">~$250M</span></div>
+        <!-- Engram $600M · d58 · θ=45° → (351,381) -->
+        <div class="bub engram" style="width:58px;height:58px;left:345.9px;top:321px;"><img src="deck_assets/direct/engram.com.png" width="30" height="30" alt="Engram"></div>
+        <div class="bub-label bl-engram" style="left:442px;top:334px;"><span class="nm">Engram</span><span class="vl">$600M</span></div>
+        <!-- Granola $1.5B · d92 · θ=125° → (159,398) -->
+        <div class="bub granola" style="width:92px;height:92px;left:328.9px;top:154px;"><img src="deck_assets/direct/granola.ai.png" width="44" height="44" alt="Granola" style="border-radius:22%;"></div>
+        <div class="bub-label bl-granola" style="left:457px;top:184px;"><span class="nm">Granola</span><span class="vl">$1.5B</span></div>
+        <!-- Glean $7.2B · d200 · θ=225° → (139,169) -->
+        <div class="bub glean" style="width:200px;height:200px;left:106.2px;top:30.1px;"><img src="deck_assets/direct/glean.com.png" width="64" height="64" alt="Glean" style="border-radius:50%;"></div>
+        <div class="bub-label bl-glean" style="left:206px;top:157px;"><span class="nm">Glean</span><span class="vl">$7.2B</span></div>
+
+        <div class="legend">Circle area = valuation, smallest to largest, counter-clockwise from the left　<b style="color:var(--blue-bright);font-weight:600">~</b> estimated from latest 2026 round (valuation undisclosed)</div>
+
+        <!-- ECHO · the center of the orbit. today-dot d13 → halo → dashed $600M ring d58 (= Engram) -->
+        <div class="focus" style="width:260px;height:260px;left:115px;top:145px;"></div>
+        <div class="ring" style="width:58px;height:58px;left:216px;top:246px;">
+          <div class="halo"></div>
+          <div class="today" style="width:13px;height:13px;"></div>
+          <canvas id="echoRive" width="100" height="100" style="width:48px;height:48px;"></canvas>
+        </div>
+        <div class="ring-label" style="left:288px;top:252px;">→ $600M<small>in 18 months</small></div>
+        <div class="echo-label" style="left:245px;top:318px;">ECHO<small>$30M today</small></div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <div class="closer">
+    <div class="line"></div>
+    <div class="foot">echoknows.com · 01</div>
+  </div>
+
+</section>
+
+<script src="https://unpkg.com/@rive-app/canvas@2.21.6"></script>
+<script>
+(function(){
+  var canvas = document.getElementById('echoRive');
+  function fallback(){
+    var img = new Image();
+    img.onload = function(){
+      var ctx = canvas.getContext('2d');
+      ctx.clearRect(0,0,canvas.width,canvas.height);
+      ctx.drawImage(img,0,0,canvas.width,canvas.height);
+    };
+    img.src = 'deck_assets/direct/echo.png';
+  }
+  if (!window.rive) { fallback(); return; }
+  try {
+    new rive.Rive({
+      src: 'deck_assets/direct/echo.riv',
+      canvas: canvas,
+      autoplay: true,
+      stateMachines: 'SM-General',
+      layout: new rive.Layout({ fit: rive.Fit.Contain, alignment: rive.Alignment.Center }),
+      onLoadError: fallback,
+    });
+  } catch (e) { fallback(); }
+})();
+</script>
+</body>
+</html>

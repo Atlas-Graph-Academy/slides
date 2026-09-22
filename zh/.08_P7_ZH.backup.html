@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>Echo — 直投版 · 第 7 页 · 团队总览</title>
+<style>
+:root{
+  --ink:#f3f5fa; --muted:rgba(219,224,238,.64); --faint:rgba(211,217,235,.42);
+  --line:rgba(220,227,255,.075); --line-strong:rgba(220,227,255,.13);
+  --blue:#5267ff; --blue-bright:#aeb9f5; --eyebrow:rgba(177,188,255,.78); --red:#ff5f52;
+  --green:#3ddc97; --amber:#f5b25a;
+  --panel:rgba(255,255,255,.028); --panel-line:rgba(220,227,255,.10);
+  --card:#10141f; --card-line:rgba(220,227,255,.16);
+  --sans:"Avenir Next","Avenir","PingFang SC","Hiragino Sans GB","Helvetica Neue",sans-serif;
+  --mono:"IBM Plex Mono","Menlo",monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html,body{background:#000;font-family:var(--sans);color:var(--ink);-webkit-font-smoothing:antialiased;}
+.slide{position:relative;width:1280px;height:720px;margin:24px auto;overflow:hidden;
+  background:
+    radial-gradient(ellipse 78% 48% at 50% -18%, rgba(69,88,255,.13), transparent 66%),
+    radial-gradient(circle at 82% 22%, rgba(0,0,242,.13), transparent 28rem),
+    linear-gradient(180deg,#050609 0%,#080a10 44%,#050609 100%);
+  display:flex;flex-direction:column;padding:44px 76px 36px;}
+.slide::before{content:"";position:absolute;inset:0;opacity:.035;pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.84' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.9'/%3E%3C/svg%3E");}
+.slide>*{position:relative;z-index:1;}
+
+.eyebrow{display:flex;align-items:center;gap:10px;
+  font:600 12px/1.2 var(--mono);letter-spacing:.18em;text-transform:uppercase;color:var(--eyebrow);}
+.eyebrow .dot{width:6px;height:6px;border-radius:50%;background:#6075ff;
+  box-shadow:0 0 0 4px rgba(82,103,255,.1),0 0 18px rgba(82,103,255,.62);}
+.eyebrow .brand{color:var(--ink);font-weight:700;letter-spacing:.24em;}
+
+.h1{margin-top:18px;font-size:46px;font-weight:600;letter-spacing:-.026em;line-height:1.04;}
+.h1 em{display:block;margin-top:6px;font-style:normal;font-size:34px;letter-spacing:-.018em;line-height:1.15;color:var(--blue-bright);}
+.sub{margin-top:10px;font-size:14.5px;font-weight:500;line-height:1.45;color:var(--muted);}
+.sub b{color:var(--ink);font-weight:600;}
+
+/* ---------- app frame ---------- */
+.app{margin-top:20px;border:1px solid var(--panel-line);border-radius:14px;background:var(--panel);overflow:hidden;
+  display:flex;flex-direction:column;}
+.bar{display:flex;align-items:center;justify-content:space-between;height:34px;padding:0 18px;border-bottom:1px solid var(--line-strong);}
+.bar .l{display:flex;align-items:center;gap:10px;font-size:12.5px;font-weight:600;color:var(--ink);}
+.bar .l .crumb{color:var(--faint);font-weight:500;}
+.bar .l .sep{color:var(--faint);}
+.bar .r{font:500 10.5px var(--mono);letter-spacing:.06em;color:var(--faint);}
+
+/* ---------- board ---------- */
+.board{position:relative;height:340px;}
+.board svg{position:absolute;inset:0;width:100%;height:100%;}
+.zone{position:absolute;top:16px;font:600 9px var(--mono);letter-spacing:.18em;text-transform:uppercase;color:var(--faint);}
+.zone.now{color:var(--amber);}
+
+/* ---- node ---- */
+.card{position:absolute;z-index:1;width:128px;height:96px;padding:10px 12px;border-radius:14px;
+  background:linear-gradient(180deg,#141a2c 0%,#0f1320 100%);border:1px solid rgba(220,227,255,.16);
+  box-shadow:0 10px 28px rgba(0,0,0,.4);}
+.code{display:flex;align-items:center;justify-content:space-between;height:18px;}
+.code .c{font-family:var(--sans);font-size:16px;font-weight:700;letter-spacing:.02em;color:var(--ink);font-variant-numeric:tabular-nums;line-height:1;}
+.code .c i{font-style:normal;color:rgba(219,224,238,.48);font-weight:600;}
+.code .c b{color:var(--blue-bright);font-weight:700;}
+.code .m{display:flex;gap:2px;}
+.code .m i{width:3px;height:8px;border-radius:1px;background:rgba(174,185,245,.5);}
+.ti{margin-top:5px;font-size:12.5px;font-weight:600;color:var(--ink);line-height:1.2;white-space:nowrap;}
+.ti2{margin-top:2px;font-size:10px;font-weight:500;color:var(--muted);line-height:1.25;white-space:nowrap;}
+.card.now .ti2{margin-top:3px;font-size:13.5px;color:var(--ink);font-weight:500;}
+.bot{position:absolute;left:12px;right:12px;bottom:9px;display:flex;align-items:center;justify-content:space-between;}
+.track{display:flex;gap:3px;align-items:center;}
+.track i{width:16px;height:4px;border-radius:2px;background:rgba(220,227,255,.13);}
+.track i.on{background:rgba(174,185,245,.8);}
+.track i.live{background:var(--blue);box-shadow:0 0 8px rgba(82,103,255,.8);}
+.track i.ok{background:var(--green);}
+.track i.stuck{background:var(--amber);box-shadow:0 0 8px rgba(245,178,90,.7);}
+.stack{display:flex;}
+.face{border-radius:50%;object-fit:cover;display:block;border:1.5px solid #10141f;width:22px;height:22px;}
+.stack .face{margin-left:-8px;}
+.stack .face:first-child{margin-left:0;}
+.face.live{box-shadow:0 0 0 2px var(--green);}
+.card.dim{opacity:.45;}
+
+/* ---- current node ---- */
+.card.now{width:300px;height:192px;padding:15px 18px;border-radius:18px;border-color:rgba(245,178,90,.85);
+  background:linear-gradient(180deg,#181b2c 0%,#10131f 100%);
+  box-shadow:0 0 0 6px rgba(245,178,90,.07),0 24px 60px rgba(0,0,0,.55);}
+.card.now .code{height:26px;}
+.card.now .code .c{font-size:24px;letter-spacing:.01em;}
+.card.now .code .c b{color:var(--amber);}
+.card.now .code .m i{width:4px;height:12px;background:rgba(245,178,90,.6);}
+.card.now .ti{margin-top:8px;font-size:20px;letter-spacing:-.01em;}
+.card.now .why{margin-top:4px;font-size:11.5px;color:var(--muted);line-height:1.4;white-space:normal;}
+.card.now .why b{color:var(--ink);font-weight:600;}
+.card.now .bot{left:18px;right:18px;bottom:13px;align-items:flex-end;}
+.card.now .gl{display:flex;flex-direction:column;gap:5px;}
+.card.now .track i{width:34px;height:5px;}
+.card.now .lbl{display:flex;gap:3px;}
+.card.now .lbl span{width:34px;font:500 8.5px var(--mono);letter-spacing:.04em;color:var(--faint);text-align:center;}
+.card.now .lbl span.hot{color:var(--amber);}
+.card.now .state{font:600 9.5px var(--mono);letter-spacing:.08em;color:var(--amber);white-space:nowrap;}
+.card.now .gr{display:flex;flex-direction:column;align-items:flex-end;gap:6px;}
+.card.now .face{width:26px;height:26px;}
+.card.now .stack .face{margin-left:-9px;}
+
+.ghost{position:absolute;height:24px;padding:0 9px;border-radius:8px;border:1px dashed rgba(220,227,255,.2);
+  display:flex;align-items:center;gap:5px;font-family:var(--sans);font-size:11px;font-weight:600;color:rgba(219,224,238,.36);letter-spacing:.02em;}
+.ghost::after{content:"⋯";color:rgba(219,224,238,.45);}
+
+/* ---------- people strip ---------- */
+.people{display:flex;border-top:1px solid var(--line-strong);}
+.person{flex:1;display:flex;align-items:center;gap:10px;padding:10px 16px;}
+.person + .person{border-left:1px solid var(--line);}
+.person .face{width:30px;height:30px;flex:none;border-color:#0b0d15;}
+.person .n{font-size:12.5px;font-weight:600;color:var(--ink);line-height:1.15;white-space:nowrap;}
+.person .n small{display:block;margin-top:3px;font:500 9.5px var(--mono);letter-spacing:.02em;color:var(--faint);}
+.person.on .n small{color:var(--blue-bright);}
+
+.closer{display:flex;justify-content:space-between;align-items:baseline;margin-top:auto;
+  border-top:1px solid var(--line-strong);padding-top:14px;}
+.closer .line{font-size:20px;font-weight:500;color:var(--ink);letter-spacing:-.01em;}
+.closer .line b{color:var(--blue-bright);font-weight:600;}
+.closer .foot{position:static;font:500 10.5px var(--mono);letter-spacing:.06em;color:var(--faint);}
+
+@page{size:13.333in 7.5in;margin:0;}
+@media print{html,body{background:#000;} .slide{margin:0;}}
+@media screen{.slide{box-shadow:0 10px 40px rgba(0,0,0,.6);}}
+@media (max-width:1300px){.slide{margin:0;box-shadow:none;}}
+</style>
+
+</head>
+<body>
+
+<section class="slide">
+
+  <div class="eyebrow"><span class="dot"></span><span class="brand">ECHO</span><span>团队产品 · 团队总览 · Unlimit 场景</span></div>
+
+  <div class="h1">GitHub for 企业进程<em>每个结果是怎么拿到的，都沉淀成可追溯、会复利的资产。</em></div>
+  <div class="sub">Unlimit 的场景：一笔从巴西出发、没到英国大学的学费。33 是这次事故，下面还有 33/2、33/3；这一屏只展开卡住的那张 <b>33/1a2b</b>。每张卡底下三格：<b>开卡 · 在做 · 通过</b>。</div>
+
+  <div class="app">
+    <div class="bar">
+      <div class="l"><span class="crumb">Unlimit 事故室</span><span class="sep">/</span><span>团队总览</span><span class="sep">/</span><span class="crumb">33 · 支付状态漂移</span></div>
+      <div class="r">6 人 · 实时 · 只读 · 人工放行点</div>
+    </div>
+
+    <div class="board">
+      <svg viewBox="0 0 1126 340" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="spine" x1="0" x2="1">
+            <stop offset="0" stop-color="rgba(174,185,245,.35)"/>
+            <stop offset=".62" stop-color="rgba(174,185,245,.85)"/>
+            <stop offset=".72" stop-color="rgba(245,178,90,1)"/>
+            <stop offset="1" stop-color="rgba(174,185,245,.7)"/>
+          </linearGradient>
+        </defs>
+        <g fill="none" stroke-width="2" stroke-linecap="round">
+          <!-- one continuous spine, cards sit on it -->
+          <path stroke="url(#spine)"
+                d="M -8 89
+                   C 60 89, 112 89, 163 89
+                   C 240 89, 240 117, 317 117
+                   C 394 117, 394 145, 471 145
+                   C 548 145, 548 173, 625 173
+                   C 700 173, 720 180, 800 180
+                   C 900 180, 930 180, 950 180
+                   C 972 180, 970 128, 1042 128"/>
+          <path stroke="rgba(174,185,245,.55)" stroke-dasharray="3 5"
+                d="M 950 180 C 972 180, 970 240, 1042 240"/>
+        </g>
+      </svg>
+
+      <div class="zone" style="left:24px">来路</div>
+      <div class="zone now" style="left:650px">当前</div>
+      <div class="zone" style="left:978px">下一步</div>
+
+      <!-- folded siblings -->
+      <div class="ghost" style="left:484px;top:98px">33/1a1</div>
+      <div class="ghost" style="left:650px;top:58px">33/1a2a</div>
+      <div class="ghost" style="left:978px;top:52px">33/3</div>
+
+      <!-- lineage -->
+      <div class="card" style="left:22px;top:41px">
+        <div class="code"><span class="c"><b>33</b></span><span class="m"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span></div>
+        <div class="ti">支付状态漂移</div><div class="ti2">学费付了，没到账</div>
+        <div class="bot"><span class="track"><i class="ok"></i><i class="ok"></i><i class="ok"></i></span><span class="stack"><img class="face" src="assets/faces/kobe.png"><img class="face" src="assets/faces/myfeng.png"></span></div>
+      </div>
+      <div class="card" style="left:176px;top:69px">
+        <div class="code"><span class="c"><i>33/</i><b>1</b></span><span class="m"><i></i><i></i><i></i><i></i></span></div>
+        <div class="ti">跨部门证据收集</div><div class="ti2">Datadog · 银行 · 客服</div>
+        <div class="bot"><span class="track"><i class="ok"></i><i class="ok"></i><i class="ok"></i></span><span class="stack"><img class="face" src="assets/faces/erik.png"><img class="face" src="assets/faces/kobe.png"></span></div>
+      </div>
+      <div class="card" style="left:330px;top:97px">
+        <div class="code"><span class="c"><i>33/1</i><b>a</b></span><span class="m"><i></i><i></i></span></div>
+        <div class="ti">问题定位</div><div class="ti2">付的 QR 已过期</div>
+        <div class="bot"><span class="track"><i class="ok"></i><i class="ok"></i><i class="ok"></i></span><span class="stack"><img class="face" src="assets/faces/erik.png"></span></div>
+      </div>
+      <div class="card" style="left:484px;top:125px">
+        <div class="code"><span class="c"><i>33/1a</i><b>2</b></span><span class="m"><i></i><i></i><i></i></span></div>
+        <div class="ti">影响范围确认</div><div class="ti2">两边状态对不上</div>
+        <div class="bot"><span class="track"><i class="live"></i><i class="live"></i><i></i></span><span class="stack"><img class="face live" src="assets/faces/rin.png"><img class="face" src="assets/faces/erik.png"></span></div>
+      </div>
+
+      <!-- current -->
+      <div class="card now" style="left:650px;top:84px">
+        <div class="code"><span class="c"><i>33/1a2</i><b>b</b></span><span class="m"><i></i><i></i><i></i><i></i><i></i><i></i></span></div>
+        <div class="ti">跨公司交接</div><div class="ti2">请 FX 侧放行隔离资金</div>
+        <div class="why">钱卡在 Convera 的隔离区，放行要 FX 侧确认。<b>Echo 只读，不动钱，人来放行。</b></div>
+        <div class="bot">
+          <span class="gl"><span class="track"><i class="stuck"></i><i></i><i></i></span><span class="lbl"><span>开卡</span><span class="hot">在做</span><span>通过</span></span></span>
+          <span class="gr"><span class="state">卡在这一步 · 等 FX 侧放行</span><span class="stack"><img class="face" src="assets/faces/rin.png"><img class="face" src="assets/faces/erik.png"><img class="face" src="assets/faces/rem.png"><img class="face" src="assets/faces/myfeng.png"></span></span>
+        </div>
+      </div>
+
+      <!-- next -->
+      <div class="card" style="left:978px;top:80px">
+        <div class="code"><span class="c"><i>33/</i><b>2</b></span><span class="m"><i></i><i></i></span></div>
+        <div class="ti">修复措施</div><div class="ti2">作废过期 QR</div>
+        <div class="bot"><span class="track"><i class="live"></i><i class="live"></i><i></i></span><span class="stack"><img class="face live" src="assets/faces/erik.png"></span></div>
+      </div>
+      <div class="card dim" style="left:978px;top:192px;border-style:dashed">
+        <div class="code"><span class="c"><i>33/1a2b</i><b>1</b></span><span class="m"><i></i></span></div>
+        <div class="ti">客户沟通</div><div class="ti2">给大学写说明信</div>
+        <div class="bot"><span class="track"><i class="on"></i><i></i><i></i></span><span class="stack"><img class="face" src="assets/faces/michelle.png"></span></div>
+      </div>
+    </div>
+
+    <div class="people">
+      <div class="person"><img class="face" src="assets/faces/kobe.png"><span class="n">Kobe<small>开了 33 · 放行人</small></span></div>
+      <div class="person on"><img class="face live" src="assets/faces/erik.png"><span class="n">Erik<small>集成 · 在做 33/2</small></span></div>
+      <div class="person on"><img class="face live" src="assets/faces/rin.png"><span class="n">Rin<small>巴西支付 · 在做 33/1a2</small></span></div>
+      <div class="person"><img class="face" src="assets/faces/rem.png"><span class="n">Rem<small>FX · 待放行 33/1a2b</small></span></div>
+      <div class="person"><img class="face" src="assets/faces/myfeng.png"><span class="n">My<small>学生支持 · 改过 33/1a2b</small></span></div>
+      <div class="person"><img class="face" src="assets/faces/michelle.png"><span class="n">Michelle<small>合规 · 草稿未共享</small></span></div>
+    </div>
+  </div>
+
+  <div class="closer">
+    <div class="line">Token 是 liability，可调度的记忆才是资产。<b>Echo 为企业变废为宝。</b></div>
+    <div class="foot">echoknows.com · 07</div>
+  </div>
+
+</section>
+</body>
+</html>

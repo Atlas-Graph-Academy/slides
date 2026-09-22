@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Echo — HYSTA Demo Day · 4-minute cut</title>
+  <style>
+    :root{color-scheme:dark;--bg:#07080d;--panel:#0d1019;--line:#252b3d;--text:#f4f6ff;--muted:#929bb8;--blue:#5267ff;--blue2:#8b9cff}
+    *{box-sizing:border-box}
+    html,body{margin:0;min-height:100%;background:var(--bg);color:var(--text);font:14px/1.4 Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+    body{display:grid;grid-template-columns:280px minmax(0,1fr);height:100vh;overflow:hidden}
+    aside{display:flex;flex-direction:column;min-height:0;border-right:1px solid var(--line);background:linear-gradient(180deg,#10131d,#090b12)}
+    header{padding:22px 20px 16px;border-bottom:1px solid var(--line)}
+    .brand{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:.12em}.dot{width:10px;height:10px;border-radius:50%;background:var(--blue);box-shadow:0 0 18px var(--blue)}
+    h1{font-size:18px;line-height:1.2;margin:14px 0 6px}.meta{color:var(--muted);font-size:12px}
+    .lang{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:16px;padding:4px;border:1px solid var(--line);border-radius:10px;background:#080a10}
+    button,a{font:inherit}.lang button{border:0;border-radius:7px;padding:8px;background:transparent;color:var(--muted);cursor:pointer}.lang button.active{background:var(--blue);color:white}
+    nav{min-height:0;overflow:auto;padding:10px}
+    .slide-button{width:100%;display:grid;grid-template-columns:34px 1fr;gap:10px;align-items:center;text-align:left;border:1px solid transparent;border-radius:9px;padding:9px 10px;background:transparent;color:var(--muted);cursor:pointer}
+    .slide-button:hover{background:#131725;color:var(--text)}.slide-button.active{border-color:#4050c8;background:#18204b;color:white}.num{font-variant-numeric:tabular-nums;color:var(--blue2);font-weight:800}.label{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .aside-footer{padding:14px 16px;border-top:1px solid var(--line);display:grid;grid-template-columns:1fr 1fr;gap:8px}
+    .aside-footer a{display:block;text-align:center;text-decoration:none;color:white;border:1px solid var(--line);border-radius:8px;padding:8px;background:#121624}.aside-footer a:hover{border-color:var(--blue)}
+    main{min-width:0;display:flex;flex-direction:column;padding:18px 22px 20px;gap:12px}
+    .toolbar{display:flex;align-items:center;gap:10px;min-height:34px}.toolbar .title{font-weight:700;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.counter{color:var(--muted);font-variant-numeric:tabular-nums}.toolbutton,.open{border:1px solid var(--line);background:#121624;color:white;border-radius:8px;padding:7px 11px;cursor:pointer;text-decoration:none}.toolbutton:hover,.open:hover{border-color:var(--blue)}
+    .stage{position:relative;flex:1;min-height:0;display:flex;align-items:center;justify-content:center;overflow:hidden;border:1px solid var(--line);border-radius:13px;background:#030409;box-shadow:0 24px 80px rgba(0,0,0,.35)}
+    iframe{position:absolute;width:1280px;height:768px;border:0;transform-origin:center center;background:#050609}
+    .hint{font-size:12px;color:var(--muted);text-align:right}
+    .notes{border:1px solid var(--line);border-radius:13px;background:var(--panel);padding:12px 16px 14px;max-height:34vh;overflow:auto}
+    .notes.hidden{display:none}
+    .notes-head{display:flex;align-items:center;gap:12px;margin-bottom:8px}.notes-head .spacer{flex:1}
+    .window{font-weight:800;color:var(--blue2);font-variant-numeric:tabular-nums;letter-spacing:.04em}.words{color:var(--muted);font-size:12px}
+    .clock{font:800 20px/1 ui-monospace,SFMono-Regular,Menlo,monospace;font-variant-numeric:tabular-nums;color:var(--text)}.clock.over{color:#ff8a7a}
+    .script{font-size:17px;line-height:1.55;color:var(--text);max-width:1100px}.script p{margin:0 0 8px}.script p:last-child{margin:0}
+    .live{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:800;letter-spacing:.1em;color:#6f7a99;border:1px solid var(--line);border-radius:8px;padding:6px 9px;user-select:none}
+    .live::before{content:"";width:7px;height:7px;border-radius:50%;background:#39406b;transition:background .2s,box-shadow .2s}
+    .live.on::before{background:#3ddc84;box-shadow:0 0 10px #3ddc84}
+    .live.hit{color:var(--text);border-color:var(--blue)}
+    @media(max-width:860px){body{grid-template-columns:1fr;grid-template-rows:auto 1fr}aside{min-height:auto;border-right:0;border-bottom:1px solid var(--line)}header{padding:12px 14px}.brand,h1,.meta{display:none}.lang{margin:0}nav{display:none}.aside-footer{display:none}main{padding:10px}.hint{display:none}}
+  </style>
+</head>
+<body>
+  <aside>
+    <header>
+      <div class="brand"><span class="dot"></span>ECHO</div>
+      <h1>HYSTA Demo Day<br>4-minute cut</h1>
+      <div class="meta">2026-09-26 · AI at Scale<br>8 slides · script to 3:45 · 15s buffer</div>
+      <div class="lang" role="group" aria-label="Language">
+        <button id="enButton" class="active" type="button">English</button>
+        <button id="zhButton" type="button">中文</button>
+      </div>
+    </header>
+    <nav id="slideNav" aria-label="Slides"></nav>
+    <div class="aside-footer">
+      <a href="index.html">Full deck</a>
+      <a href="pdf/Echo_Deck_HYSTA_4min_EN_2026-09-20.pdf">4-min PDF</a>
+    </div>
+  </aside>
+  <main>
+    <div class="toolbar">
+      <button class="toolbutton" id="prevButton" type="button" aria-label="Previous slide">←</button>
+      <button class="toolbutton" id="nextButton" type="button" aria-label="Next slide">→</button>
+      <div class="title" id="slideTitle"></div>
+      <div class="counter" id="counter"></div>
+      <button class="toolbutton" id="reloadButton" type="button" title="重新加载当前页 (R)">⟳</button>
+      <span class="live" id="liveBadge" title="自动刷新">LIVE</span>
+      <a class="open" id="openSlide" target="_blank" rel="noopener">Open HTML</a>
+    </div>
+    <div class="stage" id="stage"><iframe id="viewer" title="Echo pitch deck slide"></iframe></div>
+    <div class="notes" id="notes"><div class="notes-head"><span class="window" id="noteWindow"></span><span class="words" id="noteWords"></span><span class="spacer"></span><span class="clock" id="clock">0:00</span><button class="toolbutton" id="timerButton" type="button" title="Start / reset the rehearsal clock (T)">Start</button></div><div class="script" id="noteScript"></div></div>
+    <div class="hint">← → navigate · T start / reset clock · N hide notes · E English · C 中文 · R reload · the clock turns red once you are past the slide’s end time</div>
+  </main>
+  <script>
+    const files={"en": ["N01_cover.html", "N07_meta.html", "N07b_islands.html", "N09_product.html", "09_P8_hysta_gpa.html", "11_P10.html", "16_P14.html", "17_P15.html"], "zh": ["N01_cover_ZH.html", "N07_meta_ZH.html", null, "N09_product_ZH.html", "09_P8_ZH.html", "11_P10_ZH.html", "16_P14_ZH.html", "17_P15_ZH.html"]};
+    const labels={"en": ["Cover · AI at Scale", "Meta paid the tuition", "Every agent works alone", "What Echo is", "Moat · governance, provenance, auditability", "Three-week traction", "Team · why we exist", "The ask"], "zh": ["封面 · AI at Scale", "Meta 交过学费", "每个 agent 都在单干", "Echo 是什么", "为什么是我们 · 护城河", "三周战绩", "团队 · 为什么存在", "融资"]};
+    const DEFAULT_LANG="en",DEFAULT_INDEX=0;
+    const STORAGE_KEY="echo-deck-hysta-4min-2026-09-26";
+    let lang=DEFAULT_LANG,index=DEFAULT_INDEX;
+    function parseState(raw){const m=/^(en|zh)[\/:-](\d{1,2})$/.exec(String(raw||"").trim());if(!m)return null;const i=Number(m[2])-1;return i>=0&&i<files.zh.length?{lang:m[1],index:i}:null}
+    function loadState(){
+      const fromHash=parseState(location.hash.replace(/^#/,""));if(fromHash)return fromHash;
+      try{const fromStore=parseState(localStorage.getItem(STORAGE_KEY));if(fromStore)return fromStore}catch(e){}
+      return {lang:DEFAULT_LANG,index:DEFAULT_INDEX};
+    }
+    function saveState(){const state=`${lang}/${index+1}`;try{localStorage.setItem(STORAGE_KEY,state)}catch(e){}if(location.hash.replace(/^#/,"")!==state)history.replaceState(null,"",`#${state}`)}
+    ({lang,index}=loadState());
+    const viewer=document.getElementById("viewer"),stage=document.getElementById("stage"),nav=document.getElementById("slideNav"),title=document.getElementById("slideTitle"),counter=document.getElementById("counter"),openSlide=document.getElementById("openSlide");
+    function resize(){const scale=Math.min(stage.clientWidth/1280,stage.clientHeight/768);viewer.style.transform=`scale(${scale})`}
+    function renderNav(){nav.innerHTML="";labels[lang].forEach((label,i)=>{const b=document.createElement("button");b.type="button";b.className="slide-button"+(i===index?" active":"");b.innerHTML=`<span class="num">${String(i+1).padStart(2,"0")}</span><span class="label"></span>`;b.querySelector(".label").textContent=label;b.onclick=()=>{index=i;render()};nav.appendChild(b)})}
+    let render=function(){saveState();const file=files[lang][index];if(!file){viewer.removeAttribute("src");viewer.srcdoc=`<body style="margin:0;background:#050609;color:#929bb8;font:600 22px/1.4 -apple-system,sans-serif;display:flex;align-items:center;justify-content:center;height:100vh;letter-spacing:.02em">English mirror pending · 中文版已就绪</body>`;openSlide.removeAttribute("href")}else{viewer.removeAttribute("srcdoc");const path=`${lang}/${file}`;viewer.src=`${path}?v=${Date.now()}`;openSlide.href=path}title.textContent=labels[lang][index];counter.textContent=`${String(index+1).padStart(2,"0")} / ${files[lang].length}`;document.documentElement.lang=lang==="zh"?"zh-CN":"en";document.getElementById("enButton").classList.toggle("active",lang==="en");document.getElementById("zhButton").classList.toggle("active",lang==="zh");renderNav();setTimeout(resize,0)};
+    function move(delta){const n=files[lang].length;index=(index+delta+n)%n;render()}
+    document.getElementById("prevButton").onclick=()=>move(-1);document.getElementById("nextButton").onclick=()=>move(1);
+    document.getElementById("enButton").onclick=()=>{lang="en";render()};document.getElementById("zhButton").onclick=()=>{lang="zh";render()};
+    addEventListener("resize",resize);addEventListener("keydown",e=>{if(e.key==="ArrowLeft")move(-1);if(e.key==="ArrowRight")move(1);if(e.key.toLowerCase()==="e"){lang="en";render()}if(e.key.toLowerCase()==="c"){lang="zh";render()}});
+    addEventListener("hashchange",()=>{const st=parseState(location.hash.replace(/^#/,""));if(st&&(st.lang!==lang||st.index!==index)){lang=st.lang;index=st.index;render()}});
+    render();
+
+    // ---- speaker notes + rehearsal clock ------------------------------------
+    // English script, budgeted to 3:40. `to` is the cumulative second each slide must end by.
+    const notes=[{"from": 0, "to": 23, "text": ["All day we’ve been talking about AI at scale. I want to talk about the one thing that hasn’t scaled: the team.", "The line on this slide is our estimate. Put every Meta employee on Echo today, and by year end Meta saves six hundred million to a billion dollars. Here is why."]}, {"from": 23, "to": 66, "text": ["This year Meta made a decision any CEO would make: give every engineer the best AI money can buy. That’s billions of dollars a year to Anthropic. In that seat, you’d sign the same check.", "And it worked. Code changes are up 220 percent. Individuals got faster.", "But over the same period, employee sentiment fell from 74 to 55 percent. Major incidents are up 40 percent. Time spent fighting fires is up 70.", "Meta did nothing wrong. It just got here a year before the rest of us. Tokens buy individual speed. They don’t buy team output."]}, {"from": 66, "to": 99, "text": ["Why? Look at a team from above.", "Everyone has an agent, and every agent is smart. But every agent works alone.", "Maya’s Claude Code just decided to move EU invoicing to Stripe Tax. Leo’s Codex is setting up EU invoicing right now, and it has no idea.", "These agents come from different vendors. None of them will carry context over to a rival. So people carry it by hand. Your company works this way today."]}, {"from": 99, "to": 152, "text": ["Echo does one thing. What one agent just learned, every agent on the team uses, in real time.", "Maya decides: EU invoicing moves to Stripe Tax. Echo keeps the decision and the reasoning behind it. A minute later Leo tells Codex to set up EU invoicing, and his agent uses Maya’s decision on the first turn.", "That memory is encrypted, and shared with the billing team only. This one item, nothing else.", "These are our own numbers, 828 sessions, before and after: token spend down 60 percent, time per task cut in half, parallel projects from 7 to 17. And that is the conservative reading. Remove just a quarter of Meta’s repeated context, and that’s the billion on the cover."]}, {"from": 152, "to": 182, "text": ["Why is this hard to copy? Because company memory has to be governed.", "One, governance. Only the owner holds the key. Even we can’t read it.", "Two, provenance. Every memory records who decided, why, and where it came from.", "Three, auditability. Every agent answer traces back to the memories it used.", "All of it across Claude, Codex and Cursor, at 95.8 percent on LongMemEval, ranked number one."]}, {"from": 182, "to": 193, "text": ["Three weeks of founder-led sales: two companies signed and paying, three more in talks, 788 seats within reach. We don’t have a sales team yet."]}, {"text": ["We are six people, full-time, AI-native. I ran social product at Roblox, past a hundred million daily users. Betti came from Microsoft AI and Amazon Alexa.", "We believe a company’s context is its most valuable asset. We are building its engine."], "from": 193, "to": 211}, {"from": 211, "to": 225, "text": ["So we’re raising a four million dollar SAFE to build one.", "The breakthrough was making one person faster. Scale is making the team faster. I’m Kobe, and this is Echo. Thank you."]}];
+    const fmt=s=>`${Math.floor(s/60)}:${String(Math.floor(s%60)).padStart(2,"0")}`;
+    const notesBox=document.getElementById("notes"),clock=document.getElementById("clock"),timerButton=document.getElementById("timerButton");
+    let startedAt=null;
+    function renderNotes(){const n=notes[index];if(!n)return;document.getElementById("noteWindow").textContent=`${fmt(n.from)} – ${fmt(n.to)} · ${n.to-n.from}s`;document.getElementById("noteWords").textContent=`${n.text.join(" ").split(/\s+/).length} words`;const box=document.getElementById("noteScript");box.innerHTML="";n.text.forEach(t=>{const p=document.createElement("p");p.textContent=t;box.appendChild(p)})}
+    function tick(){if(startedAt===null){clock.textContent="0:00";clock.classList.remove("over");return}const s=(Date.now()-startedAt)/1000;clock.textContent=fmt(s);clock.classList.toggle("over",s>notes[index].to)}
+    function toggleTimer(){startedAt=startedAt===null?Date.now():null;timerButton.textContent=startedAt===null?"Start":"Reset";tick()}
+    timerButton.onclick=toggleTimer;setInterval(tick,250);
+    addEventListener("keydown",e=>{const k=e.key.toLowerCase();if(e.metaKey||e.ctrlKey)return;if(k==="t")toggleTimer();if(k==="n"){notesBox.classList.toggle("hidden");setTimeout(resize,0)}});
+    const baseRender=render;render=function(){baseRender();renderNotes();tick()};render();
+
+    // ---- live reload -------------------------------------------------------
+    // work/dev-sync.mjs rewrites live-reload.js with a fresh build id after every
+    // sync. Poll it with a classic <script> tag so this also works over file://
+    // where fetch() is blocked by CORS.
+    const liveBadge=document.getElementById("liveBadge");
+    let lastBuild=null,liveMisses=0;
+    function reloadSlide(){const file=files[lang][index];if(!file)return;viewer.src=`${lang}/${file}?v=${Date.now()}`;liveBadge.classList.add("hit");setTimeout(()=>liveBadge.classList.remove("hit"),900)}
+    window.__echoBuildTick=function(token){
+      if(!token||typeof token.build!=="number")return;
+      liveMisses=0;liveBadge.classList.add("on");
+      if(lastBuild===null){lastBuild=token.build;return}
+      if(token.build!==lastBuild){lastBuild=token.build;reloadSlide()}
+    };
+    function pollBuild(){
+      const s=document.createElement("script");
+      s.src=`live-reload.js?v=${Date.now()}`;
+      s.onerror=()=>{if(++liveMisses>2)liveBadge.classList.remove("on");s.remove()};
+      s.onload=()=>s.remove();
+      document.head.appendChild(s);
+    }
+    pollBuild();setInterval(pollBuild,1000);
+    document.getElementById("reloadButton").onclick=reloadSlide;
+    addEventListener("keydown",e=>{if(e.key.toLowerCase()==="r"&&!e.metaKey&&!e.ctrlKey)reloadSlide()});
+  </script>
+</body>
+</html>

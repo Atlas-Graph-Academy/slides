@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1280, initial-scale=1">
+<title>Echo — Narrative · Every agent works alone</title>
+<link rel="stylesheet" href="v2.css">
+<style>
+h1{font-size:46px}
+
+/* ── the team, seen from above: each person's agent is a garden of what it has learned; no garden touches another ── */
+.viz{position:relative;margin-top:22px;width:1128px;height:478px}
+.viz>svg{position:absolute;left:0;top:0;width:1128px;height:478px;overflow:visible;pointer-events:none}
+
+/* who the garden belongs to, and which vendor's agent grew it */
+.tag{position:absolute;transform:translate(-50%,-50%);display:flex;align-items:center;gap:7px;height:30px;padding:0 5px 0 4px;border-radius:999px;
+  border:1px solid var(--line-strong);background:#0b0d14;box-shadow:0 6px 18px rgba(0,0,0,.6);white-space:nowrap}
+.tag img.av{width:22px;height:22px;border-radius:50%;object-fit:cover}
+.tag b{font-size:13.5px;font-weight:700;letter-spacing:-.005em}
+.tag i{width:21px;height:21px;border-radius:6px;display:flex;align-items:center;justify-content:center;overflow:hidden;flex:none}
+.tag i img{width:13px;height:13px}
+.tag i.claude{background:#D97757}.tag i.openai{background:#000;border:1px solid rgba(255,255,255,.25)}.tag i.cursor{background:#fff}.tag i.cursor img{width:21px;height:21px}
+.tag.dim{opacity:.62}
+
+/* the only two captions on the page */
+.say{position:absolute;transform:translateX(-50%);white-space:nowrap;font-size:17px;font-weight:500;letter-spacing:-.005em;color:var(--ink);text-align:center}
+.say small{display:block;margin-bottom:5px;font:700 10px/1.2 var(--mono);letter-spacing:.17em;text-transform:uppercase;color:var(--blue-bright)}
+.say.cold small{color:var(--warn)}
+.closer .line-copy{white-space:nowrap}
+</style>
+</head>
+<body>
+<section class="slide">
+  <div class="eyebrow"><span class="dot"></span><span class="brand">ECHO</span><span>Act II · A team, seen from above</span></div>
+  <h1>Every agent is smart. <em>Every agent works alone.</em></h1>
+
+  <div class="viz" id="viz">
+    <svg id="field" viewBox="0 0 1128 478"></svg>
+    <!-- tags and captions are placed by the script below -->
+  </div>
+
+  <div class="closer">
+    <div class="line-copy">What Maya’s agent just learned, Leo’s agent never sees. <b>So people carry it by hand.</b></div>
+    <div class="foot">Each dot: one thing an agent learned · Photos: Unsplash</div>
+  </div>
+</section>
+
+<script>
+(function(){
+  var NS='http://www.w3.org/2000/svg';
+  function rng(seed){var v=seed>>>0;return function(){v+=0x6D2B79F5;var n=v;n=Math.imul(n^(n>>>15),n|1);n^=n+Math.imul(n^(n>>>7),n|61);return((n^(n>>>14))>>>0)/4294967296}}
+  var R=rng(2026);
+
+  var RING={claude:'#D97757',openai:'#6fcfb4',cursor:'#c9cfe6'};
+  var LOGO={claude:'deck_assets/direct/claude.svg',openai:'deck_assets/direct/openai.svg',cursor:'deck_assets/targets/cursor.com.png'};
+  // kinds of memory, same colours as the constellations on the value page
+  var KIND=['#9aa8ff','#9fd8ec','#b9a4ff','#86b8ff','#ffab9e','#ffcb94','#ffe08a','#f4f6ff'];
+
+  // maya and leo are the pair the product page connects next
+  var G=[
+    {id:'dan',  x:118, y:112,r:60,v:'cursor'},
+    {id:'sam',  x:564, y:84, r:52,v:'claude'},
+    {id:'nora', x:1006,y:116,r:64,v:'cursor'},
+    {id:'maya', x:322, y:252,r:96,v:'claude',s:'lit', k:'Just decided',t:'Move EU invoicing to Stripe Tax'},
+    {id:'leo',  x:806, y:252,r:88,v:'openai',s:'cold',k:'Has no idea',t:'Setting up EU invoicing, from scratch'},
+    {id:'tom',  x:104, y:392,r:56,v:'openai'},
+    {id:'amara',x:564, y:410,r:54,v:'openai'},
+    {id:'jess', x:1030,y:396,r:58,v:'claude'}
+  ];
+  var by={};G.forEach(function(g){by[g.id]=g});
+
+  var svg=document.getElementById('field');
+  function el(tag,attrs,parent){var e=document.createElementNS(NS,tag);for(var k in attrs)e.setAttribute(k,attrs[k]);(parent||svg).appendChild(e);return e}
+  var defs=el('defs',{});
+  el('feGaussianBlur',{stdDeviation:5},el('filter',{id:'soft',x:'-200%',y:'-200%',width:'500%',height:'500%'},defs));
+  var nGrad=0;
+  function fadeLine(x1,y1,x2,y2,col,op,w,parent){
+    var id='f'+(nGrad++),lg=el('linearGradient',{id:id,gradientUnits:'userSpaceOnUse',x1:x1,y1:y1,x2:x2,y2:y2},defs);
+    el('stop',{offset:0,'stop-color':col,'stop-opacity':op},lg);el('stop',{offset:1,'stop-color':col,'stop-opacity':0},lg);
+    // nudged so a perfectly horizontal line still has a bounding box for the gradient
+    return el('line',{x1:x1,y1:y1,x2:x2+.01,y2:y2+.01,stroke:'url(#'+id+')','stroke-width':w||1,'stroke-linecap':'round'},parent);
+  }
+
+  /* ── threads that leave a garden and give out before they reach the next ── */
+  var gT=el('g',{});
+  function stub(a,b,o){
+    o=o||{};a=by[a];b=by[b];
+    var dx=b.x-a.x,dy=b.y-a.y,L=Math.sqrt(dx*dx+dy*dy),ux=dx/L,uy=dy/L,free=L-a.r-b.r-16;
+    var len=Math.min(o.len||46,free/2-10);if(len<12)return;
+    [[a,1],[b,-1]].forEach(function(s){
+      var g=s[0],k=s[1],x1=g.x+k*ux*(g.r+8),y1=g.y+k*uy*(g.r+8);
+      fadeLine(x1,y1,x1+k*ux*len,y1+k*uy*len,'#c9cfe6',o.op||.32,.9,gT);
+      el('circle',{cx:x1,cy:y1,r:1.6,fill:'#c9cfe6','fill-opacity':.5},gT);
+    });
+  }
+  [['dan','sam'],['sam','nora'],['dan','maya'],['sam','maya'],['sam','leo'],['nora','leo'],['maya','tom'],['maya','amara'],['leo','amara'],['leo','jess'],['tom','amara'],['amara','jess'],['dan','tom'],['nora','jess']]
+    .forEach(function(e){stub(e[0],e[1])});
+
+  /* ── the gardens ── */
+  function plant(g){
+    var grp=el('g',{opacity:g.s?1:.6});
+    el('circle',{cx:g.x,cy:g.y,r:g.r,fill:'#0a0c13','fill-opacity':.9},grp);
+    el('circle',{cx:g.x,cy:g.y,r:g.r,fill:'none',stroke:RING[g.v],'stroke-opacity':g.s?.75:.55,'stroke-width':1.1},grp);
+    el('circle',{cx:g.x,cy:g.y,r:g.r+7,fill:'none',stroke:'#f4f6ff','stroke-opacity':.35,'stroke-width':1.6,'stroke-dasharray':'0.1 6.4','stroke-linecap':'round'},grp);
+    // reserve the one place that matters, then fill the rest
+    var placed=[];
+    if(g.s==='lit')placed.push({x:g.x+g.r*.52,y:g.y,r:9,special:1});
+    if(g.s==='cold')placed.push({x:g.x-g.r*.52,y:g.y,r:10,special:1});
+    var scale=g.r/90,tries=0,want=Math.round(g.r*g.r/58);
+    while(placed.length<want+1&&tries++<6000){
+      var a=R()*6.2832,d=Math.sqrt(R())*(g.r-5),rr=(2.1+Math.pow(R(),2.2)*5.2)*Math.max(.8,scale);
+      if(d+rr>g.r-4)continue;
+      var x=g.x+Math.cos(a)*d,y=g.y+Math.sin(a)*d,ok=true;
+      if(y<g.y-g.r+20&&Math.abs(x-g.x)<52)continue; // keep clear of the name tag
+      for(var i=0;i<placed.length;i++){var p=placed[i],q=p.r+rr+1.6+(p.special?5:0);if((p.x-x)*(p.x-x)+(p.y-y)*(p.y-y)<q*q){ok=false;break}}
+      if(ok)placed.push({x:x,y:y,r:rr});
+    }
+    placed.forEach(function(p){
+      if(p.special)return;
+      el('circle',{cx:p.x.toFixed(1),cy:p.y.toFixed(1),r:p.r.toFixed(1),fill:KIND[Math.floor(R()*KIND.length)],'fill-opacity':(.72+R()*.28).toFixed(2)},grp);
+    });
+    return placed[0];
+  }
+  var spot={};G.forEach(function(g){spot[g.id]=plant(g)});
+
+  /* ── the one thing that should have crossed, and didn't ── */
+  var m=by.maya,l=by.leo,a=spot.maya,b=spot.leo,y=m.y;
+  var xa=m.x+m.r+8,xb=l.x-l.r-8,mid=(xa+xb)/2;
+  // Maya's new decision: bright, alive
+  var halo=el('circle',{cx:a.x,cy:a.y,r:16,fill:'#aeb9f5','fill-opacity':.55,filter:'url(#soft)'});
+  el('animate',{attributeName:'r',values:'13;21;13',dur:'2.2s',repeatCount:'indefinite'},halo);
+  el('circle',{cx:a.x,cy:a.y,r:a.r,fill:'#ffffff'});
+  // Leo's garden has the hole where it should be
+  el('circle',{cx:b.x,cy:b.y,r:b.r,fill:'#0a0c13',stroke:'#ff8a7a','stroke-width':2,'stroke-dasharray':'3.4 3.2'});
+  // it sets out …
+  el('line',{x1:a.x+a.r+3,y1:y,x2:xa,y2:y,stroke:'#aeb9f5','stroke-opacity':.9,'stroke-width':1.4});
+  var out=fadeLine(xa,y,mid-30,y,'#aeb9f5',.9,1.6);out.setAttribute('stroke-dasharray','4 6');
+  var pulse=el('circle',{r:3,fill:'#ffffff','fill-opacity':0});
+  el('animateMotion',{dur:'2.2s',repeatCount:'indefinite',path:'M'+(a.x+a.r)+' '+y+' L'+(mid-30)+' '+y},pulse);
+  el('animate',{attributeName:'fill-opacity',values:'0;1;.7;0',keyTimes:'0;.12;.7;1',dur:'2.2s',repeatCount:'indefinite'},pulse);
+  // … and never arrives
+  var X=el('g',{stroke:'#ff8a7a','stroke-width':2.2,'stroke-linecap':'round'});
+  el('line',{x1:mid-7,y1:y-7,x2:mid+7,y2:y+7},X);el('line',{x1:mid+7,y1:y-7,x2:mid-7,y2:y+7},X);
+  var back=fadeLine(xb,y,mid+30,y,'#ff8a7a',.75,1.4);back.setAttribute('stroke-dasharray','4 6');
+  el('line',{x1:b.x+b.r+3,y1:y,x2:xb,y2:y,stroke:'#ff8a7a','stroke-opacity':.55,'stroke-width':1.2,'stroke-dasharray':'3 4'});
+
+  /* ── who is who ── */
+  var viz=document.getElementById('viz');
+  G.forEach(function(g){
+    var t=document.createElement('div');t.className='tag'+(g.s?'':' dim');
+    t.style.left=g.x+'px';t.style.top=(g.y-g.r)+'px';
+    t.innerHTML='<img class="av" src="deck_assets/faces/'+g.id+'.jpg" alt=""><b>'+g.id+'</b><i class="'+g.v+'"><img src="'+LOGO[g.v]+'" alt=""></i>';
+    viz.appendChild(t);
+    if(!g.t)return;
+    var say=document.createElement('div');say.className='say'+(g.s==='cold'?' cold':'');
+    say.style.left=g.x+'px';say.style.top=(g.y+g.r+16)+'px';
+    var k=document.createElement('small');k.textContent=g.k;say.appendChild(k);
+    say.appendChild(document.createTextNode(g.t));
+    viz.appendChild(say);
+  });
+})();
+</script>
+</body>
+</html>

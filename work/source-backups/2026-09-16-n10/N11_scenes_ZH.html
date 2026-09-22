@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1280, initial-scale=1">
+<title>Echo — 叙事版 · 真实团队里的断点</title>
+<link rel="stylesheet" href="v2.css">
+<style>
+.body{display:grid;grid-template-columns:1fr 330px;gap:24px;margin-top:26px}
+.scenes{display:flex;flex-direction:column;gap:12px}
+.scene{padding:16px 22px;display:grid;grid-template-columns:130px 1fr;gap:18px;align-items:start}
+.scene .team{font:700 11px/1.4 var(--mono);letter-spacing:.12em;color:var(--eyebrow)}
+.scene .act{font-size:14px;line-height:1.5;color:var(--muted)}
+.scene .say{margin-top:6px;font-size:19px;line-height:1.35;font-weight:600;letter-spacing:-.01em}
+.scene .say em{font-style:normal;color:var(--blue-bright)}
+.scene .ctx{margin-top:6px;font:500 11px/1.4 var(--mono);color:var(--faint)}
+.checks{padding:22px 24px;display:flex;flex-direction:column}
+.checks ol{margin-top:14px;list-style:none;counter-reset:c;display:flex;flex-direction:column;gap:13px}
+.checks li{counter-increment:c;display:grid;grid-template-columns:24px 1fr;gap:8px;font-size:14.5px;line-height:1.45}
+.checks li::before{content:counter(c);font:700 12px/20px var(--mono);color:var(--blue-bright)}
+.checks .note{margin-top:auto;padding-top:14px;border-top:1px solid var(--line);font-size:13px;line-height:1.5;color:var(--muted)}
+</style>
+</head>
+<body>
+<section class="slide">
+  <div class="eyebrow"><span class="dot"></span><span class="brand">ECHO</span><span>第三幕 · 在真实团队里</span></div>
+  <h1>每个团队，<em>都有一段接不上的路。</em></h1>
+  <div class="sub">我们找的不是“聊天没共享”，而是<b>人已经确认过的判断，没有进入下一个 agent。</b></div>
+
+  <div class="body">
+    <div class="scenes">
+      <div class="scene card"><div class="team">客服团队</div><div>
+        <div class="act">A 用 agent 排查客户问题；B 接班，让自己的 agent 继续</div>
+        <div class="say">接班同事的 agent，<em>不再把查过的东西再查一遍。</em></div>
+        <div class="ctx">传过去：已排除的原因 · 复现条件 · 对客户的承诺</div>
+      </div></div>
+      <div class="scene card"><div class="team">销售团队</div><div>
+        <div class="act">CRO 修改了 agent 的 deal 判断；AE 用自己的 agent 准备下一次沟通</div>
+        <div class="say">你改过的判断，<em>AE 下次让 AI 写跟进时就能用上。</em></div>
+        <div class="ctx">传过去：改了什么 · 为什么改 · 批准了哪些说法</div>
+      </div></div>
+      <div class="scene card"><div class="team">AI 产品团队</div><div>
+        <div class="act">评估人员和 agent 定位出错误；开发者让 coding agent 去修</div>
+        <div class="say">coding agent 不只知道哪里错了，<em>还知道为什么错、怎样才算改对。</em></div>
+        <div class="ctx">传过去：错误判定理由 · 反例 · 验收标准</div>
+      </div></div>
+    </div>
+
+    <div class="checks card">
+      <div class="label">试点怎么验收</div>
+      <ol>
+        <li>重讲背景的轮数，少了吗？</li>
+        <li>复制、整理、转发上下文的人工时，少了吗？</li>
+        <li>agent 还会提已经被否掉的方案吗？</li>
+        <li>纠正过的错，在新会话里还出现吗？</li>
+        <li>同事的 agent，能更早交出第一份可用结果吗？</li>
+      </ol>
+      <div class="note">每个问题都能在 agent 的使用记录里直接数出来。</div>
+    </div>
+  </div>
+
+  <div class="closer" style="margin-top:20px">
+    <div class="line-copy">“你刚花一小时弄清楚的事，<b>同事的 agent 要多久才能跟上？</b>”</div>
+    <div class="foot">正在与目标客户验证的场景 · 10</div>
+  </div>
+</section>
+</body>
+</html>

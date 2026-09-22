@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1280, initial-scale=1">
+<title>Echo — 叙事版 · Echo 如何帮 Meta 省下 10 亿</title>
+<link rel="stylesheet" href="v2.css">
+<style>
+h1{font-size:50px}
+
+/* ── the flow: company work on the left, company memory cloud top-right ── */
+.viz{position:relative;margin-top:22px;width:1128px;height:408px}
+.viz>canvas.cloud{position:absolute;left:0;top:0;width:1128px;height:408px}
+.viz>svg{position:absolute;left:0;top:0;width:1128px;height:408px;overflow:visible;pointer-events:none}
+
+.tools{position:absolute;left:10px;top:0;display:grid;grid-template-columns:repeat(6,30px);gap:9px 10px}
+.tools i{width:30px;height:30px;border-radius:8px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center}
+.tools img{width:18px;height:18px;object-fit:contain}
+
+/* a session */
+.card{position:absolute;width:250px;height:64px;border-radius:13px;display:flex;align-items:center;gap:11px;padding:0 11px 0 12px;
+  border:1px solid var(--line-strong);background:#0d0f16}
+.card .av{width:36px;height:36px;border-radius:50%;flex:none;object-fit:cover;border:1.5px solid rgba(255,255,255,.22)}
+.card .who{flex:1;min-width:0}
+.card .who b{display:block;font-size:15px;font-weight:700;letter-spacing:-.01em;line-height:1.1}
+.card .who u{display:block;margin-top:7px;height:4px;border-radius:2px;background:rgba(220,227,255,.13);text-decoration:none}
+.card .who u+u{margin-top:4px;width:62%}
+.card .ag{width:42px;height:42px;border-radius:10px;flex:none;display:flex;align-items:center;justify-content:center}
+.card .ag img{width:26px;height:26px}
+.ag.claude{background:#D97757}.ag.openai{background:#000;border:1px solid rgba(255,255,255,.22)}.ag.gemini{background:linear-gradient(135deg,#4f8dfd,#9b72f2)}
+.card.ghost{border-color:rgba(255,255,255,calc(.16*var(--f)));box-shadow:0 10px 24px rgba(0,0,0,.45)}
+.card.ghost>*{opacity:var(--f)}
+.card.lit{width:236px;border-color:rgba(120,210,190,.5);background:linear-gradient(90deg,rgba(120,223,193,.13),rgba(120,223,193,.03) 70%),#0d0f16;
+  box-shadow:0 0 24px rgba(120,223,193,.14)}
+
+/* Echo */
+.core{position:absolute;left:452px;top:168px;width:0;height:0}
+.core .halo{position:absolute;left:-120px;top:-120px;width:240px;height:240px;border-radius:50%;
+  background:radial-gradient(circle,rgba(160,175,255,.30),rgba(82,103,255,.10) 45%,transparent 70%)}
+.core .orb{position:absolute;left:-50px;top:-50px;width:100px;height:100px;border-radius:50%;
+  background:radial-gradient(circle at 38% 32%,#dff7ff 0%,#6fd3ff 38%,#2f8dff 100%);box-shadow:0 0 44px rgba(80,160,255,.55);transition:opacity .4s}
+.core canvas{position:absolute;left:-270px;top:-270px;width:540px;height:540px;opacity:0;transition:opacity .4s}
+.core.live canvas{opacity:1}.core.live .orb{opacity:0}
+
+/* ── three beats ── */
+.beats{margin-top:12px;display:grid;grid-template-columns:1fr .95fr 1.05fr;gap:28px;padding-top:16px;border-top:1px solid var(--line)}
+.beat{display:flex;gap:14px;align-items:flex-start}
+.beat .no{font:600 12px/1 var(--mono);letter-spacing:.14em;color:var(--blue-bright);opacity:.8;padding-top:6px}
+.beat .h{font-size:22px;font-weight:700;letter-spacing:-.02em;line-height:1.2}
+.beat .h span{display:block;margin-top:6px;font-size:15px;font-weight:500;letter-spacing:0;color:var(--muted)}
+.money{display:flex;align-items:center;gap:18px}
+.money .big{font-size:60px;font-weight:700;letter-spacing:-.055em;line-height:.9;
+  background:linear-gradient(180deg,#fff 20%,#aeb9f5);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 0 24px rgba(96,117,255,.5))}
+.money .big small{font-size:18px;letter-spacing:0;margin-left:3px}
+.money .m{font-size:15px;line-height:1.45;color:var(--muted);white-space:nowrap}
+.money .m b{display:flex;align-items:center;gap:6px;color:var(--ink);font-size:16px}
+.money .m b img{height:13px}
+.money .m em{font-style:normal;color:var(--ink);font-weight:700}
+
+.src{position:absolute;left:76px;right:76px;bottom:11px;display:flex;justify-content:space-between;font:500 9.5px var(--mono);color:var(--faint);letter-spacing:.03em}
+</style>
+</head>
+<body>
+<section class="slide">
+  <div class="eyebrow"><span class="dot"></span><span class="brand">ECHO</span><span>第二幕 · 这件事值多少钱</span></div>
+  <h1>Echo 如何从现在起，<em>帮 Meta 省下 10 亿美元。</em></h1>
+
+  <div class="viz" id="viz">
+    <canvas class="cloud" id="cloud" width="2256" height="816"></canvas>
+    <svg id="routes" viewBox="0 0 1128 408"></svg>
+
+    <div class="tools">
+      <i><img src="deck_assets/direct/docs.google.com.png" alt=""></i>
+      <i><img src="deck_assets/direct/github.svg" alt=""></i>
+      <i><img src="deck_assets/direct/notion.so.png" alt=""></i>
+      <i><img src="deck_assets/direct/sheets.google.com.png" alt=""></i>
+      <i><img src="deck_assets/direct/granola.ai.png" alt=""></i>
+      <i><img src="deck_assets/direct/salesforce.svg" alt=""></i>
+      <i><img src="deck_assets/direct/databricks.com.png" alt=""></i>
+      <i><img src="deck_assets/direct/snowflake.com.png" alt=""></i>
+      <i><img src="deck_assets/direct/datadoghq.com.png" alt=""></i>
+      <i><img src="deck_assets/direct/slack.svg" alt=""></i>
+      <i><img src="deck_assets/direct/zoom_app.svg" alt=""></i>
+      <i><img src="deck_assets/direct/figma.com.png" alt=""></i>
+    </div>
+
+    <!-- today's sessions: one in front, the long row behind it -->
+    <div class="card ghost" style="left:56px;top:144px;--f:.25"><img class="av" src="deck_assets/faces/dan.jpg" alt=""><div class="who"><b>dan</b><u></u><u></u></div><div class="ag openai"><img src="deck_assets/direct/openai.svg" alt=""></div></div>
+    <div class="card ghost" style="left:42px;top:133px;--f:.4"><img class="av" src="deck_assets/faces/nora.jpg" alt=""><div class="who"><b>nora</b><u></u><u></u></div><div class="ag gemini"><img src="deck_assets/direct/googlegemini.svg" alt=""></div></div>
+    <div class="card ghost" style="left:28px;top:122px;--f:.55"><img class="av" src="deck_assets/faces/tom.jpg" alt=""><div class="who"><b>tom</b><u></u><u></u></div><div class="ag claude"><img src="deck_assets/direct/claude.svg" alt=""></div></div>
+    <div class="card ghost" style="left:14px;top:111px;--f:.75"><img class="av" src="deck_assets/faces/sam.jpg" alt=""><div class="who"><b>sam</b><u></u><u></u></div><div class="ag openai"><img src="deck_assets/direct/openai.svg" alt=""></div></div>
+    <div class="card" style="left:0;top:100px"><img class="av" src="deck_assets/faces/maya.jpg" alt=""><div class="who"><b>maya</b><u></u><u></u></div><div class="ag claude"><img src="deck_assets/direct/claude.svg" alt=""></div></div>
+
+    <div class="core" id="core"><div class="halo"></div><div class="orb"></div><canvas id="echoWrite" width="1080" height="1080"></canvas></div>
+
+    <!-- memory handed on to the rest of the team -->
+    <div class="card lit" style="left:150px;top:328px"><img class="av" src="deck_assets/faces/amara.jpg" alt=""><div class="who"><b>amara</b><u></u><u></u></div><div class="ag openai"><img src="deck_assets/direct/openai.svg" alt=""></div></div>
+    <div class="card lit" style="left:448px;top:328px"><img class="av" src="deck_assets/faces/leo.jpg" alt=""><div class="who"><b>leo</b><u></u><u></u></div><div class="ag claude"><img src="deck_assets/direct/claude.svg" alt=""></div></div>
+    <div class="card lit" style="left:746px;top:328px"><img class="av" src="deck_assets/faces/jess.jpg" alt=""><div class="who"><b>jess</b><u></u><u></u></div><div class="ag gemini"><img src="deck_assets/direct/googlegemini.svg" alt=""></div></div>
+  </div>
+
+  <div class="beats">
+    <div class="beat"><div class="no">01</div><div class="h">所有会话都灌进 Echo。<span>每个工具、每个同事、每个 agent。</span></div></div>
+    <div class="beat"><div class="no">02</div><div class="h">记忆再流回每个会话。<span>Token 花费变成公司的第二大脑。</span></div></div>
+    <div class="beat"><div class="no">03</div>
+      <div class="money"><div class="big">$1B+<small>/年</small></div>
+        <div class="m"><b><img src="deck_assets/direct/meta.svg" alt="">Meta 省下</b>全行业 <em>$40B ↗</em></div></div></div>
+  </div>
+
+  <div class="src"><span>均为估算 · Meta：$4–6B Anthropic 账单 × 约 25% 重复上下文被省掉 · 全行业：OpenAI + Anthropic 2026 年约 $100B 账单的约 40% · 照片：Unsplash</span><span>08</span></div>
+</section>
+
+<script>
+(function(){
+  var W=1128,H=408,NS='http://www.w3.org/2000/svg';
+  var ZH=document.documentElement.lang.indexOf('zh')===0;
+  function rng(seed){var v=seed>>>0;return function(){v+=0x6D2B79F5;var n=v;n=Math.imul(n^(n>>>15),n|1);n^=n+Math.imul(n^(n>>>7),n|61);return((n^(n>>>14))>>>0)/4294967296}}
+  function rgba(hex,a){var v=parseInt(hex.slice(1),16);return 'rgba('+(v>>16&255)+','+(v>>8&255)+','+(v&255)+','+a+')'}
+  var R=rng(916);
+
+  /* ── the memory cloud (top-right) ── */
+  var P=[[704,186,56],[776,134,72],[876,108,86],[980,128,74],[1054,182,56],[962,208,68],[852,214,72],[754,216,50]];
+  function inside(x,y,pad){for(var i=0;i<P.length;i++){var dx=x-P[i][0],dy=y-P[i][1];if(dx*dx+dy*dy<(P[i][2]-(pad||0))*(P[i][2]-(pad||0)))return true}return false}
+  var C=[
+    {en:'Product',zh:'产品',c:'#8798ff',x:742,y:170},
+    {en:'Customers',zh:'客户',c:'#78dfc1',x:846,y:100},
+    {en:'Decisions',zh:'决策',c:'#a88fff',x:956,y:118},
+    {en:'Engineering',zh:'工程',c:'#68a9ff',x:1022,y:194},
+    {en:'Incidents',zh:'事故',c:'#ff9a8a',x:906,y:214},
+    {en:'People',zh:'人员',c:'#ffbb76',x:796,y:226}
+  ];
+  var dots=[];
+  while(dots.length<340){
+    var x=640+R()*480,y=30+R()*260;
+    if(!inside(x,y,8))continue;
+    var bi=0,bd=1e9;C.forEach(function(k,i){var d=(k.x-x)*(k.x-x)+(k.y-y)*(k.y-y);if(d<bd){bd=d;bi=i}});
+    if(R()>Math.exp(-bd/5200)+.18)continue;
+    var imp=Math.pow(R(),4);dots.push({x:x,y:y,k:bi,imp:imp,r:.8+imp*2});
+  }
+
+  var cv=document.getElementById('cloud'),g=cv.getContext('2d');g.scale(2,2);
+  // cloud body: puffs merged, blurred, filled with a soft top-lit gradient
+  var off=document.createElement('canvas');off.width=W*2;off.height=H*2;var o=off.getContext('2d');o.scale(2,2);
+  o.filter='blur(10px)';o.fillStyle='#fff';P.forEach(function(p){o.beginPath();o.arc(p[0],p[1],p[2],0,7);o.fill()});o.filter='none';
+  o.globalCompositeOperation='source-in';
+  var lg=o.createLinearGradient(0,20,0,270);lg.addColorStop(0,'rgba(150,165,255,.20)');lg.addColorStop(1,'rgba(60,80,200,.07)');
+  o.fillStyle=lg;o.fillRect(0,0,W,H);
+  g.drawImage(off,0,0,W,H);
+  // rim light
+  var rim=document.createElement('canvas');rim.width=W*2;rim.height=H*2;var q=rim.getContext('2d');q.scale(2,2);
+  q.fillStyle='#fff';P.forEach(function(p){q.beginPath();q.arc(p[0],p[1],p[2],0,7);q.fill()});
+  q.globalCompositeOperation='destination-out';P.forEach(function(p){q.beginPath();q.arc(p[0],p[1]+3,p[2]-1.5,0,7);q.fill()});
+  q.globalCompositeOperation='source-in';q.fillStyle='rgba(190,200,255,.35)';q.fillRect(0,0,W,H);
+  g.drawImage(rim,0,0,W,H);
+
+  dots.forEach(function(d){
+    var col=C[d.k].c;
+    if(d.imp>.4){var gg=g.createRadialGradient(d.x,d.y,0,d.x,d.y,4+d.imp*6);gg.addColorStop(0,rgba(col,.35));gg.addColorStop(1,rgba(col,0));g.fillStyle=gg;g.beginPath();g.arc(d.x,d.y,4+d.imp*6,0,7);g.fill()}
+    g.fillStyle=rgba(col,.35+d.imp*.6);g.beginPath();g.arc(d.x,d.y,d.r,0,7);g.fill();
+  });
+  g.textAlign='center';g.font=ZH?'600 11px "PingFang SC",sans-serif':'600 8.5px ui-monospace,SFMono-Regular,Menlo,monospace';
+  C.forEach(function(k){g.fillStyle=rgba(k.c,.8);g.fillText(ZH?k.zh:k.en.toUpperCase(),k.x,k.y-16)});
+
+  /* ── svg routes ── */
+  var svg=document.getElementById('routes');
+  svg.innerHTML='<defs><filter id="glow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="2.6"/></filter><filter id="flash" x="-100%" y="-100%" width="300%" height="300%"><feGaussianBlur stdDeviation="16"/></filter></defs>';
+  function el(tag,attrs,parent){var e=document.createElementNS(NS,tag);for(var k in attrs)e.setAttribute(k,attrs[k]);(parent||svg).appendChild(e);return e}
+  function route(d,o){
+    o=o||{};
+    if(o.halo!==false)el('path',{d:d,fill:'none',stroke:o.color||'#6075ff','stroke-opacity':o.ho||.12,'stroke-width':5,'stroke-linecap':'round'});
+    el('path',{d:d,fill:'none',stroke:o.color||'#8a9bff','stroke-opacity':o.op||.55,'stroke-width':o.w||1.2,'stroke-linecap':'round'});
+    var np=o.pulses||1,dur=o.dur||1.6;
+    for(var i=0;i<np;i++){
+      var c=el('circle',{r:o.pr||2.6,fill:o.pc||'#e4e9ff'});
+      el('animateMotion',{dur:dur+'s',begin:(-dur*i/np-(o.off||0)).toFixed(2)+'s',repeatCount:'indefinite',path:d},c);
+    }
+  }
+  var vz=document.getElementById('viz').getBoundingClientRect();
+  // tools → maya's session
+  document.querySelectorAll('.tools i').forEach(function(t,i){
+    var b=t.getBoundingClientRect(),x=b.left-vz.left+15,y=b.bottom-vz.top;
+    route('M'+x+' '+y+' C'+x+' '+(y+22)+' 125 80 125 99',{halo:false,op:.22,w:.8,dur:1.4+i%4*.25,off:i*.21,pr:1.6});
+  });
+  // the row of sessions → Echo
+  [[250,132,.9],[264,143,.7],[278,154,.5],[292,165,.35],[306,176,.25]].forEach(function(p,i){
+    route('M'+p[0]+' '+p[1]+' C'+(p[0]+60)+' '+p[1]+' 340 168 394 168',{op:.5*p[2]+.1,ho:.1*p[2],pulses:2,dur:1.4+i*.12,off:i*.3});
+  });
+  // Echo ⇄ memory cloud
+  route('M500 142 C560 108 630 104 712 136',{op:.75,pulses:3,dur:1.3});
+  route('M745 230 C665 250 578 228 506 192',{color:'#78dfc1',op:.7,pulses:3,dur:1.3,pc:'#d8fff1'});
+  // Echo → the rest of the team
+  [268,566,864].forEach(function(x,i){
+    route('M452 224 C452 280 '+x+' 270 '+x+' 327',{color:'#78dfc1',op:.55,ho:.1,pulses:2,dur:1.4,off:i*.4,pc:'#d8fff1'});
+  });
+  // and between each other
+  [[386,448],[684,746]].forEach(function(p,i){
+    route('M'+p[0]+' 352 L'+p[1]+' 352',{color:'#78dfc1',op:.5,halo:false,dur:1.1,off:i*.5,pc:'#d8fff1',pr:2});
+    route('M'+p[1]+' 368 L'+p[0]+' 368',{color:'#78dfc1',op:.3,halo:false,dur:1.1,off:i*.5+.5,pc:'#d8fff1',pr:2});
+  });
+
+  /* ── lightning inside the cloud: bolts hop dot to dot ── */
+  var big=dots.filter(function(d){return d.imp>.12});
+  function bolt(a,b){
+    var path=[a],cur=a,guard=0;
+    while(guard++<30){
+      var dx=b.x-cur.x,dy=b.y-cur.y,dist=Math.sqrt(dx*dx+dy*dy);
+      if(dist<34){path.push(b);break}
+      var best=null,bs=-1e9;
+      dots.forEach(function(d){
+        var ex=d.x-cur.x,ey=d.y-cur.y,l=Math.sqrt(ex*ex+ey*ey);
+        if(l<14||l>42)return;
+        var s=(ex*dx+ey*dy)/(l*dist)+R()*.9;
+        if(s>bs){bs=s;best=d}
+      });
+      if(!best)break;path.push(best);cur=best;
+    }
+    return path;
+  }
+  var pairs=[[0,3],[5,2],[1,4],[3,0],[2,5]];
+  function pickIn(ci){var b=big.filter(function(d){return d.k===ci});return b[Math.floor(R()*b.length)]}
+  var gB=el('g',{});
+  pairs.forEach(function(pr,i){
+    var pts=bolt(pickIn(pr[0]),pickIn(pr[1]));
+    var zz=[pts[0]];
+    for(var j=1;j<pts.length;j++){var a0=pts[j-1],b0=pts[j],mx=(a0.x+b0.x)/2,my=(a0.y+b0.y)/2,nx=-(b0.y-a0.y),ny=b0.x-a0.x,nl=Math.sqrt(nx*nx+ny*ny)||1,k=(R()-.5)*14;
+      zz.push({x:mx+nx/nl*k,y:my+ny/nl*k});zz.push(b0)}
+    var d='M'+zz.map(function(p){return p.x.toFixed(1)+' '+p.y.toFixed(1)}).join(' L');
+    var mid=pts[Math.floor(pts.length/2)];
+    var grp=el('g',{},gB);
+    el('circle',{cx:mid.x,cy:mid.y,r:46,fill:'#aeb9f5','fill-opacity':.16,filter:'url(#flash)'},grp);
+    el('path',{d:d,fill:'none',stroke:'#c3cbff','stroke-width':5,'stroke-opacity':.7,filter:'url(#glow)','stroke-linejoin':'miter'},grp);
+    el('path',{d:d,fill:'none',stroke:'#ffffff','stroke-width':1.3,'stroke-linejoin':'miter'},grp);
+    pts.forEach(function(p){el('circle',{cx:p.x,cy:p.y,r:2.2,fill:'#ffffff'},grp)});
+    // flicker: mostly on, with quick strikes
+    var dur=(3.2+i*.45).toFixed(2),lo=i<2?'.75':'.08';
+    el('animate',{attributeName:'opacity',values:lo+';'+lo+';1;.1;1;'+lo+';'+lo,keyTimes:'0;.5;.54;.57;.62;.78;1',dur:dur+'s',begin:(-i*1.1)+'s',repeatCount:'indefinite'},grp);
+  });
+})();
+</script>
+<script src="deck_assets/vendor/rive.js"></script>
+<script>
+(function(){
+  // Echo writing it all down (v21 · WritingNotes). The static orb stays if Rive fails.
+  if(!window.rive) return;
+  try{
+    rive.RuntimeLoader.setWasmUrl('deck_assets/vendor/rive.wasm');
+    var box=document.getElementById('core');
+    var r=new rive.Rive({
+      src:'deck_assets/direct/echo.riv',
+      canvas:document.getElementById('echoWrite'),
+      artboard:'Echo-GeneralFile',
+      animations:['WritingNotes-In'],
+      autoplay:true,
+      layout:new rive.Layout({fit:rive.Fit.Contain,alignment:rive.Alignment.Center}),
+      onLoad:function(){box.classList.add('live')},
+      onStop:function(){r.play(['WritingNotes-Loop','Note/1'])}
+    });
+  }catch(e){}
+})();
+</script>
+</body>
+</html>

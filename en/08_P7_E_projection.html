@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Echo — Direct Deck · Page 7 · E · Projection</title>
+<style>
+:root{
+  --ink:#f6f7fb;--muted:rgba(221,226,240,.62);--faint:rgba(211,217,235,.40);
+  --line:rgba(220,227,255,.10);
+  --blue:#6175ff;--blue-bright:#b8c2ff;--amber:#f3ad58;
+  --sans:"Avenir Next","Avenir","Helvetica Neue",sans-serif;--mono:"IBM Plex Mono","Menlo",monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{background:#000;color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased}
+button{font:inherit;color:inherit;background:none;border:none;text-align:left}
+.slide{position:relative;width:1280px;height:720px;margin:24px auto;overflow:hidden;padding:34px 72px 26px;display:flex;flex-direction:column;
+  background:radial-gradient(ellipse 74% 50% at 52% -18%,rgba(69,88,255,.16),transparent 68%),radial-gradient(circle at 62% 52%,rgba(42,59,160,.09),transparent 25rem),linear-gradient(180deg,#06070b 0%,#090b12 48%,#050609 100%)}
+.slide::before{content:"";position:absolute;inset:0;opacity:.035;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.84' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.9'/%3E%3C/svg%3E")}
+.slide>*{position:relative;z-index:1}
+
+.eyebrow{display:flex;align-items:center;gap:10px;font:600 10px/1.2 var(--mono);letter-spacing:.19em;text-transform:uppercase;color:rgba(177,188,255,.76)}
+.eyebrow .dot{width:6px;height:6px;border-radius:50%;background:#6075ff;box-shadow:0 0 0 4px rgba(82,103,255,.1),0 0 18px rgba(82,103,255,.62)}
+.eyebrow .brand{color:var(--ink);font-weight:700;letter-spacing:.24em}
+.h1{margin-top:11px;font-size:45px;font-weight:600;letter-spacing:-.032em;line-height:1.02}
+.h1 em{display:block;margin-top:4px;font-style:normal;font-size:27px;line-height:1.13;letter-spacing:-.022em;color:var(--blue-bright)}
+
+.meta{margin-top:22px;display:flex;justify-content:space-between;align-items:baseline;font:500 9.5px/1 var(--mono);letter-spacing:.15em;text-transform:uppercase;color:var(--faint)}
+.meta .crumb b{color:rgba(221,226,240,.78);font-weight:600}
+.key{display:flex;gap:20px}
+.key span{display:flex;align-items:center;gap:7px}
+.key i{width:7px;height:7px;border-radius:50%;background:var(--blue-bright)}
+.key .wk i{background:var(--amber);box-shadow:0 0 9px rgba(243,173,88,.7)}
+.key .pl i{background:none;border:1px solid rgba(211,217,235,.42)}
+
+.stage{position:relative;margin-top:18px;width:1136px;height:440px;flex:none}
+
+/* node glyphs — one meaning per colour */
+.d{position:absolute;width:9px;height:9px;border-radius:50%;transform:translate(-50%,-50%);background:var(--blue-bright);box-shadow:0 0 0 3px rgba(97,117,255,.10)}
+.d.work{width:12px;height:12px;background:var(--amber);box-shadow:0 0 0 5px rgba(243,173,88,.13),0 0 18px rgba(243,173,88,.55)}
+.d.plan{width:7px;height:7px;background:none;border:1px solid rgba(211,217,235,.42);box-shadow:none}
+.tr{position:absolute;height:0}
+.tr .seg{position:absolute;top:-1px;height:1.5px;background:rgba(150,168,255,.5)}
+.tr .seg.grey{background:rgba(211,217,235,.20)}
+.tr .seg.dash{background:none;height:0;border-top:1px dashed rgba(150,168,255,.42)}
+.tr .seg.dash.grey{border-color:rgba(211,217,235,.22)}
+.tr .d{top:0}
+.fold{position:absolute;transform:translate(-50%,-50%);font:600 9px/1 var(--mono);letter-spacing:.06em;color:rgba(177,188,255,.72);white-space:nowrap}
+
+/* the expanded record */
+.record{position:absolute;left:0;right:0;top:348px;border-top:1px solid var(--line);padding-top:22px;display:flex;justify-content:space-between;align-items:flex-start;gap:40px}
+.tick{position:absolute;top:-1px;height:1px;width:60px;background:var(--amber);box-shadow:0 0 10px rgba(243,173,88,.6);transition:left .28s cubic-bezier(.4,0,.2,1)}
+.rHead{display:flex;align-items:baseline;gap:14px}
+.rIndex{font:600 19px/1 var(--mono);letter-spacing:-.01em;color:var(--amber);font-variant-numeric:tabular-nums}
+.rTitle{font-size:21px;font-weight:600;letter-spacing:-.018em;line-height:1}
+.rStatus{font:700 9px/1 var(--mono);letter-spacing:.2em;text-transform:uppercase;color:var(--amber);border:1px solid rgba(243,173,88,.36);border-radius:4px;padding:4px 7px}
+.rMem{font:500 9.5px/1 var(--mono);letter-spacing:.08em;color:var(--faint)}
+.rWhy{margin-top:11px;font-size:13px;line-height:1.35;color:var(--muted);max-width:600px}
+.people{display:flex;gap:34px;flex:none;padding-top:2px}
+.who .cap{font:500 9px/1 var(--mono);letter-spacing:.17em;text-transform:uppercase;color:var(--faint)}
+.who .row{margin-top:9px;display:flex;align-items:center}
+.who img{width:26px;height:26px;border-radius:50%;object-fit:cover;border:1.5px solid #0b0e17;margin-left:-8px}
+.who img:first-child{margin-left:0}
+.who .on img:first-child{box-shadow:0 0 0 2px var(--blue)}
+.who .n{margin-left:10px;font-size:11px;color:rgba(221,226,240,.72);white-space:nowrap}
+
+.closer{display:flex;justify-content:space-between;align-items:baseline;margin-top:auto;border-top:1px solid rgba(220,227,255,.16);padding-top:13px}
+.closer .line{font-size:19px;font-weight:500;letter-spacing:-.012em}
+.closer .line b{color:var(--blue-bright);font-weight:600}
+.closer .foot{font:500 9px var(--mono);letter-spacing:.08em;color:var(--faint)}
+
+@page{size:13.333in 7.5in;margin:0}
+@media print{html,body{background:#000}.slide{margin:0}button{pointer-events:none}}
+@media screen{.slide{box-shadow:0 10px 40px rgba(0,0,0,.6)}}
+@media(max-width:1300px){.slide{margin:0;box-shadow:none}}
+
+.colH{position:absolute;font:600 9px/1 var(--mono);letter-spacing:.2em;text-transform:uppercase;color:var(--faint);white-space:nowrap}
+.colH b{color:rgba(221,226,240,.7);font-weight:600}
+.sess{position:absolute;left:0;width:392px;height:40px;display:flex;align-items:center;gap:10px;border-radius:6px;transition:background .2s}
+.sess:hover{background:rgba(255,255,255,.02)}
+.sess img{width:22px;height:22px;border-radius:50%;object-fit:cover;border:1.5px solid #0b0e17;flex:none}
+.sess .who{width:118px;font-size:12px;font-weight:600;color:rgba(240,243,252,.88);white-space:nowrap}
+.sess .who span{font-weight:500;color:var(--faint)}
+.sess .when{width:52px;font:500 9.5px/1 var(--mono);color:var(--faint)}
+.sess .mem{display:flex;gap:4px;align-items:center;flex:1}
+.m{width:7px;height:7px;border-radius:50%;background:var(--blue-bright);flex:none}
+.m.k-g{background:none;border:1px solid rgba(184,194,255,.6)}
+.m.k-d{box-shadow:0 0 0 2px rgba(97,117,255,.28)}
+.m.k-h{width:8px;height:8px;border-radius:1px;transform:rotate(45deg);background:var(--amber);box-shadow:0 0 8px rgba(243,173,88,.6)}
+.sess .n{font:500 9.5px/1 var(--mono);color:var(--faint);margin-left:auto;padding-right:6px}
+.fanSvg{position:absolute;inset:0;width:1136px;height:440px;overflow:visible}
+.wire{fill:none;stroke:rgba(150,168,255,.26);stroke-width:1.2}
+.wire.out{stroke:rgba(150,168,255,.6);stroke-width:1.6}
+.fx{position:absolute;left:540px;top:160px;width:32px;height:32px;transform:translate(-50%,-50%);border-radius:50%;border:1px solid rgba(184,194,255,.55);background:#0b101b;display:grid;place-items:center;font:600 14px/1 var(--mono);color:var(--blue-bright);box-shadow:0 0 0 6px rgba(97,117,255,.08),0 0 20px rgba(97,117,255,.3)}
+.proj{position:absolute;left:470px;top:212px;width:230px;font:500 9.5px/1.9 var(--mono);color:var(--faint);white-space:nowrap}
+.proj .t{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:rgba(177,188,255,.72);margin-bottom:3px}
+.proj b{display:inline-block;width:84px;color:rgba(221,226,240,.78);font-weight:600}
+.proj .am{color:var(--amber)}
+.node{position:absolute;left:720px;top:22px;right:0;padding-left:26px;border-left:1px solid var(--line)}
+.node .in{position:absolute;left:-1px;top:137px;width:1px;height:1px;box-shadow:0 0 0 3px rgba(184,194,255,.9),0 0 14px rgba(97,117,255,.8);border-radius:50%}
+.node .addr{font:600 12px/1 var(--mono);color:var(--amber);letter-spacing:.02em}
+.node .addr span{color:var(--faint);font-weight:500;margin-left:10px}
+.node .claim{margin-top:10px;font-size:18px;font-weight:600;letter-spacing:-.016em;line-height:1.22;color:var(--ink);max-width:380px}
+.node .lbl{margin-top:15px;font:600 9px/1 var(--mono);letter-spacing:.2em;text-transform:uppercase;color:var(--faint)}
+.node .why{margin-top:6px;font-size:12px;line-height:1.4;color:var(--muted);max-width:380px}
+.crit,.act{margin-top:6px;display:flex;align-items:center;gap:9px;font-size:12px;color:rgba(221,226,240,.82);white-space:nowrap}
+.crit i{width:8px;height:8px;border-radius:50%;background:var(--blue-bright);flex:none}
+.crit.open i{background:none;border:1px solid rgba(211,217,235,.42)}
+.crit.open{color:rgba(221,226,240,.5)}
+.crit em,.act em{margin-left:auto;font:500 9px/1 var(--mono);color:var(--faint);font-style:normal;padding-left:14px}
+.act i{width:8px;height:8px;transform:rotate(45deg);background:var(--amber);box-shadow:0 0 8px rgba(243,173,88,.6);flex:none;border-radius:1px}
+.act.wait i{background:none;border:1px solid var(--amber);box-shadow:none}
+.act.wait{color:var(--amber)}
+.node .ppl{margin-top:15px;display:flex;gap:26px}
+.node .who .cap{font:500 9px/1 var(--mono);letter-spacing:.17em;text-transform:uppercase;color:var(--faint)}
+.node .who .row{margin-top:7px;display:flex;align-items:center}
+.node .who img{width:22px;height:22px}
+.node .who .n{font-size:10.5px}
+.prop{margin-top:14px;font:500 9.5px/1 var(--mono);color:rgba(211,217,235,.5);white-space:nowrap}
+.prop i{display:inline-block;width:7px;height:7px;border-radius:50%;border:1px dashed rgba(211,217,235,.55);margin-right:8px;vertical-align:middle}
+.prop b{color:rgba(221,226,240,.7);font-weight:600}
+.key .hm i{border-radius:1px;transform:rotate(45deg);background:var(--amber);box-shadow:0 0 8px rgba(243,173,88,.6)}
+</style>
+</head>
+<body>
+<section class="slide">
+  <div class="eyebrow"><span class="dot"></span><span class="brand">ECHO</span><span>Team memory · Live operating context</span></div>
+  <div class="h1">Company’s map for what matters<em>Every milestone keeps its reason and its trace.</em></div>
+  <div class="meta">
+    <div class="crumb">Unlimit &nbsp;·&nbsp; <b>33 Payment state drift</b> &nbsp;·&nbsp; <b>33.9</b></div>
+    <div class="key"><span><i></i>memory · agent</span><span class="hm"><i></i>act · human</span></div>
+  </div>
+  <div class="stage">
+    <div id="stage" style="position:absolute;inset:0"></div>
+    <!--<div class="record">
+      <div class="tick" id="tick"></div>
+      <div>
+        <div class="rHead"><span class="rIndex" id="rIndex"></span><span class="rTitle" id="rTitle"></span><span class="rStatus">Work</span><span class="rMem" id="rMem"></span></div>
+        <div class="rWhy" id="rWhy"></div>
+      </div>
+      <div class="people">
+        <div class="who"><div class="cap">Opened</div><div class="row" id="pOpened"></div></div>
+        <div class="who"><div class="cap">Working</div><div class="row on" id="pWorking"></div></div>
+        <div class="who"><div class="cap">Contributed</div><div class="row" id="pContributed"></div></div>
+      </div>
+    </div>-->
+  </div>
+  <div class="closer"><div class="line">Tokens are a liability. Memory you can dispatch is the asset. <b>Echo turns one into the other.</b></div><div class="foot">echoknows.com · 07</div></div>
+</section>
+<script>
+(function(){
+var FACES={Kobe:"assets/faces/kobe.png",Erik:"assets/faces/erik.png",Rin:"assets/faces/rin.png",Rem:"assets/faces/rem.png",My:"assets/faces/myfeng.png",Michelle:"assets/faces/michelle.png"};
+var NODE={addr:"33.9",born:"born from 33.8",
+  claim:"Funds released from FX quarantine to the university account.",
+  why:"Funds sit in the partner’s quarantine; nothing moves until a human there releases them.",
+  accept:[{t:"Partner confirms release in writing",ok:true,ev:"m_81c0 · Rem · Sep 1"},{t:"Funds visible in the university account",ok:false,ev:"no evidence yet"}],
+  owner:"Rin",authorized:"Rin · Aug 28",
+  proposed:{addr:"33.9a",t:"Signed indemnity from partner",from:"session 3 · Claude"}};
+/* memory glyphs per session: e = evidence, g = gap, d = decision, h = human act */
+var SESS=[
+ {who:"Rin", agent:"Claude",when:"Aug 28",mem:"ggh"},
+ {who:"Erik",agent:"Codex", when:"Aug 30",mem:"eeeeeeedd"},
+ {who:"Rem", agent:"Claude",when:"Sep 1", mem:"geeeed"},
+ {who:"Rem", agent:"Claude",when:"Sep 2", mem:"ee"},
+ {who:"Erik",agent:"Claude",when:"Sep 3", mem:"eee"}
+];
+
+var stage=document.getElementById("stage"),sel="33";
+function esc(v){return String(v).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
+function byId(id){return WS.filter(function(w){return w.id===id})[0]}
+function workOf(ws){return ws.steps.filter(function(s){return s.s==="work"})[0]}
+function av(n){return '<img src="'+FACES[n]+'" alt="'+esc(n)+'" title="'+esc(n)+'">'}
+function group(id,names){document.getElementById(id).innerHTML=names.map(av).join("")+'<span class="n">'+esc(names.join(" · "))+'</span>'}
+function setRecord(ws,tickX){
+  var w=workOf(ws);
+  document.getElementById("rIndex").textContent=w.i;
+  document.getElementById("rTitle").textContent=w.t;
+  document.getElementById("rMem").textContent=w.m+" memories";
+  document.getElementById("rWhy").textContent=w.why;
+  group("pOpened",w.o);group("pWorking",w.w);group("pContributed",w.c);
+  document.getElementById("tick").style.left=Math.max(0,Math.min(1076,tickX-30))+"px";
+}
+/* horizontal trace geometry: consecutive centres are sp apart, fg apart when a fold is involved */
+function layout(steps,sp,fg){var cx=0,out=[];steps.forEach(function(st,k){if(k>0)cx+=(steps[k-1].fold||st.fold)?fg:sp;out.push({x:cx,st:st})});return out}
+function segs(items,r,fr){var h="";for(var k=1;k<items.length;k++){var a=items[k-1],b=items[k],dash=!!(a.st.fold||b.st.fold),x1=a.x+(a.st.fold?fr:r),x2=b.x-(b.st.fold?fr:r),grey=(a.st.s==="work"||a.st.s==="plan");h+='<i class="seg'+(dash?" dash":"")+(grey?" grey":"")+'" style="left:'+x1+'px;width:'+Math.max(0,x2-x1)+'px"></i>'}return h}
+function dots(items){var h="";items.forEach(function(it){h+=it.st.fold?'<span class="fold" style="left:'+it.x+'px">+'+it.st.fold+'</span>':'<i class="d '+it.st.s+'" style="left:'+it.x+'px"></i>'});return h}
+function bind(){
+  stage.querySelectorAll("[data-id]").forEach(function(el){el.addEventListener("click",function(){sel=el.dataset.id;render()})});
+}
+document.addEventListener("keydown",function(e){
+  var f={ArrowRight:1,ArrowDown:1,ArrowLeft:-1,ArrowUp:-1}[e.key];if(!f)return;e.preventDefault();
+  var i=WS.findIndex(function(w){return w.id===sel});sel=WS[(i+f+WS.length)%WS.length].id;render();
+});
+
+WS=[];var stage=document.getElementById('stage');var Y0=56,YG=52,FX={x:540,y:160},NX=720;
+function esc(v){return String(v).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
+function av(n){return '<img src="'+FACES[n]+'" alt="'+esc(n)+'" title="'+esc(n)+'">'}
+function glyphs(m){return m.split("").map(function(c){return '<i class="m k-'+c+'"></i>'}).join("")}
+function render(){
+  var html='',svg='',total=0;
+  html+='<span class="colH" style="left:0;top:24px"><b>Sessions</b> · the trace</span>';
+  SESS.forEach(function(s,i){var y=Y0+YG*i;total+=s.mem.length;
+    html+='<div class="sess" style="top:'+(y-20)+'px">'+av(s.who)+'<span class="who">'+esc(s.who)+' <span>· '+esc(s.agent)+'</span></span><span class="when">'+esc(s.when)+'</span><span class="mem">'+glyphs(s.mem)+'</span><span class="n">'+s.mem.length+'</span></div>';
+    svg+='<path class="wire" d="M392 '+y+' C 460 '+y+', 470 '+FX.y+', '+(FX.x-17)+' '+FX.y+'"></path>';
+  });
+  svg+='<path class="wire out" d="M'+(FX.x+17)+' '+FX.y+' L '+(NX-1)+' '+FX.y+'"></path>';
+  html+='<div class="fx">ƒ</div>';
+  html+='<div class="proj"><div class="t">Projection · nothing stored</div>'+
+        '<div><b>state</b>work · downhill</div><div><b>working</b>Rem</div><div><b>evidenced</b>1 of 2</div><div><b>waiting on</b><span class="am">Rin · accept</span></div>'+
+        '<div><b>memories</b>'+total+' in '+SESS.length+' sessions</div></div>';
+  var n=NODE,crit='';n.accept.forEach(function(c){crit+='<div class="crit'+(c.ok?'':' open')+'"><i></i>'+esc(c.t)+'<em>'+esc(c.ev)+'</em></div>'});
+  html+='<div class="node"><i class="in"></i>'+
+    '<div class="addr">'+n.addr+'<span>'+esc(n.born)+'</span></div>'+
+    '<div class="claim">'+esc(n.claim)+'</div>'+
+    '<div class="lbl">Why</div><div class="why">'+esc(n.why)+'</div>'+
+    '<div class="lbl">Accept when</div>'+crit+
+    '<div class="lbl">Human · twice</div>'+
+    '<div class="act"><i></i>Authorized<em>'+esc(n.authorized)+'</em></div>'+
+    '<div class="act wait"><i></i>Accept<em>'+esc(n.owner)+' · waiting</em></div>'+
+    '<div class="ppl"><div class="who"><div class="cap">Owner</div><div class="row">'+av(n.owner)+'<span class="n">'+esc(n.owner)+'</span></div></div>'+
+      '<div class="who"><div class="cap">Working</div><div class="row on">'+av("Rem")+'<span class="n">Rem</span></div></div>'+
+      '<div class="who"><div class="cap">Contributed</div><div class="row">'+av("Erik")+'<span class="n">Erik</span></div></div></div>'+
+    '<div class="prop"><i></i><b>'+n.proposed.addr+'</b> '+esc(n.proposed.t)+' · proposed · '+esc(n.proposed.from)+'</div>'+
+  '</div>';
+  stage.innerHTML='<svg class="fanSvg" viewBox="0 0 1136 440" aria-hidden="true">'+svg+'</svg>'+html;
+}
+
+render();
+})();
+</script>
+</body>
+</html>

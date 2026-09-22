@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>Echo — 直投版 · 第 14 页</title>
+<style>
+:root{
+  --bg:#050609; --ink:#f3f5fa;
+  --muted:rgba(219,224,238,.68); --faint:rgba(211,217,235,.42);
+  --line:rgba(220,227,255,.075); --line-strong:rgba(220,227,255,.13);
+  --blue:#5267ff; --blue-bright:#aeb9f5; --eyebrow:rgba(177,188,255,.78);
+  --sans:"Avenir Next","Avenir","PingFang SC","Hiragino Sans GB","Helvetica Neue",sans-serif;
+  --mono:"IBM Plex Mono","Menlo",monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html,body{background:#000;font-family:var(--sans);color:var(--ink);-webkit-font-smoothing:antialiased;}
+.slide{position:relative;width:1280px;height:720px;margin:24px auto;overflow:hidden;
+  background:
+    radial-gradient(ellipse 78% 48% at 50% -18%, rgba(69,88,255,.13), transparent 66%),
+    radial-gradient(circle at 84% 78%, rgba(0,0,242,.13), transparent 30rem),
+    linear-gradient(180deg,#050609 0%,#080a10 44%,#050609 100%);
+  display:flex;flex-direction:column;padding:52px 76px 40px;}
+.slide::before{content:"";position:absolute;inset:0;opacity:.035;pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.84' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.9'/%3E%3C/svg%3E");}
+.slide>*{position:relative;z-index:1;}
+
+.eyebrow{display:flex;align-items:center;gap:10px;
+  font:600 12px/1.2 var(--mono);letter-spacing:.18em;text-transform:uppercase;color:var(--eyebrow);}
+.eyebrow .dot{width:6px;height:6px;border-radius:50%;background:#6075ff;
+  box-shadow:0 0 0 4px rgba(82,103,255,.1),0 0 18px rgba(82,103,255,.62);}
+.eyebrow .brand{color:var(--ink);font-weight:700;letter-spacing:.24em;}
+
+.h1{margin-top:24px;font-weight:600;letter-spacing:-.022em;line-height:1.13;font-size:37px;color:var(--ink);}
+.h1 em{font-style:normal;color:var(--blue-bright);}
+
+.main{flex:1;display:flex;gap:52px;min-height:0;margin-top:22px;}
+
+/* 左：我们为什么存在 */
+.why{flex:1.12;min-width:0;display:flex;flex-direction:column;gap:14px;}
+.beat{padding-left:16px;border-left:2px solid rgba(82,103,255,.45);}
+.beat p{font-size:15.5px;line-height:1.58;color:var(--muted);letter-spacing:-.005em;}
+.beat p b{color:var(--ink);font-weight:600;}
+.beat.last{border-left-color:rgba(174,185,245,.9);}
+.beat.last p{color:var(--ink);font-size:16px;}
+
+/* 右：团队 */
+.team{flex:1;min-width:0;border-left:1px solid var(--line);padding-left:40px;}
+.k{font:600 11px/1.2 var(--mono);letter-spacing:.18em;text-transform:uppercase;color:var(--eyebrow);}
+.founder{margin-top:13px;padding-bottom:14px;border-bottom:1px solid var(--line);}
+.founder .nm{font-size:24px;font-weight:600;letter-spacing:-.015em;color:var(--ink);}
+.founder .nm span{font-size:13px;font-weight:500;color:var(--blue-bright);margin-left:10px;letter-spacing:0;}
+.founder .bio{margin-top:8px;font-size:13px;line-height:1.55;color:var(--muted);}
+.founder .bio b{color:var(--ink);font-weight:600;}
+.orgs{margin-top:13px;display:flex;align-items:center;gap:9px;flex-wrap:wrap;}
+.orgs .chip{background:#fff;border-radius:8px;height:30px;display:flex;align-items:center;justify-content:center;padding:0 10px;box-shadow:0 2px 10px rgba(0,0,0,.4);}
+.orgs img{width:auto;display:block;}
+.rows{margin-top:12px;display:flex;flex-direction:column;gap:8px;}
+.r{display:flex;gap:14px;align-items:baseline;}
+.r .n{flex:none;width:98px;font-size:21px;font-weight:700;letter-spacing:-.015em;color:#ff5f52;line-height:1.15;white-space:nowrap;}
+.r .t{font-size:12.8px;line-height:1.5;color:var(--muted);}
+.r .t b{color:var(--ink);font-weight:600;display:block;font-size:13.8px;margin-bottom:1px;}
+
+/* 收尾：整本 deck 的最后一句 */
+.closer{margin-top:18px;border-top:1px solid var(--line-strong);padding-top:16px;
+  display:flex;justify-content:space-between;align-items:flex-end;gap:32px;}
+.closer .line{font-size:26px;white-space:nowrap;font-weight:600;letter-spacing:-.018em;line-height:1.3;color:var(--ink);}
+.closer .line b{color:var(--blue-bright);font-weight:600;}
+.closer .foot{flex:none;font:500 10.5px var(--mono);letter-spacing:.06em;color:var(--faint);padding-bottom:5px;}
+.closer .foot em{font-style:normal;color:var(--blue-bright);}
+
+@page{size:13.333in 7.5in;margin:0;}
+@media print{html,body{background:#000;} .slide{margin:0;}}
+@media screen{.slide{box-shadow:0 10px 40px rgba(0,0,0,.6);}}
+</style>
+</head>
+<body>
+
+<section class="slide">
+
+  <div class="eyebrow"><span class="dot"></span><span class="brand">ECHO</span><span>我们为什么存在</span></div>
+
+  <div class="h1">每一次新媒介的出现，都推动了文明向前。<br><em>Agent 时代，Echo 是思想的媒介。</em></div>
+
+  <div class="main">
+
+    <div class="why">
+      <div class="beat">
+        <p>文字的出现，让<b>语言</b>得以保存；图像让<b>容貌</b>得以保存；而视频让<b>瞬间</b>可以脱离现场而存在。</p>
+      </div>
+      <div class="beat">
+        <p>思想却一直没有这样的媒介。一个人的<b>判断、记忆和意图</b>，通常随着他的离开一起消失。</p>
+      </div>
+      <div class="beat">
+        <p>今天，Echo 让<b>思想形成的过程</b>也能被保存：谁判断的、基于什么、想要什么。人不在场，思想也能被<b>理解、使用和再造</b>。</p>
+      </div>
+      <div class="beat">
+        <p>每个时代都会诞生自己的经济体，Agent 时代也一样。在那个经济体里，<b>公司的 context 是最重要的资产</b>，并且会变成<b>可以快速交易和流动的商品</b>。人也因此更自由。</p>
+      </div>
+      <div class="beat last">
+        <p>所以我们今天做得很重。往深处看，我们是在给那个社会搭一套 <b>knowledge engine</b>。</p>
+      </div>
+    </div>
+
+    <div class="team">
+      <div class="k">做这件事的人</div>
+
+      <div class="founder">
+        <div class="nm">Kobe Wang<span>创始人 &amp; CEO</span></div>
+        <div class="bio">前 <b>Roblox</b> 社交产品经理，任内社交 DAU 突破 <b>1 亿</b>；
+          前人人产品经理，CMU。三次创业，<b>自掏腰包做 Echo</b>。</div>
+      </div>
+
+      <div class="orgs">
+        <span class="chip"><img src="deck_assets/direct/orgs/microsoft.svg" alt="Microsoft" style="height:15px;"></span>
+        <span class="chip"><img src="deck_assets/direct/orgs/amazon.svg" alt="Amazon" style="height:13px;margin-top:4px;"></span>
+        <span class="chip"><img src="deck_assets/direct/orgs/berkeley.svg" alt="UC Berkeley" style="height:24px;"></span>
+        <span class="chip"><img src="deck_assets/direct/orgs/ucla.svg" alt="UCLA" style="height:13px;"></span>
+        <span class="chip"><img src="deck_assets/direct/orgs/bu.svg" alt="Boston University" style="height:24px;"></span>
+        <span class="chip"><img src="deck_assets/direct/orgs/cmu.svg" alt="Carnegie Mellon" style="height:14px;"></span>
+      </div>
+
+      <div class="rows">
+        <div class="r">
+          <div class="n">6 人 · 2 年</div>
+          <div class="t"><b>核心团队零流失</b>来自 Microsoft AI、Amazon、UC Berkeley、UCLA、BU 与 CMU</div>
+        </div>
+        <div class="r">
+          <div class="n">5 年</div>
+          <div class="t"><b>全职 all-in 做 Echo</b>从社交、知识管理到 context 管理，把关键场景完整走过</div>
+        </div>
+        <div class="r">
+          <div class="n">100%</div>
+          <div class="t"><b>AI-native 工作方式</b>Codex / Claude Code / OpenClaw 重度用户，不外包</div>
+        </div>
+        <div class="r">
+          <div class="n">SF</div>
+          <div class="t"><b>Echo House · 旧金山 Marina</b>一半团队住在一起</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="closer">
+    <div class="line"></div>
+    <div class="foot"><em>kobe@iditor.com</em> &middot; echoknows.com &middot; 14</div>
+  </div>
+
+</section>
+
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1280, initial-scale=1">
+<title>Echo — 直投版 · 第 11 页</title>
+<style>
+:root{
+  --ink:#f3f5fa; --muted:rgba(219,224,238,.64); --faint:rgba(211,217,235,.42);
+  --line:rgba(220,227,255,.075); --line-strong:rgba(220,227,255,.15);
+  --blue:#5267ff; --blue-bright:#aeb9f5; --eyebrow:rgba(177,188,255,.78);
+  --sans:"Avenir Next","Avenir","PingFang SC","Hiragino Sans GB","Helvetica Neue",sans-serif;
+  --mono:"IBM Plex Mono","Menlo",monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{background:#000;font-family:var(--sans);color:var(--ink);-webkit-font-smoothing:antialiased}
+.slide{position:relative;width:1280px;height:720px;margin:24px auto;overflow:hidden;
+  background:
+    radial-gradient(ellipse 78% 48% at 50% -18%,rgba(69,88,255,.13),transparent 66%),
+    radial-gradient(circle at 82% 22%,rgba(0,0,242,.13),transparent 28rem),
+    linear-gradient(180deg,#050609 0%,#080a10 44%,#050609 100%);
+  display:flex;flex-direction:column;padding:46px 76px 34px}
+.slide::before{content:"";position:absolute;inset:0;opacity:.035;pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.84' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.9'/%3E%3C/svg%3E")}
+.slide>*{position:relative;z-index:1}
+.eyebrow{display:flex;align-items:center;gap:10px;font:600 12px/1.2 var(--mono);letter-spacing:.18em;text-transform:uppercase;color:var(--eyebrow)}
+.eyebrow .dot{width:6px;height:6px;border-radius:50%;background:#6075ff;box-shadow:0 0 0 4px rgba(82,103,255,.1),0 0 18px rgba(82,103,255,.62)}
+.eyebrow .brand{color:var(--ink);font-weight:700;letter-spacing:.24em}
+h1{margin-top:20px;font-size:54px;line-height:1.04;letter-spacing:-.028em;font-weight:600;white-space:nowrap}
+h1 em{font-style:normal;color:var(--blue-bright)}
+.sub{margin-top:9px;font-size:19px;line-height:1.42;color:var(--muted)}
+.sub b{color:var(--ink);font-weight:600}
+.matrix-wrap{flex:1;min-height:0;display:flex;flex-direction:column;justify-content:center;margin-top:11px}
+.matrix-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:7px}
+.matrix-head .k{font:600 10.5px var(--mono);letter-spacing:.17em;text-transform:uppercase;color:var(--eyebrow)}
+.matrix-head .s{font:500 10px var(--mono);letter-spacing:.045em;color:var(--faint)}
+.matrix{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line-strong);border-left:1px solid var(--line)}
+.company{height:104px;display:flex;align-items:center;gap:18px;padding:16px 25px;border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
+.mark{width:64px;height:64px;flex:none;border-radius:14px;background:rgba(247,247,242,.96);display:flex;align-items:center;justify-content:center;overflow:hidden}
+.mark img{width:56px;height:56px;object-fit:contain;display:block}
+.company.salesforce .mark img{width:50px;height:50px;image-rendering:auto}
+.company-name{font-size:20px;font-weight:600;letter-spacing:-.012em;color:var(--ink)}
+.company-role{display:none}
+.funnel{display:flex;justify-content:center;align-items:center;gap:11px;margin-top:11px;font:600 11px var(--mono);letter-spacing:.075em;color:var(--muted)}
+.funnel b{color:var(--blue-bright);font-weight:700}
+.funnel .arrow{color:rgba(174,185,245,.45)}
+.closer{display:flex;justify-content:space-between;align-items:baseline;border-top:1px solid var(--line-strong);padding-top:13px}
+.closer .line-copy{font-size:20px;font-weight:500;color:var(--ink);letter-spacing:-.01em}
+.closer .line-copy b{color:var(--blue-bright);font-weight:600}
+.closer .foot{font:500 10.5px var(--mono);letter-spacing:.06em;color:var(--faint)}
+@page{size:13.333in 7.5in;margin:0}
+@media print{html,body{background:#000}.slide{margin:0}}
+@media screen{.slide{box-shadow:0 10px 40px rgba(0,0,0,.6)}}
+</style>
+</head>
+<body>
+<section class="slide">
+  <div class="eyebrow"><span class="dot"></span><span class="brand">ECHO</span><span>资金用途 · 销售</span></div>
+  <h1>这 <em>$4M</em> 全部投给销售。就这一件事。</h1>
+  <div class="sub">我们招 FDE（驻场部署工程师），去找那些<b>已经在招人部署和管理 Agent 的公司。</b></div>
+
+  <div class="matrix-wrap">
+    <div class="matrix-head">
+      <div class="k">近期招聘信号 · FDE / Agent 工作流</div>
+      <div class="s">公开职位 · 2026 年 7–8 月</div>
+    </div>
+    <div class="matrix" aria-label="Companies recently hiring forward-deployed engineering or agent workflow roles">
+      <div class="company"><div class="mark"><img src="assets/logos/openai.png" alt="OpenAI logo"></div><div><div class="company-name">OpenAI</div><span class="company-role">FDE 部门</span></div></div>
+      <div class="company"><div class="mark"><img src="assets/logos/anthropic.png" alt="Anthropic logo"></div><div><div class="company-name">Anthropic</div><span class="company-role">Agent 部署</span></div></div>
+      <div class="company salesforce"><div class="mark"><img src="assets/logos/salesforce.png" alt="Salesforce logo"></div><div><div class="company-name">Salesforce</div><span class="company-role">Agent 工作流</span></div></div>
+      <div class="company"><div class="mark"><img src="assets/logos/ramp.png" alt="Ramp logo"></div><div><div class="company-name">Ramp</div><span class="company-role">驻场 FDE 小组</span></div></div>
+      <div class="company"><div class="mark"><img src="assets/logos/commure.png" alt="Commure logo"></div><div><div class="company-name">Commure</div><span class="company-role">前置部署</span></div></div>
+      <div class="company"><div class="mark"><img src="assets/logos/gecko-robotics.png" alt="Gecko Robotics logo"></div><div><div class="company-name">Gecko Robotics</div><span class="company-role">现场 AI 系统</span></div></div>
+      <div class="company"><div class="mark"><img src="assets/logos/lindy.png" alt="Lindy logo"></div><div><div class="company-name">Lindy</div><span class="company-role">Agent 运维</span></div></div>
+      <div class="company"><div class="mark"><img src="assets/logos/runway.png" alt="Runway logo"></div><div><div class="company-name">Runway</div><span class="company-role">应用 AI 部署</span></div></div>
+      <div class="company"><div class="mark"><img src="assets/logos/unlimit.png" alt="Unlimit logo"></div><div><div class="company-name">Unlimit</div><span class="company-role">高层已接触</span></div></div>
+    </div>
+    <div class="funnel"><b>120</b> 个目标客户 <span class="arrow">→</span> <b>15</b> 次付费诊断 <span class="arrow">→</span> <b>8</b> 个试点 <span class="arrow">→</span> <b>4–6</b> 份年度合同</div>
+  </div>
+
+  <div class="closer">
+    <div class="line-copy"><b>$600M</b> 是目标，不是天花板。</div>
+    <div class="foot">echoknows.com · 11</div>
+  </div>
+</section>
+</body>
+</html>

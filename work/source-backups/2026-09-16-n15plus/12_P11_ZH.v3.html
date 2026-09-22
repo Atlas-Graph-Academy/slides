@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1280, initial-scale=1">
+<title>Echo — Narrative · Use of funds</title>
+<link rel="stylesheet" href="v2.css">
+<style>
+h1{font-size:50px}
+.main{margin-top:48px;display:grid;grid-template-columns:1fr 420px;gap:56px}
+
+/* the funnel */
+.fn{display:flex;flex-direction:column;gap:12px}
+.st{height:78px;border-radius:14px;display:flex;align-items:center;gap:18px;padding:0 22px;
+  border:1px solid rgba(160,172,255,.3);background:linear-gradient(90deg,rgba(120,135,255,.16),rgba(120,135,255,.04)),#0b0d15}
+.st b{font-size:40px;font-weight:700;letter-spacing:-.04em;min-width:98px;
+  background:linear-gradient(180deg,#fff 20%,#aeb9f5);-webkit-background-clip:text;background-clip:text;color:transparent}
+.st span{font-size:18px;font-weight:600;color:rgba(243,245,250,.86);white-space:nowrap}
+.st.win{border-color:rgba(111,207,255,.5);background:linear-gradient(90deg,rgba(111,207,255,.2),rgba(111,207,255,.05)),#0b0d15;box-shadow:0 0 30px rgba(111,207,255,.15)}
+.st.win b{background:linear-gradient(180deg,#fff 20%,#9fdcff);-webkit-background-clip:text;background-clip:text}
+
+/* who we sell to */
+.tg{display:grid;grid-template-columns:repeat(3,1fr);gap:22px 12px;align-content:start;padding-top:6px}
+.tg .hd{grid-column:1/-1;font-size:17px;font-weight:600;color:var(--muted);margin-bottom:2px}
+.co{display:flex;flex-direction:column;align-items:center;gap:9px}
+.co i{width:62px;height:62px;border-radius:15px;background:#f7f7f2;display:flex;align-items:center;justify-content:center;overflow:hidden;box-shadow:0 8px 22px rgba(0,0,0,.35)}
+.co img{width:54px;height:54px;object-fit:contain}
+.co b{font-size:14px;font-weight:600;color:rgba(243,245,250,.82);white-space:nowrap}
+
+.closer{margin-top:auto}
+.src{position:absolute;left:76px;right:76px;bottom:11px;display:flex;justify-content:space-between;font:500 9.5px var(--mono);color:var(--faint);letter-spacing:.03em}
+</style>
+</head>
+<body>
+<section class="slide">
+  <div class="eyebrow"><span class="dot"></span><span class="brand">ECHO</span><span>第五幕 · 资金用途</span></div>
+  <h1><em>400 万美元</em>用来加速销售：招驻场工程师。</h1>
+
+  <div class="main">
+    <div class="fn">
+      <div class="st" style="width:100%"><b>120</b><span>个目标客户</span></div>
+      <div class="st" style="width:84%"><b>15</b><span>次付费诊断</span></div>
+      <div class="st" style="width:68%"><b>8</b><span>个试点</span></div>
+      <div class="st win" style="width:52%"><b>4–6</b><span>份年度合同</span></div>
+    </div>
+    <div class="tg">
+      <div class="hd">这些公司已经在招人部署 agent</div>
+      <div class="co"><i><img src="assets/logos/openai.png" alt=""></i><b>OpenAI</b></div>
+      <div class="co"><i><img src="assets/logos/anthropic.png" alt=""></i><b>Anthropic</b></div>
+      <div class="co"><i><img src="assets/logos/salesforce.png" alt="" style="width:48px;height:48px"></i><b>Salesforce</b></div>
+      <div class="co"><i><img src="assets/logos/ramp.png" alt=""></i><b>Ramp</b></div>
+      <div class="co"><i><img src="assets/logos/commure.png" alt=""></i><b>Commure</b></div>
+      <div class="co"><i><img src="assets/logos/gecko-robotics.png" alt=""></i><b>Gecko Robotics</b></div>
+      <div class="co"><i><img src="assets/logos/lindy.png" alt=""></i><b>Lindy</b></div>
+      <div class="co"><i><img src="assets/logos/runway.png" alt=""></i><b>Runway</b></div>
+      <div class="co"><i><img src="assets/logos/unlimit.png" alt=""></i><b>Unlimit</b></div>
+    </div>
+  </div>
+
+  <div class="closer"><div class="line-copy"><b>6 亿美元</b>是目标，不是天花板。</div></div>
+  <div class="src"><span>漏斗：销售计划 · 招聘信号：FDE 与 agent 工作流岗位公开职位，2026 年 7–8 月</span><span>17</span></div>
+</section>
+</body>
+</html>

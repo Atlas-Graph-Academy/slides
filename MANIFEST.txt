@@ -1,0 +1,48 @@
+ECHO DIRECT DECK — BILINGUAL 14-PAGE HTML LIVE REVIEW
+Prepared: 2026-09-01
+
+SCOPE
+Synchronized review copy of the canonical 14-page Echo Direct Deck in English
+and Simplified Chinese. The live authoring source remains
+/Users/kobe/Documents/EchoForPeople/deck/.
+The sequence follows the final 14-page PDFs recalled from EchoMem and verified
+against the source directory /Users/kobe/Documents/EchoForPeople/deck/.
+
+HOW TO OPEN
+Open index.html for the bilingual browser. Use the English / 中文 toggle,
+the slide list, or the left/right arrow keys. Each HTML page is also standalone.
+
+CANONICAL PAGE ORDER
+Logical page  Source key  English file         Chinese file
+01            P1          en/01_P1.html        zh/01_P1_ZH.html
+02            P2          en/02_P2.html        zh/02_P2_ZH.html
+03            P3          en/03_P3.html        zh/03_P3_ZH.html
+04            P4          en/04_P4.html        zh/04_P4_ZH.html
+05            P5          en/05_P5.html        zh/05_P5_ZH.html
+06            P6          en/06_P6.html        zh/06_P6_ZH.html
+07            P7          en/07_P7.html        zh/07_P7_ZH.html
+08            P8          en/08_P8.html        zh/08_P8_ZH.html
+09            P9          en/09_P9.html        zh/09_P9_ZH.html
+10            P10         en/10_P10.html       zh/10_P10_ZH.html
+11            P11         en/11_P11.html       zh/11_P11_ZH.html
+12            P11_5       en/12_P11_5.html     zh/12_P11_5_ZH.html
+13            P13         en/13_P13.html       zh/13_P13_ZH.html
+14            P14         en/14_P14.html       zh/14_P14_ZH.html
+
+PDFS
+pdf/Echo_Direct_Deck_EN_14P_ViewerSafe.pdf
+SHA-256: 7ddc459a9c06adad0c3b532ac3bb9c04fde26de56d2240aad5ed126e9f3b9c59
+pdf/Echo_Direct_Deck_ZH_14P_ViewerSafe.pdf
+SHA-256: 0703b898d63260e288b690be070aaba018ff32c98f6e55df40174559963b0820
+
+INTENTIONALLY EXCLUDED FROM THE 14-PAGE MAINLINE
+ECHO_DECK_DIRECT_P6_5.html / ECHO_DECK_DIRECT_P6_5_ZH.html
+ECHO_DECK_DIRECT_P11_2.html / ECHO_DECK_DIRECT_P11_2_ZH.html
+ECHO_DECK_DIRECT_P9_ALT_5ROW.html
+
+NOTES
+- Page 12 is sourced from P11_5 and normalized to logical page 12.
+- Each language folder contains its own assets/ and deck_assets/ trees so the
+  archive remains portable when moved away from the original source directory.
+- Page 1 uses externally hosted Google Fonts and the Rive canvas runtime; the
+  rest of the visual assets required by the deck are included locally.

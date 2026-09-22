@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Echo — Narrative · Three obvious things</title>
+<style>
+:root{
+  --ink:#f3f5fa; --muted:rgba(219,224,238,.64); --faint:rgba(211,217,235,.42);
+  --line:rgba(220,227,255,.075); --line-strong:rgba(220,227,255,.13);
+  --blue:#5267ff; --blue-bright:#aeb9f5; --eyebrow:rgba(177,188,255,.78); --red:#ff5f52;
+  --sans:"Avenir Next","Avenir","PingFang SC","Hiragino Sans GB","Helvetica Neue",sans-serif;
+  --mono:"IBM Plex Mono","Menlo",monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html,body{background:#000;font-family:var(--sans);color:var(--ink);-webkit-font-smoothing:antialiased;}
+.slide{position:relative;width:1280px;height:720px;margin:24px auto;overflow:hidden;
+  background:
+    radial-gradient(ellipse 78% 48% at 50% -18%, rgba(69,88,255,.13), transparent 66%),
+    radial-gradient(circle at 82% 22%, rgba(0,0,242,.13), transparent 28rem),
+    linear-gradient(180deg,#050609 0%,#080a10 44%,#050609 100%);
+  display:flex;flex-direction:column;padding:52px 76px 40px;}
+.slide::before{content:"";position:absolute;inset:0;opacity:.035;pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.84' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.9'/%3E%3C/svg%3E");}
+.slide>*{position:relative;z-index:1;}
+
+.eyebrow{display:flex;align-items:center;gap:10px;
+  font:600 12px/1.2 var(--mono);letter-spacing:.18em;text-transform:uppercase;color:var(--eyebrow);}
+.eyebrow .dot{width:6px;height:6px;border-radius:50%;background:#6075ff;
+  box-shadow:0 0 0 4px rgba(82,103,255,.1),0 0 18px rgba(82,103,255,.62);}
+.eyebrow .brand{color:var(--ink);font-weight:700;letter-spacing:.24em;}
+
+.h1{margin-top:24px;font-size:46px;font-weight:600;letter-spacing:-.024em;line-height:1.05;}
+.h1 em{font-style:normal;color:var(--blue-bright);}
+
+/* three trends — each carried by one violent number */
+.trends{flex:1;display:flex;flex-direction:column;justify-content:center;gap:0;margin-top:8px;min-height:0;}
+.tr{display:flex;align-items:center;gap:34px;padding:22px 0;border-top:1px solid var(--line-strong);}
+.tr .num{flex:none;width:236px;font-size:64px;font-weight:700;letter-spacing:-.025em;line-height:.95;color:var(--ink);}
+.tr .num small{display:block;margin-top:6px;font:500 10.5px var(--mono);letter-spacing:.1em;
+  text-transform:uppercase;color:var(--faint);}
+.tr .bd{flex:1;}
+.tr .chip{display:inline-block;font:600 9.5px var(--mono);letter-spacing:.16em;text-transform:uppercase;
+  color:rgba(219,224,238,.55);border:1px solid var(--line-strong);border-radius:99px;padding:3px 10px;}
+.tr .t{margin-top:8px;font-size:25px;font-weight:600;letter-spacing:-.018em;line-height:1.15;color:var(--ink);}
+.tr .s{margin-top:6px;font-size:14px;font-weight:500;line-height:1.45;color:var(--muted);}
+.tr .s b{color:var(--ink);font-weight:600;}
+
+.tr .num .src-ic{display:inline-flex;vertical-align:middle;margin-right:12px;height:40px;padding:0 10px;align-items:center;border-radius:8px;background:#fff;color:#000;font:800 20px/1 "Helvetica Neue",Arial,sans-serif;letter-spacing:-.04em;position:relative;top:-8px;}
+.tr .num .src-ic img{width:44px;height:44px;display:block;}
+.tr .s img.inl{width:15px;height:15px;border-radius:3px;vertical-align:-2px;margin-right:6px;}
+.tr .num{white-space:nowrap;}
+
+/* trend 3 — the empty slot */
+.tr.gap{border-top:none;margin-top:12px;margin-bottom:16px;padding:20px 28px;border:1.5px dashed rgba(255,95,82,.55);border-radius:14px;
+  background:radial-gradient(ellipse 70% 120% at 50% 0%, rgba(255,95,82,.05), transparent 70%);}
+.tr.gap .num{color:var(--red);text-shadow:0 0 34px rgba(255,95,82,.35);}
+.tr.gap .chip{color:var(--red);border-color:rgba(255,95,82,.45);}
+.tr.gap .t em{font-style:normal;color:var(--red);}
+
+.closer{display:flex;justify-content:space-between;align-items:baseline;
+  border-top:1px solid var(--line-strong);padding-top:16px;}
+.closer .line{font-size:20px;font-weight:500;color:var(--ink);letter-spacing:-.01em;}
+.closer .line b{color:var(--blue-bright);font-weight:600;}
+.closer .foot{font:500 10.5px var(--mono);letter-spacing:.06em;color:var(--faint);}
+
+@page{size:13.333in 7.5in;margin:0;}
+@media print{html,body{background:#000;} .slide{margin:0;}}
+@media screen{.slide{box-shadow:0 10px 40px rgba(0,0,0,.6);}}
+</style>
+</head>
+<body>
+
+<section class="slide">
+
+  <div class="eyebrow"><span class="dot"></span><span class="brand">ECHO</span><span>Act I · The world we are in</span></div>
+
+  <div class="h1">Three <em>obvious</em> things.</div>
+
+  <div class="trends">
+
+    <div class="tr">
+      <div class="num">$105B<small>Trend 01 · OpenAI + Anthropic</small></div>
+      <div class="bd">
+        <span class="chip">Happening now</span>
+        <div class="t">Companies already pay for the work agents do.</div>
+        <div class="s">OpenAI <b>$40B</b> + Anthropic <b>$65B</b> — <b>$105B</b> combined 2026 run rate, up from under $30B a year ago. Budgets are shifting from buying software to buying machine labor — the explosion on page 03.</div>
+      </div>
+    </div>
+
+    <div class="tr">
+      <div class="num"><span class="src-ic">a16z</span>81%<small>Trend 02 · a16z · Jan 2026</small></div>
+      <div class="bd">
+        <span class="chip">Happening now</span>
+        <div class="t">No model vendor holds the enterprise. Using several is the norm.</div>
+        <div class="s">a16z surveyed 100 Global 2000 CIOs: <b>81%</b> run <b>3+ model families</b>, up from 68% less than a year ago.<br><img class="inl" src="deck_assets/direct/ramp.com.png" alt="">Ramp spend data: <b>79%</b> of businesses paying Anthropic also pay OpenAI.</div>
+      </div>
+    </div>
+
+    <div class="tr gap">
+      <div class="num">0<small>Trend 03 · Still empty</small></div>
+      <div class="bd">
+        <span class="chip">Still empty</span>
+        <div class="t">Continuity <em>doesn’t exist yet.</em></div>
+        <div class="s"><b>Zero</b> platforms let context leave their own walls. OpenAI’s memory works only inside OpenAI, Anthropic’s only inside Anthropic — <b>no platform will build its own exit.</b></div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="closer">
+    <div class="line">Context is stuck behind vendor walls — <b>every session rebuys the same work.</b></div>
+    <div class="foot" style="white-space:nowrap">a16z CIO survey Jan 2026 · Ramp AI Index · 04</div>
+  </div>
+
+</section>
+
+</body>
+</html>

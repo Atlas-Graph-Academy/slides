@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1280, initial-scale=1">
+<title>Echo — Narrative · Why we exist</title>
+<link rel="stylesheet" href="v2.css">
+<style>
+h1{font-size:50px}
+.main{margin-top:56px;display:grid;grid-template-columns:500px minmax(0,1fr);gap:0 40px}
+
+/* left: every medium preserved something */
+.media{position:relative;display:flex;flex-direction:column;gap:30px}
+.media::before{content:"";position:absolute;left:25px;top:26px;bottom:26px;width:2px;background:linear-gradient(180deg,rgba(174,185,245,.18),#6fcfff)}
+.md{position:relative;display:flex;align-items:center;gap:14px}
+.md .ic-old{width:52px;height:52px;flex:none;border-radius:14px;display:flex;align-items:center;justify-content:center;background:#0c0e17;border:1px solid rgba(160,172,255,.3)}
+.md .lg{display:flex;flex:none;width:84px;align-items:center;height:52px}
+.md .lg img,.md .lg .tt{width:52px;height:52px;border-radius:14px;object-fit:cover;box-shadow:0 8px 22px rgba(0,0,0,.4)}
+.md .lg .tt{display:flex;align-items:center;justify-content:center;background:#000;border:1px solid rgba(255,255,255,.18);margin-left:4px}
+.md .lg.two{align-items:center}.md .lg.two>img,.md .lg.two .tt{width:40px;height:40px;border-radius:11px}
+.md .lg.two .tt img{width:20px;height:20px}
+.md .lg .tt img{width:26px;height:26px;border-radius:0;box-shadow:none}
+.md .lg img.echo{width:60px;height:60px;margin:-4px;border-radius:50%;object-fit:contain;box-shadow:0 0 26px rgba(80,160,255,.45)}
+.md b{font-size:21px;font-weight:700;letter-spacing:-.02em;width:166px;flex:none;white-space:nowrap}
+.md i{font-style:normal;color:var(--faint);font-size:18px}
+.md > span{white-space:nowrap;font-size:18px;color:var(--muted);font-weight:500}
+.md.me{}
+.md.me .ic-old{border:0;border-radius:50%;background:radial-gradient(circle at 38% 32%,#dff7ff 0%,#6fd3ff 38%,#2f8dff 100%);box-shadow:0 0 26px rgba(80,160,255,.6)}
+.md.me b{color:#bfeaff}
+.md.me > span{color:var(--ink);font-weight:600}
+
+/* right: who is building it */
+.team{border-radius:18px;padding:22px 18px;border:1px solid var(--line-strong);background:linear-gradient(180deg,rgba(255,255,255,.035),rgba(255,255,255,.01)),#0a0c12}
+.fd{display:flex;align-items:center;gap:16px}
+.fd img{width:64px;height:64px;border-radius:50%;object-fit:cover;border:2px solid rgba(255,255,255,.2)}
+.fd b{display:block;font-size:24px;font-weight:700;letter-spacing:-.02em}
+.fd span{display:block;font-size:15px;color:var(--muted);margin-top:2px}
+.fd span u{text-decoration:none;color:var(--ink);font-weight:600}
+.row{margin-top:18px;display:flex;align-items:center;justify-content:space-between;gap:14px}
+.faces{display:flex}
+.faces img{width:30px;height:30px;border-radius:50%;object-fit:cover;border:2px solid #0a0c12;margin-left:-8px;background:#fff}
+.faces img:first-child{margin-left:0}
+.orgs{display:flex;gap:4px}
+.orgs span{height:26px;padding:0 5px;border-radius:7px;background:#fff;display:flex;align-items:center}
+.stats{margin-top:20px;display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.st{padding:14px 14px;border-radius:12px;background:rgba(255,255,255,.03);border:1px solid var(--line)}
+.st b{display:block;font-size:26px;font-weight:700;letter-spacing:-.03em;line-height:1.05;
+  background:linear-gradient(180deg,#fff 20%,#aeb9f5);-webkit-background-clip:text;background-clip:text;color:transparent}
+.st span{display:block;margin-top:4px;font-size:14px;color:var(--muted);white-space:nowrap}
+
+.bot{position:relative;width:60px;height:52px;flex:none}
+.bot img.echo{position:absolute;left:0;top:-4px;transition:opacity .4s}
+.bot canvas{position:absolute;left:-120px;top:-124px;width:300px;height:300px;opacity:0;transition:opacity .4s;pointer-events:none}
+.bot.live canvas{opacity:1}.bot.live img.echo{opacity:0}
+.closer{margin-top:auto}
+.src{position:absolute;left:76px;right:76px;bottom:11px;display:flex;justify-content:space-between;font:500 9.5px var(--mono);color:var(--faint);letter-spacing:.03em}
+.src em{font-style:normal;color:var(--blue-bright)}
+</style>
+</head>
+<body>
+<section class="slide">
+  <div class="eyebrow"><span class="dot"></span><span class="brand">ECHO</span><span>第七幕 · 我们为什么存在</span></div>
+  <h1>Agent 时代，<em>Echo 是思想的媒介。</em></h1>
+
+  <div class="main">
+    <div class="media">
+      <div class="md"><span class="lg"><img src="deck_assets/media/nytimes.png" alt=""></span><b>报纸</b><i>→</i><span>留住了语言</span></div>
+      <div class="md"><span class="lg"><img src="deck_assets/media/instagram.png" alt=""></span><b>Instagram</b><i>→</i><span>留住了容貌</span></div>
+      <div class="md"><span class="lg two"><img src="deck_assets/media/youtube.png" alt=""><span class="tt"><img src="deck_assets/media/tiktok.svg" alt=""></span></span><b>YouTube · TikTok</b><i>→</i><span>留住了瞬间</span></div>
+      <div class="md me"><span class="lg"><span class="bot" id="bot"><img class="echo" src="deck_assets/direct/echo.png" alt=""><canvas id="echoWrite" width="600" height="600"></canvas></span></span><b>Echo</b><i>→</i><span>留住思想形成的过程</span></div>
+    </div>
+
+    <div class="team">
+      <div class="fd"><img src="assets/faces/kobe-2026.png" alt=""><div><b>Kobe Wang</b><span>创始人 &amp; CEO · 前 <u>Roblox</u> 社交产品，DAU 破 1 亿</span></div></div>
+      <div class="row">
+        <div class="faces"><img src="assets/faces/kobe-2026.png" alt=""><img src="assets/faces/erik.png" alt=""><img src="assets/faces/member-2026.png" alt=""><img src="assets/faces/myfeng.png" alt=""><img src="assets/faces/rem.png" alt=""><img src="assets/faces/rin.png" alt=""></div>
+        <div class="orgs">
+          <span><img src="deck_assets/direct/orgs/microsoft.svg" alt="" style="height:14px"></span>
+          <span><img src="deck_assets/direct/orgs/amazon.svg" alt="" style="height:12px;margin-top:4px"></span>
+          <span><img src="deck_assets/direct/orgs/berkeley.svg" alt="" style="height:22px"></span>
+          <span><img src="deck_assets/direct/orgs/ucla.svg" alt="" style="height:12px"></span>
+          <span><img src="deck_assets/direct/orgs/bu.svg" alt="" style="height:22px"></span>
+          <span><img src="deck_assets/direct/orgs/cmu.svg" alt="" style="height:8px"></span>
+        </div>
+      </div>
+      <div class="stats">
+        <div class="st"><b>6 人</b><span>两年零流失</span></div>
+        <div class="st"><b>5 年</b><span>全职 all-in 做 Echo</span></div>
+        <div class="st"><b>100%</b><span>工作都在 agent 里完成</span></div>
+        <div class="st"><b>SF</b><span>Echo House · Marina</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="closer"><div class="line-copy">Agent 经济里，<b>公司的 context 是最重要的资产。</b>我们在造它的引擎。</div></div>
+  <div class="src"><span><em>kobe@iditor.com</em> · echoknows.com</span><span>20</span></div>
+</section>
+<script src="deck_assets/vendor/rive.js"></script>
+<script>
+(function(){
+  // Echo writing it down (v21 · WritingNotes). The static icon stays if Rive fails.
+  if(!window.rive) return;
+  try{
+    rive.RuntimeLoader.setWasmUrl('deck_assets/vendor/rive.wasm');
+    var box=document.getElementById('bot');
+    var r=new rive.Rive({
+      src:'deck_assets/direct/echo.riv',
+      canvas:document.getElementById('echoWrite'),
+      artboard:'Echo-GeneralFile',
+      animations:['WritingNotes-In'],
+      autoplay:true,
+      layout:new rive.Layout({fit:rive.Fit.Contain,alignment:rive.Alignment.Center}),
+      onLoad:function(){box.classList.add('live')},
+      onStop:function(){r.play(['WritingNotes-Loop','Note/1'])}
+    });
+  }catch(e){}
+})();
+</script>
+</body>
+</html>

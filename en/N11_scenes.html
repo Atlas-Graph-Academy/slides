@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1280, initial-scale=1">
+<title>Echo — Narrative · Inside real teams</title>
+<link rel="stylesheet" href="v2.css">
+<style>
+h1{font-size:48px}
+
+/* ── three teams: who figured it out → an Echo memory → who picks it up ── */
+.viz{position:relative;margin-top:36px;width:1128px;height:418px}
+.viz>svg{position:absolute;left:0;top:0;width:1128px;height:418px;overflow:visible;pointer-events:none}
+
+.head{position:absolute;top:0;font:600 10.5px var(--mono);letter-spacing:.16em;color:var(--faint);text-transform:uppercase;white-space:nowrap}
+
+/* the team, said out loud, with the companies that live this handoff */
+.team{position:absolute;left:0;width:180px;height:116px;display:flex;flex-direction:column;justify-content:center;gap:11px}
+.team b{font-size:23px;font-weight:700;letter-spacing:-.02em;line-height:1}
+.logos{display:flex;gap:4px}
+.logos img{width:31px;height:31px;border-radius:8px;object-fit:cover;background:#fff;border:1px solid rgba(255,255,255,.18)}
+
+/* a session card */
+.card{position:absolute;height:116px;border-radius:16px;padding:0 16px;display:flex;flex-direction:column;justify-content:center;
+  border:1px solid var(--line-strong);background:#0d0f16}
+.card.a{left:198px;width:306px;border-color:rgba(160,172,255,.30);
+  background:linear-gradient(90deg,rgba(143,152,255,.10),rgba(143,152,255,.02) 70%),#0d0f16}
+.card.b{left:822px;width:306px;border-color:rgba(111,207,255,.42);
+  background:linear-gradient(270deg,rgba(111,207,255,.11),rgba(111,207,255,.02) 70%),#0d0f16;box-shadow:0 0 24px rgba(111,207,255,.10)}
+.row1{display:flex;align-items:center;gap:10px;height:34px}
+.faces{display:flex}
+.faces img{width:32px;height:32px;border-radius:50%;object-fit:cover;border:2px solid #10121c;margin-left:-11px}
+.faces img:first-child{margin-left:0}
+.who{flex:1;min-width:0;font-size:12.5px;color:var(--muted);line-height:1.2;white-space:nowrap}
+.who b{display:block;font-size:14.5px;color:var(--ink);font-weight:700}
+.ags{display:flex;gap:4px}
+.ag{width:26px;height:26px;border-radius:7px;flex:none;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.ag img{width:16px;height:16px}
+.ag.claude{background:#D97757}.ag.openai{background:#000;border:1px solid rgba(255,255,255,.22)}
+.ag.cursor{background:#fff}.ag.cursor img{width:26px;height:26px}
+.card p{margin-top:12px;font-size:14px;line-height:1.3;white-space:nowrap}
+.card.b p{color:#cdeeff}
+
+/* the memory Echo carries across */
+.mem{position:absolute;left:540px;width:240px;height:86px;border-radius:14px;padding:0 14px;z-index:2;display:flex;align-items:center;
+  border:1px solid rgba(160,172,255,.34);background:linear-gradient(180deg,rgba(120,135,255,.13),rgba(120,135,255,.03)),#0c0e17;
+  box-shadow:0 0 34px rgba(96,117,255,.18)}
+.mem dl{display:grid;grid-template-columns:72px 1fr;row-gap:7px;align-items:baseline}
+.mem dt{font:600 9px var(--mono);letter-spacing:.12em;color:var(--faint);text-transform:uppercase}
+.mem dd{font-size:13px;color:var(--ink);white-space:nowrap}
+
+/* the column head: Echo itself, live */
+.mhead{position:absolute;left:512px;width:302px;top:-16px;height:44px;display:flex;align-items:center;justify-content:center;gap:4px;
+  font:600 10.5px var(--mono);letter-spacing:.1em;color:var(--eyebrow);white-space:nowrap}
+.mhead .rt{display:flex;align-items:center;gap:5px;color:#9fdcff;margin-left:6px}
+.mhead .rt::before{content:"";width:6px;height:6px;border-radius:50%;background:#6fcfff;box-shadow:0 0 8px #6fcfff;animation:blink 1.2s ease-in-out infinite}
+@keyframes blink{50%{opacity:.25}}
+.bot{position:relative;width:62px;height:44px;flex:none}
+.bot .orb{position:absolute;left:21px;top:12px;width:20px;height:20px;border-radius:50%;transition:opacity .4s;
+  background:radial-gradient(circle at 38% 30%,#e6fbff 0%,#7fdcff 40%,#35a6ff 100%);box-shadow:0 0 12px rgba(80,170,255,.7)}
+.bot canvas{position:absolute;left:-79px;top:-88px;width:220px;height:220px;opacity:0;transition:opacity .4s;pointer-events:none}
+.bot.live canvas{opacity:1}.bot.live .orb{opacity:0}
+
+/* ── callback to page 03 ── */
+.why{margin-top:14px;padding-top:15px;border-top:1px solid var(--line);display:flex;align-items:baseline;gap:34px}
+.why .lead{font-size:15px;color:var(--muted);white-space:nowrap}
+.why .x{display:flex;align-items:baseline;gap:9px;white-space:nowrap}
+.why .x b{font-size:34px;font-weight:700;letter-spacing:-.04em;line-height:1;
+  background:linear-gradient(180deg,#fff 20%,#aeb9f5);-webkit-background-clip:text;background-clip:text;color:transparent}
+.why .x span{font-size:15px;color:var(--ink);font-weight:600}
+
+.src{position:absolute;left:76px;right:76px;bottom:11px;display:flex;justify-content:space-between;font:500 9.5px var(--mono);color:var(--faint);letter-spacing:.03em}
+</style>
+</head>
+<body>
+<section class="slide">
+  <div class="eyebrow"><span class="dot"></span><span class="brand">ECHO</span><span>Act III · Inside real teams</span></div>
+  <h1>In every team, <em>Echo carries the handoff.</em></h1>
+
+  <div class="viz" id="viz">
+    <svg id="routes" viewBox="0 0 1128 418"></svg>
+  </div>
+
+  <div class="why">
+    <div class="lead">Agent use since February</div>
+    <div class="x"><b>×108</b><span>Legal</span></div>
+    <div class="x"><b>×41</b><span>Sales · Recruiting</span></div>
+    <div class="x"><b>×26</b><span>Marketing</span></div>
+    <div class="lead" style="margin-left:auto">Every new team is a new handoff.</div>
+  </div>
+
+  <div class="src"><span>Scenarios modeled on accounts we are reaching out to; not customer results · Growth: OpenAI Enterprise Codex weekly actives, Feb → Aug 2026 (page 03) · Photos: Unsplash</span><span>10</span></div>
+</section>
+
+<script>
+(function(){
+  var ZH=document.documentElement.lang.indexOf('zh')===0;
+  function T(en,zh){return ZH?zh:en}
+  var F='deck_assets/faces/',L='deck_assets/targets/',A='deck_assets/direct/';
+  var AG={claude:A+'claude.svg',openai:A+'openai.svg',cursor:L+'cursor.com.png'};
+  var ROWS=[
+    {team:T('Support','客服'),logos:['plain.com','inkeep.com','decagon.ai','sierra.ai','parahelp.com'],
+     a:{faces:['nora','leo','maya'],names:'Nora · Leo · Maya',role:T('support rota','客服轮值'),ags:['claude','openai'],
+        did:T('Trace duplicate webhooks to retries.','查出重复 webhook 来自客户端重试。')},
+     mem:[[T('Ruled out','已排除'),T('server-side resend','服务端重复投递')],[T('Cause','原因'),T('client retry config','客户端重试配置')],[T('Promised','已承诺'),T('update by 5 pm','17:00 前回复客户')]],
+     b:{face:'sam',name:'Sam',role:T('next shift','下一班'),ag:'claude',got:T('Replies at 5 pm. No new log request.','17:00 准时回复，不再找客户要日志。')}},
+    {team:T('Sales','销售'),logos:['tofuhq.com','clay.com','usecanopy.com'],
+     a:{faces:['dan','ivy'],names:'Dan · Ivy',role:T('CRO + RevOps','CRO + 销售运营'),ags:['claude','openai'],
+        did:T('Find Acme’s real blocker: no owner.','找到 Acme 真正的卡点：没人负责。')},
+     mem:[[T('Blocker','卡点'),T('no owner on their side','对方没有负责人')],[T('Approved','已批准'),T('value claim, v2','价值说法第 2 版')],[T('Never','禁止'),T('promise revenue lift','承诺收入增长')]],
+     b:{face:'jess',name:'Jess',role:T('account exec','客户经理'),ag:'openai',got:T('Follow-up leads with ownership.','跟进邮件直接从“谁来负责”切入。')}},
+    {team:T('AI product','AI 产品'),logos:['elicit.com','julius.ai','gumloop.com'],
+     a:{faces:['amara','ben'],names:'Amara · Ben',role:T('evaluators','评估员'),ags:['claude','openai'],
+        did:T('Catch correlation written as cause.','发现摘要把相关写成了因果。')},
+     mem:[[T('Fails','问题'),T('correlation → cause','相关被写成因果')],[T('Cases','反例'),T('12 counterexamples','12 个反例')],[T('Done when','验收'),T('eval set passes','评测集全部通过')]],
+     b:{face:'tom',name:'Tom',role:T('developer','开发'),ag:'cursor',got:T('Fix passes review on the first try.','修复第一次提交就通过评审。')}}
+  ];
+  var viz=document.getElementById('viz'),svg=document.getElementById('routes'),NS='http://www.w3.org/2000/svg';
+  function h(html){var d=document.createElement('div');d.innerHTML=html;return d.firstChild}
+  function el(tag,a,p){var e=document.createElementNS(NS,tag);for(var k in a)e.setAttribute(k,a[k]);(p||svg).appendChild(e);return e}
+  function ag(k){return '<div class="ag '+k+'"><img src="'+AG[k]+'" alt=""></div>'}
+  function route(d,core,pulse,i){
+    el('path',{d:d,fill:'none',stroke:core,'stroke-width':6,'stroke-opacity':.12,'stroke-linecap':'round'});
+    el('path',{d:d,fill:'none',stroke:core,'stroke-width':1.5,'stroke-opacity':.7,'stroke-linecap':'round'});
+    for(var k=0;k<2;k++){
+      var c=el('circle',{r:2.4,fill:pulse});
+      el('animateMotion',{dur:'0.7s',repeatCount:'indefinite',begin:(-k*.35-i*.15)+'s',path:d},c);
+    }
+  }
+
+  viz.appendChild(h('<div class="head" style="left:198px">'+T('Figured it out','弄清楚的人')+'</div>'));
+  viz.appendChild(h('<div class="mhead"><div class="bot" id="bot"><div class="orb"></div><canvas id="echoWrite" width="480" height="480"></canvas></div>ECHO MCP '+T('MEMORY','记忆')+'<span class="rt">'+T('IN REAL TIME','实时')+'</span></div>'));
+  viz.appendChild(h('<div class="head" style="left:822px">'+T('Picks it up','接手的人')+'</div>'));
+
+  ROWS.forEach(function(r,i){
+    var top=32+i*130,cy=top+58;
+    viz.appendChild(h('<div class="team" style="top:'+top+'px"><b>'+r.team+'</b><div class="logos">'+
+      r.logos.map(function(d){return '<img src="'+L+d+'.png" alt="">'}).join('')+'</div></div>'));
+    viz.appendChild(h('<div class="card a" style="top:'+top+'px"><div class="row1"><div class="faces">'+
+      r.a.faces.map(function(f){return '<img src="'+F+f+'.jpg" alt="">'}).join('')+
+      '</div><div class="who"><b>'+r.a.names+'</b>'+r.a.role+'</div><div class="ags">'+r.a.ags.map(ag).join('')+'</div></div><p>'+r.a.did+'</p></div>'));
+    var mem=h('<div class="mem" style="top:'+(top+15)+'px"><dl>'+r.mem.map(function(m){return '<dt>'+m[0]+'</dt><dd>'+m[1]+'</dd>'}).join('')+'</dl></div>');
+    viz.appendChild(mem);
+    viz.appendChild(h('<div class="card b" style="top:'+top+'px"><div class="row1"><div class="faces"><img src="'+F+r.b.face+'.jpg" alt=""></div><div class="who"><b>'+
+      r.b.name+'</b>'+r.b.role+'</div><div class="ags">'+ag(r.b.ag)+'</div></div><p>'+r.b.got+'</p></div>'));
+    var x0=540,x1=780;
+    route('M504 '+cy+' L'+x0+' '+cy,'#8f98ff','#dfe3ff',i);
+    route('M'+x1+' '+cy+' L822 '+cy,'#6fcfff','#e6f7ff',i);
+  });
+})();
+</script>
+<script src="deck_assets/vendor/rive.js"></script>
+<script>
+(function(){
+  // Echo writing it down (v21 · WritingNotes). The static orb stays if Rive fails.
+  if(!window.rive) return;
+  try{
+    rive.RuntimeLoader.setWasmUrl('deck_assets/vendor/rive.wasm');
+    var box=document.getElementById('bot');
+    var r=new rive.Rive({
+      src:'deck_assets/direct/echo.riv',
+      canvas:document.getElementById('echoWrite'),
+      artboard:'Echo-GeneralFile',
+      animations:['WritingNotes-In'],
+      autoplay:true,
+      layout:new rive.Layout({fit:rive.Fit.Contain,alignment:rive.Alignment.Center}),
+      onLoad:function(){box.classList.add('live')},
+      onStop:function(){r.play(['WritingNotes-Loop','Note/1'])}
+    });
+  }catch(e){}
+})();
+</script>
+</body>
+</html>

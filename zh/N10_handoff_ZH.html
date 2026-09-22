@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1280, initial-scale=1">
+<title>Echo — 叙事版 · A 到 B 的交接</title>
+<link rel="stylesheet" href="v2.css">
+<style>
+.body{display:grid;grid-template-columns:470px 1fr;gap:26px;margin-top:24px}
+.flow{padding:22px 24px;display:flex;flex-direction:column;gap:14px}
+.lane{display:grid;grid-template-columns:70px 1fr 70px;align-items:center;gap:10px}
+.who{text-align:center;font:600 13px/1.3 var(--sans)}
+.who i{display:block;margin:0 auto 6px;width:40px;height:40px;border-radius:50%;border:1px solid var(--line-strong);font:700 16px/40px var(--sans);font-style:normal;background:rgba(255,255,255,.04)}
+.mid{border-radius:10px;padding:12px 14px;font-size:13.5px;line-height:1.55}
+.mid.today{border:1px dashed rgba(255,138,122,.45);color:var(--muted)}
+.mid.today b{color:var(--warn);font-weight:600}
+.mid.echo{border:1px solid rgba(96,117,255,.6);background:rgba(82,103,255,.10)}
+.mid.echo b{color:var(--blue-bright);font-weight:600}
+.lost{font:500 11px/1.5 var(--mono);color:var(--warn);text-align:center}
+.tbl{padding:18px 22px}
+table{width:100%;border-collapse:collapse}
+th{text-align:left;font:700 10.5px/1.2 var(--mono);letter-spacing:.14em;color:var(--eyebrow);padding:0 10px 10px 0;border-bottom:1px solid var(--line-strong)}
+td{padding:12px 10px 12px 0;border-bottom:1px solid var(--line);font-size:14px;line-height:1.45;vertical-align:top;color:var(--muted)}
+td:first-child{color:var(--ink);font-weight:600;width:24%}
+td:last-child{color:var(--ink)}
+tr:last-child td{border-bottom:0}
+</style>
+</head>
+<body>
+<section class="slide">
+  <div class="eyebrow"><span class="dot"></span><span class="brand">ECHO</span><span>第三幕 · Echo 接住的那一刻</span></div>
+  <h1>A 的 agent 知道的，<em>B 的 agent 不知道。</em></h1>
+  <div class="sub">A 和 agent 花了一小时把事情弄清楚。同事开了个新会话要接着做——<b>今天，中间这段路靠人来搬。</b></div>
+
+  <div class="body">
+    <div class="flow card">
+      <div class="label">今天</div>
+      <div class="lane">
+        <div class="who"><i>A</i>+ agent</div>
+        <div class="mid today"><b>人工搬运</b>：翻会话 · 摘结论 · 解释原因 · 复制到文档 · 再喂给 agent</div>
+        <div class="who"><i>B</i>+ agent</div>
+      </div>
+      <div class="lost">丢掉的：为什么 · 已经试过什么 · 哪些条件不能变</div>
+      <div class="label" style="margin-top:8px">有了 Echo</div>
+      <div class="lane">
+        <div class="who"><i>A</i>+ agent</div>
+        <div class="mid echo"><b>确认一次判断</b> → B 的 agent 检索 → 看到来源和限制 → <b>接着做下一步</b></div>
+        <div class="who"><i>B</i>+ agent</div>
+      </div>
+    </div>
+
+    <div class="tbl card">
+      <table>
+        <tr><th>用户在做的事</th><th>今天断在哪</th><th>Echo 接住什么</th><th>当场的改善</th></tr>
+        <tr><td>开新会话，继续昨天的活</td><td>新 agent 不知道做到哪、排除了什么</td><td>当前状态、已确认的判断、下一步</td><td>不用重讲，第一轮就接着做</td></tr>
+        <tr><td>让同事用自己的 agent 接手</td><td>只收到产出，不知道背后的理由</td><td>交付物 + 判断依据 + 限制条件</td><td>不再反复问 A，少走老路</td></tr>
+        <tr><td>反复纠正 agent</td><td>这次改对了，换个人又犯同样的错</td><td>纠正内容、适用情境、正反例</td><td>第一次输出就更接近要求</td></tr>
+        <tr><td>换一个 agent 做下一步</td><td>研究、写作、开发各知道一部分</td><td>下一步真正需要的上下文</td><td>换工具，工作照样接得上</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="closer" style="margin-top:20px">
+    <div class="line-copy">少搬运、少重讲、少重复纠正 → agent 更早进入有效执行 → <b>同样的团队，做完更多事。</b></div>
+    <div class="foot">10</div>
+  </div>
+</section>
+</body>
+</html>

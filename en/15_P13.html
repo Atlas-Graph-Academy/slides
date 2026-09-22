@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Echo — Direct Deck · Page 13</title>
+<style>
+:root{
+  --bg:#050609; --ink:#f3f5fa;
+  --muted:rgba(219,224,238,.68); --faint:rgba(211,217,235,.42);
+  --line-strong:rgba(220,227,255,.13);
+  --blue:#5267ff; --blue-bright:#aeb9f5; --eyebrow:rgba(177,188,255,.78);
+  --sans:"Avenir Next","Avenir","Helvetica Neue",sans-serif;
+  --mono:"IBM Plex Mono","Menlo",monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html,body{background:#000;font-family:var(--sans);color:var(--ink);-webkit-font-smoothing:antialiased;}
+.slide{position:relative;width:1280px;height:720px;margin:24px auto;overflow:hidden;background:#020308;}
+
+/* the render — the whole story, one picture */
+.art{position:absolute;left:195px;top:-31px;width:1150px;height:782px;object-fit:cover;object-position:left center;}
+/* seams into the slide edges */
+.scrim-l{position:absolute;left:0;top:0;width:560px;height:100%;
+  background:linear-gradient(90deg, rgba(2,3,8,.96) 0%, rgba(2,3,8,.82) 38%, rgba(2,3,8,.35) 72%, transparent 100%);}
+.scrim-b{position:absolute;left:0;bottom:0;width:100%;height:110px;
+  background:linear-gradient(0deg, rgba(2,3,8,.94) 0%, rgba(2,3,8,.55) 55%, transparent 100%);}
+.scrim-t{position:absolute;left:0;top:0;width:100%;height:70px;
+  background:linear-gradient(180deg, rgba(2,3,8,.8) 0%, transparent 100%);}
+
+.inner{position:absolute;inset:0;display:flex;flex-direction:column;padding:52px 76px 40px;}
+
+.eyebrow{display:flex;align-items:center;gap:10px;
+  font:600 12px/1.2 var(--mono);letter-spacing:.18em;text-transform:uppercase;color:var(--eyebrow);}
+.eyebrow .dot{width:6px;height:6px;border-radius:50%;background:#6075ff;
+  box-shadow:0 0 0 4px rgba(82,103,255,.1),0 0 18px rgba(82,103,255,.62);}
+.eyebrow .brand{color:var(--ink);font-weight:700;letter-spacing:.24em;}
+
+.copy{margin-top:46px;max-width:400px;}
+.h1{font-weight:600;letter-spacing:-.024em;line-height:1.05;font-size:46px;color:var(--ink);
+  text-shadow:0 2px 24px rgba(2,3,8,.9);}
+.h1 em{font-style:normal;color:var(--blue-bright);}
+.sub{margin-top:18px;font-size:18px;font-weight:500;letter-spacing:-.01em;color:var(--muted);line-height:1.5;
+  text-shadow:0 1px 16px rgba(2,3,8,.9);}
+.sub b{color:var(--ink);font-weight:600;}
+
+.closer{margin-top:auto;display:flex;justify-content:space-between;align-items:baseline;
+  border-top:1px solid var(--line-strong);padding-top:16px;}
+.closer .line{font-size:19px;font-weight:500;color:var(--ink);letter-spacing:-.01em;}
+.closer .line b{color:var(--blue-bright);font-weight:600;}
+.closer .foot{font:500 10.5px var(--mono);letter-spacing:.06em;color:var(--faint);}
+.closer .foot em{font-style:normal;color:var(--blue-bright);}
+
+@page{size:13.333in 7.5in;margin:0;}
+@media print{html,body{background:#000;} .slide{margin:0;}}
+@media screen{.slide{box-shadow:0 10px 40px rgba(0,0,0,.6);}}
+</style>
+</head>
+<body>
+
+<section class="slide">
+  <img class="art" src="deck_assets/direct/continuity_two_layer.png" alt="Echo continuity layer floating above the priced context industry">
+  <div class="scrim-l"></div><div class="scrim-b"></div><div class="scrim-t"></div>
+
+  <div class="inner">
+    <div class="eyebrow"><span class="dot"></span><span class="brand">ECHO</span><span>Where this ends up</span></div>
+
+    <div class="copy">
+      <div class="h1">Agent Continuity<br>for <em>Enterprises</em>.</div>
+    </div>
+
+    <div class="closer">
+      <div class="line">The floor is already priced near <b>$10B</b>. The layer above it is where we&rsquo;re going.</div>
+      <div class="foot"><em>kobe@iditor.com</em> &middot; echoknows.com &middot; 19</div>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>

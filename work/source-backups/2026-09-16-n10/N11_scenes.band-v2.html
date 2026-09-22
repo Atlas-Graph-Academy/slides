@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1280, initial-scale=1">
+<title>Echo — Narrative · Inside real teams</title>
+<link rel="stylesheet" href="v2.css">
+<style>
+h1{font-size:48px}
+
+/* ── three teams; in each, Echo sits inside both sides of the handoff ── */
+.viz{position:relative;margin-top:30px;width:1128px;height:418px}
+.viz>svg{position:absolute;left:0;top:0;width:1128px;height:418px;overflow:visible;pointer-events:none;z-index:2}
+
+.head{position:absolute;top:0;font:600 10.5px var(--mono);letter-spacing:.16em;color:var(--faint);text-transform:uppercase;white-space:nowrap}
+
+/* which companies live this handoff */
+.team{position:absolute;left:0;width:150px;height:116px;display:flex;flex-direction:column;justify-content:center;gap:10px}
+.team b{font-size:18px;font-weight:700;letter-spacing:-.01em}
+.logos{display:flex;flex-wrap:wrap;gap:5px;width:140px}
+.logos img{width:24px;height:24px;border-radius:6px;object-fit:cover;background:#fff;border:1px solid rgba(255,255,255,.18)}
+
+/* one shared space per team: the band */
+.band{position:absolute;left:170px;width:958px;height:116px;border-radius:18px;
+  background:linear-gradient(90deg,rgba(143,152,255,.13),rgba(143,152,255,.035) 32%,rgba(111,207,255,.035) 66%,rgba(111,207,255,.14));
+  border:1px solid rgba(220,227,255,.10)}
+.side{position:absolute;top:0;height:116px;padding:0 18px;display:flex;flex-direction:column;justify-content:center}
+.side.a{left:0;width:322px}
+.side.b{right:0;width:338px}
+.row1{display:flex;align-items:center;gap:10px;height:34px}
+.faces{display:flex}
+.faces img{width:32px;height:32px;border-radius:50%;object-fit:cover;border:2px solid #10121c;margin-left:-11px}
+.faces img:first-child{margin-left:0}
+.who{flex:1;min-width:0;font-size:12.5px;color:var(--muted);line-height:1.2;white-space:nowrap}
+.who b{display:block;font-size:14.5px;color:var(--ink);font-weight:700}
+.ags{display:flex;gap:4px}
+.ag{width:26px;height:26px;border-radius:7px;flex:none;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.ag img{width:16px;height:16px}
+.ag.claude{background:#D97757}.ag.openai{background:#000;border:1px solid rgba(255,255,255,.22)}
+.ag.cursor{background:#fff}.ag.cursor img{width:26px;height:26px}
+.side p{margin-top:12px;font-size:14px;line-height:1.3;white-space:nowrap}
+.side.b p{color:#cdeeff}
+.live{position:absolute;left:460px;top:9px;width:0;display:flex;justify-content:center}
+.live span{font:600 9.5px var(--mono);letter-spacing:.16em;color:#9fdcff;white-space:nowrap}
+
+/* memory nodes */
+.orb{position:absolute;width:0;height:0;z-index:3}
+.orb::before{content:"";position:absolute;left:-30px;top:-30px;width:60px;height:60px;border-radius:50%;
+  background:radial-gradient(circle,rgba(160,175,255,.34),transparent 70%);animation:breathe 2.4s ease-in-out infinite}
+.orb::after{content:"";position:absolute;left:-11px;top:-11px;width:22px;height:22px;border-radius:50%;
+  background:radial-gradient(circle at 38% 32%,#dff7ff 0%,#6fd3ff 38%,#2f8dff 100%);box-shadow:0 0 20px rgba(80,160,255,.65)}
+@keyframes breathe{50%{transform:scale(1.2);opacity:.7}}
+.mn{position:absolute;width:0;height:0;z-index:3}
+.mn i{position:absolute;left:-4.5px;top:-4.5px;width:9px;height:9px;border-radius:50%;background:var(--c);box-shadow:0 0 0 3px rgba(255,255,255,.04),0 0 12px var(--c)}
+.mn span{position:absolute;left:-70px;width:140px;top:9px;text-align:center;font-size:11.5px;color:rgba(228,232,248,.82);white-space:nowrap}
+
+/* ── callback to page 03 ── */
+.why{margin-top:14px;padding-top:15px;border-top:1px solid var(--line);display:flex;align-items:baseline;gap:34px}
+.why .lead{font-size:15px;color:var(--muted);white-space:nowrap}
+.why .x{display:flex;align-items:baseline;gap:9px;white-space:nowrap}
+.why .x b{font-size:34px;font-weight:700;letter-spacing:-.04em;line-height:1;
+  background:linear-gradient(180deg,#fff 20%,#aeb9f5);-webkit-background-clip:text;background-clip:text;color:transparent}
+.why .x span{font-size:15px;color:var(--ink);font-weight:600}
+
+.src{position:absolute;left:76px;right:76px;bottom:11px;display:flex;justify-content:space-between;font:500 9.5px var(--mono);color:var(--faint);letter-spacing:.03em}
+</style>
+</head>
+<body>
+<section class="slide">
+  <div class="eyebrow"><span class="dot"></span><span class="brand">ECHO</span><span id="eb">Act III · Inside real teams</span></div>
+  <h1 id="ttl">In every team, <em>Echo carries the handoff.</em></h1>
+
+  <div class="viz" id="viz">
+    <svg id="routes" viewBox="0 0 1128 418"></svg>
+  </div>
+
+  <div class="why">
+    <div class="lead" id="w0">Agent use since February</div>
+    <div class="x"><b>×108</b><span id="w1">Legal</span></div>
+    <div class="x"><b>×41</b><span id="w2">Sales · Recruiting</span></div>
+    <div class="x"><b>×26</b><span id="w3">Marketing</span></div>
+    <div class="lead" style="margin-left:auto" id="w4">Every new team is a new handoff.</div>
+  </div>
+
+  <div class="src"><span id="src">Scenarios modeled on accounts we are reaching out to; not customer results · Growth: OpenAI Enterprise Codex weekly actives, Feb → Aug 2026 (page 03) · Photos: Unsplash</span><span>10</span></div>
+</section>
+
+<script>
+(function(){
+  var ZH=document.documentElement.lang.indexOf('zh')===0;
+  function T(en,zh){return ZH?zh:en}
+  var F='deck_assets/faces/',L='deck_assets/targets/',A='deck_assets/direct/';
+  var AG={claude:A+'claude.svg',openai:A+'openai.svg',cursor:L+'cursor.com.png'};
+  var ROWS=[
+    {team:T('Support','客服'),logos:['plain.com','inkeep.com','decagon.ai','sierra.ai','parahelp.com'],
+     a:{faces:['nora','leo','maya'],names:'Nora · Leo · Maya',role:T('support rota','客服轮值'),ags:['claude','openai'],
+        did:T('Trace duplicate webhooks to retries.','查出重复 webhook 来自客户端重试。')},
+     mem:[T('server ruled out','已排除服务端'),T('cause: client retries','原因：客户端重试'),T('reply by 5pm','17:00 前回复')],
+     b:{face:'sam',name:'Sam',role:T('next shift','下一班'),ag:'claude',got:T('Replies at 5pm. No new log request.','17:00 准时回复，不再找客户要日志。')}},
+    {team:T('Sales','销售'),logos:['tofuhq.com','clay.com','usecanopy.com'],
+     a:{faces:['dan','ivy'],names:'Dan · Ivy',role:T('CRO + RevOps','CRO + 销售运营'),ags:['claude','openai'],
+        did:T('Find Acme’s real blocker: no owner.','找到 Acme 真正的卡点：没人负责。')},
+     mem:[T('blocker: no owner','卡点：没人负责'),T('approved claim','批准的说法'),T('no ROI promise','不承诺 ROI')],
+     b:{face:'jess',name:'Jess',role:T('account exec','客户经理'),ag:'openai',got:T('Follow-up leads with ownership.','跟进邮件直接从“谁来负责”切入。')}},
+    {team:T('AI product','AI 产品'),logos:['elicit.com','julius.ai','gumloop.com'],
+     a:{faces:['amara','ben'],names:'Amara · Ben',role:T('evaluators','评估员'),ags:['claude','openai'],
+        did:T('Catch correlation written as cause.','发现摘要把相关写成了因果。')},
+     mem:[T('why it fails','为什么不合格'),T('12 counterexamples','12 个反例'),T('acceptance test','验收标准')],
+     b:{face:'tom',name:'Tom',role:T('developer','开发'),ag:'cursor',got:T('Fix passes review on the first try.','修复第一次提交就通过评审。')}}
+  ];
+  var viz=document.getElementById('viz'),svg=document.getElementById('routes'),NS='http://www.w3.org/2000/svg';
+  function h(html){var d=document.createElement('div');d.innerHTML=html;return d.firstChild}
+  function el(tag,a,p){var e=document.createElementNS(NS,tag);for(var k in a)e.setAttribute(k,a[k]);(p||svg).appendChild(e);return e}
+  function ag(k){return '<div class="ag '+k+'"><img src="'+AG[k]+'" alt=""></div>'}
+
+  viz.appendChild(h('<div class="head" style="left:188px">'+T('Figured it out','弄清楚的人')+'</div>'));
+  viz.appendChild(h('<div class="head" style="left:560px;width:140px;text-align:center">'+T('Echo memory','Echo 记忆')+'</div>'));
+  viz.appendChild(h('<div class="head" style="left:808px">'+T('Picks it up','接手的人')+'</div>'));
+
+  var CX=630,MEMC=['#9aa8ff','#b9a4ff','#86b8ff'];
+  ROWS.forEach(function(r,i){
+    var top=28+i*132,ly=top+42;
+    viz.appendChild(h('<div class="team" style="top:'+top+'px"><b>'+r.team+'</b><div class="logos">'+
+      r.logos.map(function(d){return '<img src="'+L+d+'.png" alt="">'}).join('')+'</div></div>'));
+    viz.appendChild(h('<div class="band" style="top:'+top+'px">'+
+      '<div class="side a"><div class="row1"><div class="faces">'+r.a.faces.map(function(f){return '<img src="'+F+f+'.jpg" alt="">'}).join('')+
+        '</div><div class="who"><b>'+r.a.names+'</b>'+r.a.role+'</div><div class="ags">'+r.a.ags.map(ag).join('')+'</div></div><p>'+r.a.did+'</p></div>'+
+      '<div class="live"><span>'+T('REAL TIME','实时')+'</span></div>'+
+      '<div class="side b"><div class="row1"><div class="faces"><img src="'+F+r.b.face+'.jpg" alt=""></div><div class="who"><b>'+r.b.name+'</b>'+r.b.role+'</div><div class="ags">'+ag(r.b.ag)+'</div></div><p>'+r.b.got+'</p></div>'+
+      '</div>'));
+    // the handoff line: straight through Echo, fast
+    var d='M494 '+ly+' L790 '+ly;
+    el('path',{d:'M494 '+ly+' L'+CX+' '+ly,stroke:'#8f98ff','stroke-width':1.4,'stroke-opacity':.6,fill:'none'});
+    el('path',{d:'M'+CX+' '+ly+' L790 '+ly,stroke:'#6fcfff','stroke-width':1.4,'stroke-opacity':.7,fill:'none'});
+    for(var k=0;k<3;k++){
+      var c=el('circle',{r:2.4,fill:k%2?'#e6f7ff':'#dfe3ff'});
+      el('animateMotion',{dur:'0.9s',repeatCount:'indefinite',begin:(-k*.3-i*.2)+'s',path:d},c);
+    }
+    viz.appendChild(h('<div class="orb" style="left:'+CX+'px;top:'+ly+'px"></div>'));
+    // memory nodes hanging off Echo
+    var NX=[CX-100,CX,CX+100],NY=[ly+38,ly+44,ly+38];
+    r.mem.forEach(function(m,j){
+      el('path',{d:'M'+CX+' '+ly+' L'+NX[j]+' '+NY[j],stroke:MEMC[j],'stroke-width':1,'stroke-opacity':.45,fill:'none'});
+      viz.appendChild(h('<div class="mn" style="left:'+NX[j]+'px;top:'+NY[j]+'px;--c:'+MEMC[j]+'"><i></i><span>'+m+'</span></div>'));
+    });
+    el('path',{d:'M'+NX[0]+' '+NY[0]+' Q'+(CX-50)+' '+(NY[1]+4)+' '+NX[1]+' '+NY[1]+' Q'+(CX+50)+' '+(NY[1]+4)+' '+NX[2]+' '+NY[2],stroke:'#aeb9f5','stroke-width':.8,'stroke-opacity':.25,fill:'none'});
+  });
+})();
+</script>
+</body>
+</html>

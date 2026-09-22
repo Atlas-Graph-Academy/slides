@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1280, initial-scale=1">
+<title>Echo — Narrative · The moat · HYSTA cut</title>
+<link rel="stylesheet" href="v2.css">
+<style>
+@font-face{font-family:"Echo Poppins";src:url("assets/brand/poppins-600.ttf") format("truetype");font-weight:600;font-display:swap}
+h1{font-size:43px}
+.why3{margin-top:40px!important}
+
+.why3{margin-top:54px;display:grid;grid-template-columns:repeat(3,1fr);gap:0 48px}
+.col{min-width:0}
+.hd{display:flex;align-items:baseline;gap:12px}
+.hd small{font:600 12px var(--mono);letter-spacing:.14em;color:var(--blue-bright);opacity:.8}
+.hd b{font-size:30px;font-weight:700;letter-spacing:-.03em;white-space:nowrap}
+.pane{position:relative;margin-top:16px;height:300px;border-radius:16px;border:1px solid var(--line-strong);
+  background:linear-gradient(180deg,rgba(255,255,255,.03),rgba(255,255,255,.008)),#0a0c12;overflow:hidden}
+.cap{margin-top:16px;font-size:17px;line-height:1.35;font-weight:500;color:rgba(235,238,248,.9);letter-spacing:-.01em}
+.tag{position:absolute;font:600 9.5px var(--mono);letter-spacing:.14em;color:var(--faint);white-space:nowrap}
+.tag.hi{color:var(--blue-bright)}
+
+/* 01 · five years early */
+.tl{position:absolute;left:18px;right:18px;top:26px;height:92px}
+.tl .rail{position:absolute;left:26px;right:26px;top:26px;height:2px;background:linear-gradient(90deg,rgba(174,185,245,.25),#6075ff)}
+.nd{position:absolute;top:0;width:96px;margin-left:-48px;text-align:center}
+.nd .dot{margin:0 auto;width:54px;height:54px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:#0a0c12}
+.nd img{width:54px;height:54px;border-radius:50%;object-fit:cover;filter:grayscale(1);border:1.5px solid rgba(255,255,255,.22)}
+.nd .eng{width:44px;height:44px;margin-top:5px;border-radius:12px;border:1px solid rgba(160,172,255,.45);background:linear-gradient(180deg,rgba(120,135,255,.22),rgba(120,135,255,.06)),#0c0e17;display:flex;align-items:center;justify-content:center}
+.nd .eng svg{width:22px;height:22px;fill:none;stroke:#c4ccff;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.nd .one{width:44px;height:44px;margin-top:5px;border-radius:50%;background:radial-gradient(circle at 38% 32%,#dff7ff 0%,#6fd3ff 38%,#2f8dff 100%);box-shadow:0 0 26px rgba(80,160,255,.55);
+  display:flex;align-items:center;justify-content:center;font:700 15px var(--sans);color:#06122a}
+.nd b{display:block;margin-top:6px;font:600 11px var(--mono);letter-spacing:.1em;color:var(--ink)}
+.nd span{display:block;font-size:11.5px;color:var(--muted);white-space:nowrap}
+.board{position:absolute;left:18px;right:18px;top:162px;bottom:16px;border-radius:12px;padding:6px 14px;
+  border:1px solid rgba(160,172,255,.34);background:linear-gradient(180deg,rgba(120,135,255,.13),rgba(120,135,255,.03)),#0c0e17;
+  display:flex;flex-direction:column;justify-content:space-around}
+.rk{display:flex;align-items:center;gap:12px;font-size:15px;color:var(--muted)}
+.rk .lo{width:26px;height:26px;border-radius:7px;flex:none;object-fit:cover}
+.rk .lo.hs{background:#fff;padding:2px}
+.rk .orb{width:26px;height:26px;border-radius:50%;flex:none;background:radial-gradient(circle at 38% 32%,#dff7ff 0%,#6fd3ff 38%,#2f8dff 100%);box-shadow:0 0 14px rgba(80,160,255,.55)}
+.rk i{font:600 11px var(--mono);font-style:normal;color:var(--faint);width:12px}
+.rk em{margin-left:auto;font-style:normal;font-weight:700;font-size:17px;letter-spacing:-.02em}
+.rk.me{color:var(--ink)}
+.rk.me .wm{font-family:"Echo Poppins","Poppins",var(--sans);font-size:19px;font-weight:600;letter-spacing:-.035em;color:#f7f8ff}
+.rk.me .wm span{color:#6075ff}
+.rk.me em{font-size:22px;background:linear-gradient(180deg,#fff 20%,#aeb9f5);-webkit-background-clip:text;background-clip:text;color:transparent}
+
+/* 02 · deeper with use */
+.ags{position:absolute;left:0;right:0;top:24px;display:flex;justify-content:center;gap:10px}
+.ag{width:30px;height:30px;border-radius:8px;display:flex;align-items:center;justify-content:center}
+.ag img{width:16px;height:16px}
+.ag.claude{background:#D97757}.ag.openai{background:#000;border:1px solid rgba(255,255,255,.22)}.ag.cursor{background:#fff;overflow:hidden}.ag.cursor img{width:30px;height:30px}
+.ag.more{border:1px dashed rgba(220,227,255,.28);font-size:16px;color:var(--muted)}
+#stars{position:absolute;left:0;top:0;width:344px;height:300px}
+.stg{position:absolute;top:262px;width:110px;text-align:center;font:600 9.5px var(--mono);letter-spacing:.14em;color:var(--faint)}
+.stg.hi{color:#9fdcff}
+
+/* 03 · trusted by design */
+.mc{position:absolute;left:18px;right:18px;top:22px;height:66px;border-radius:12px;padding:10px 14px;
+  border:1px solid rgba(160,172,255,.34);background:linear-gradient(180deg,rgba(120,135,255,.13),rgba(120,135,255,.03)),#0c0e17}
+.mc .k{display:flex;align-items:center;gap:7px;font:600 9.5px var(--mono);letter-spacing:.14em;color:#b9a4ff}
+.mc .k::before{content:"";width:6px;height:6px;border-radius:50%;background:#b9a4ff;box-shadow:0 0 8px #b9a4ff}
+.mc .k u{margin-left:auto;text-decoration:none;color:var(--faint);display:flex;align-items:center;gap:5px}
+.mc h4{margin-top:7px;font-size:15px;font-weight:700;white-space:nowrap}
+.srv{position:absolute;left:18px;right:18px;top:112px;height:52px;border-radius:12px;border:1px dashed rgba(220,227,255,.2);
+  display:flex;align-items:center;gap:12px;padding:0 14px}
+.srv .lk{width:28px;height:28px;border-radius:8px;flex:none;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.05)}
+.srv code{font:500 12px var(--mono);letter-spacing:.06em;color:rgba(211,217,235,.35);white-space:nowrap;overflow:hidden}
+.shr{position:absolute;left:18px;right:18px;top:184px;bottom:16px;display:flex;align-items:center;justify-content:space-between;padding:0 6px}
+.shr .own{display:flex;flex-direction:column;align-items:center;gap:6px}
+.shr img{width:40px;height:40px;border-radius:50%;object-fit:cover;border:1.5px solid rgba(255,255,255,.22)}
+.shr .lb{font:600 9.5px var(--mono);letter-spacing:.12em;color:var(--faint);white-space:nowrap}
+.shr .arrow{flex:1;height:2px;margin:0 12px 20px;background:linear-gradient(90deg,rgba(174,185,245,.2),#6fcfff);position:relative}
+.shr .arrow::after{content:"";position:absolute;right:-1px;top:-4px;border:5px solid transparent;border-left:7px solid #6fcfff;border-right:0}
+.to{display:flex;flex-direction:column;gap:8px}
+.to div{display:flex;align-items:center;gap:8px}
+.to img{width:30px;height:30px}
+.to .x img{opacity:.35;filter:grayscale(1)}
+.bd{width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+.bd.ok{background:rgba(111,207,255,.16)}.bd.no{background:rgba(255,255,255,.06)}
+
+
+/* provenance */
+.pv{position:absolute;left:18px;right:18px;top:22px;bottom:16px;border-radius:12px;padding:14px 16px;
+  border:1px solid rgba(160,172,255,.34);background:linear-gradient(180deg,rgba(120,135,255,.13),rgba(120,135,255,.03)),#0c0e17}
+.pv .k{display:flex;align-items:center;gap:7px;font:600 9.5px var(--mono);letter-spacing:.14em;color:#b9a4ff}
+.pv .k::before{content:"";width:6px;height:6px;border-radius:50%;background:#b9a4ff;box-shadow:0 0 8px #b9a4ff}
+.pv h4{margin-top:9px;font-size:17px;font-weight:700;letter-spacing:-.015em;white-space:nowrap}
+.pv dl{margin-top:16px;display:grid;grid-template-columns:54px 1fr;row-gap:15px;align-items:center}
+.pv dt{font:600 9.5px var(--mono);letter-spacing:.14em;color:var(--blue-bright)}
+.pv dd{font-size:13.5px;line-height:1.35;color:var(--ink);display:flex;align-items:center;gap:7px;white-space:nowrap}
+.pv dd.why{white-space:normal;color:rgba(235,238,248,.86)}
+.pv dd img.f{width:20px;height:20px;border-radius:50%;object-fit:cover}
+.pv dd .t{width:18px;height:18px;border-radius:5px;display:inline-flex;align-items:center;justify-content:center;background:#D97757}
+.pv dd .t img{width:11px;height:11px}
+.pv dd u{text-decoration:none;color:var(--muted)}
+.pv .doc{width:14px;height:18px;border-radius:3px;border:1px solid rgba(174,185,245,.55);background:linear-gradient(180deg,rgba(174,185,245,.22),rgba(174,185,245,.05));margin-right:-2px}
+/* auditability */
+.ans{position:absolute;left:18px;right:18px;top:22px;border-radius:12px;padding:11px 14px 12px;border:1px solid rgba(111,207,255,.4);
+  background:linear-gradient(180deg,rgba(111,207,255,.10),rgba(111,207,255,.02)),#0c0e17}
+.ans .top{display:flex;align-items:center;gap:8px;font-size:13px}
+.ans .top img{width:22px;height:22px;border-radius:50%;object-fit:cover}
+.ans .top span{color:var(--muted)}
+.ans .top .ag{margin-left:auto;width:20px;height:20px;border-radius:6px}.ans .top .ag img{width:12px;height:12px;border-radius:0}
+.ans p{margin-top:8px;font-size:13.5px;line-height:1.4;color:rgba(235,238,248,.9)}.ans p b{color:#9fdcff;font-weight:600}
+.trace{position:absolute;left:0;right:0;top:118px;height:30px;display:flex;align-items:center;justify-content:center}
+.trace::before{content:"";position:absolute;left:50%;top:0;bottom:0;border-left:1.5px dashed rgba(111,207,255,.55)}
+.trace span{position:relative;padding:2px 8px;background:#0a0c12;font:600 9px var(--mono);letter-spacing:.16em;color:#9fdcff}
+.log{position:absolute;left:18px;right:18px;top:152px;bottom:14px;display:flex;flex-direction:column;justify-content:space-between}
+.lr{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--ink);height:26px}
+.lr img{width:20px;height:20px;border-radius:50%;object-fit:cover}
+.lr u{margin-left:auto;text-decoration:none;color:var(--muted);font:500 11px var(--mono);display:flex;align-items:center;gap:5px}
+.lr.hi{height:32px;padding:0 10px;border-radius:9px;border:1px solid rgba(185,164,255,.45);background:rgba(185,164,255,.08);font-weight:600}
+.lr.hi em{width:7px;height:7px;border-radius:50%;background:#b9a4ff;box-shadow:0 0 8px #b9a4ff}
+.lr.no{opacity:.5}
+.lh{font:600 9px var(--mono);letter-spacing:.16em;color:var(--faint);margin-top:4px}
+
+.closer{margin-top:auto}
+.src{position:absolute;left:76px;right:76px;bottom:11px;display:flex;justify-content:space-between;font:500 9.5px var(--mono);color:var(--faint);letter-spacing:.03em}
+</style>
+</head>
+<body>
+<section class="slide">
+  <div class="eyebrow"><span class="dot"></span><span class="brand">ECHO</span><span>Act IV · The moat</span></div>
+  <h1>Moat: <em>governance, provenance, auditability.</em></h1>
+
+  <div class="why3">
+
+    <!-- 01 · governance -->
+    <div class="col">
+      <div class="hd"><small>01</small><b>Governance</b></div>
+      <div class="pane">
+        <div class="mc">
+          <div class="k">DECISION<u><svg width="10" height="11" viewBox="0 0 10 11"><rect x="1" y="5" width="8" height="6" rx="1.5" fill="currentColor"/><path d="M3 5V3.5a2 2 0 0 1 4 0V5" fill="none" stroke="currentColor" stroke-width="1.4"/></svg>MAYA’S KEY</u></div>
+          <h4>Move EU invoicing to Stripe Tax.</h4>
+        </div>
+        <div class="srv">
+          <span class="lk"><svg width="14" height="15" viewBox="0 0 10 11"><rect x="1" y="5" width="8" height="6" rx="1.5" fill="rgba(211,217,235,.5)"/><path d="M3 5V3.5a2 2 0 0 1 4 0V5" fill="none" stroke="rgba(211,217,235,.5)" stroke-width="1.2"/></svg></span>
+          <div><div class="tag" style="position:static;margin-bottom:3px">WHAT ECHO’S SERVER SEES</div><code>9f2a c71e 04bd e83f 5a10 77c2</code></div>
+        </div>
+        <div class="shr">
+          <div class="own"><img src="deck_assets/faces/maya.jpg" alt=""><span class="lb">OWNER</span></div>
+          <div class="arrow"></div>
+          <div class="to">
+            <div><img src="deck_assets/faces/leo.jpg" alt=""><span class="bd ok"><svg width="10" height="10" viewBox="0 0 12 12"><path d="M2 6.5l2.6 2.5L10 3.5" fill="none" stroke="#9fdcff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+            <div><img src="deck_assets/faces/tom.jpg" alt=""><span class="bd ok"><svg width="10" height="10" viewBox="0 0 12 12"><path d="M2 6.5l2.6 2.5L10 3.5" fill="none" stroke="#9fdcff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+            <div class="x"><img src="deck_assets/faces/dan.jpg" alt=""><span class="bd no"><svg width="9" height="10" viewBox="0 0 10 11"><rect x="1" y="5" width="8" height="6" rx="1.5" fill="rgba(211,217,235,.5)"/><path d="M3 5V3.5a2 2 0 0 1 4 0V5" fill="none" stroke="rgba(211,217,235,.5)" stroke-width="1.4"/></svg></span></div>
+          </div>
+        </div>
+      </div>
+      <div class="cap">Only the owner holds the key and shares memory by memory. Even Echo can’t read it.</div>
+    </div>
+
+    <!-- 02 · provenance -->
+    <div class="col">
+      <div class="hd"><small>02</small><b>Provenance</b></div>
+      <div class="pane">
+        <div class="pv">
+          <div class="k">DECISION · BILLING</div>
+          <h4>Move EU invoicing to Stripe Tax.</h4>
+          <dl>
+            <dt>WHY</dt><dd class="why">New VAT rules Jan 1; Avalara costs 3× more.</dd>
+            <dt>WHO</dt><dd><img class="f" src="deck_assets/faces/maya.jpg" alt="">Maya <u>· just now</u></dd>
+            <dt>FROM</dt><dd><span class="t"><img src="deck_assets/direct/claude.svg" alt=""></span>Claude Code session</dd>
+            <dt>PROOF</dt><dd><span class="doc"></span><span class="doc"></span><span class="doc"></span><u>3 sources attached</u></dd>
+          </dl>
+        </div>
+      </div>
+      <div class="cap">Every memory records who decided, why, and the session and sources it came from.</div>
+    </div>
+
+    <!-- 03 · auditability -->
+    <div class="col">
+      <div class="hd"><small>03</small><b>Auditability</b></div>
+      <div class="pane">
+        <div class="ans">
+          <div class="top"><img src="deck_assets/faces/leo.jpg" alt=""><b>Leo</b><span>Codex</span><i class="ag openai"><img src="deck_assets/direct/openai.svg" alt=""></i></div>
+          <p>Using <b>Maya’s billing decision</b>: Stripe Tax, live before Jan 1.</p>
+        </div>
+        <div class="trace"><span>TRACES BACK TO</span></div>
+        <div class="log">
+          <div class="lr hi"><em></em>Decision · Billing<u>Maya · Claude Code</u></div>
+          <div class="lh">USE LOG</div>
+          <div class="lr"><img src="deck_assets/faces/leo.jpg" alt="">Leo · Codex<u>1 min ago</u></div>
+          <div class="lr"><img src="deck_assets/faces/tom.jpg" alt="">Tom · Codex<u>2 h ago</u></div>
+          <div class="lr no"><img src="deck_assets/faces/dan.jpg" alt="">Dan · Cursor<u><svg width="9" height="10" viewBox="0 0 10 11"><rect x="1" y="5" width="8" height="6" rx="1.5" fill="rgba(211,217,235,.5)"/><path d="M3 5V3.5a2 2 0 0 1 4 0V5" fill="none" stroke="rgba(211,217,235,.5)" stroke-width="1.4"/></svg> not shared</u></div>
+        </div>
+      </div>
+      <div class="cap">Every agent answer traces back to the memories it used, and every use is on record.</div>
+    </div>
+
+  </div>
+
+  <div class="closer"><div class="line-copy">One memory across Claude Code, Codex, Cursor and ChatGPT. <b>95.8% on LongMemEval, ranked #1.</b></div><div class="foot">Engine built since 2021</div></div>
+  <div class="src"><span>LongMemEval (500 questions), published May 2026, echoknows.com/research · Hindsight 94.6% · Mem0 94.4% · Photos: Unsplash</span><span>13</span></div>
+</section>
+</body>
+</html>

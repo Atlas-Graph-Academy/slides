@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1280, initial-scale=1">
+<title>Echo — 叙事版 · 代码被撑爆了</title>
+<link rel="stylesheet" href="v2.css">
+<style>
+.body{display:grid;grid-template-columns:390px 1fr;gap:32px;margin-top:24px}
+
+/* comic panel · the CTO */
+.cto{position:relative;padding:26px 24px 20px;display:flex;flex-direction:column;
+  background:radial-gradient(circle at 30% 30%,rgba(82,103,255,.16),transparent 62%),linear-gradient(180deg,rgba(255,255,255,.035),rgba(255,255,255,.012))}
+.stage{position:relative;height:250px}
+.head{position:absolute;left:0;top:34px;width:196px;height:196px;border-radius:50%;
+  border:3px solid #6075ff;box-shadow:0 0 0 7px rgba(82,103,255,.12),0 0 50px rgba(82,103,255,.45)}
+.head img{width:100%;height:100%;border-radius:50%;display:block}
+.head .gh{position:absolute;right:-4px;bottom:6px;width:52px;height:52px;border-radius:50%;
+  background:#0d1117;border:2px solid rgba(255,255,255,.85);display:flex;align-items:center;justify-content:center}
+.head .gh img{width:30px;height:30px;border-radius:0}
+.sweat{position:absolute;left:176px;top:40px;font-size:26px;transform:rotate(12deg)}
+.bubble{position:absolute;background:#f3f5fa;color:#0b0d14;border-radius:18px;font-weight:700;white-space:nowrap;line-height:1}
+.bubble::after{content:"";position:absolute;left:-9px;bottom:12px;border:8px solid transparent;border-right:12px solid #f3f5fa;border-left:0}
+.b1{left:214px;top:0;padding:10px 14px;font-size:17px;opacity:.72}
+.b2{left:226px;top:52px;padding:11px 16px;font-size:22px;opacity:.88}
+.b3{left:206px;top:112px;padding:14px 20px 16px;font-size:58px;letter-spacing:-.04em;
+  background:#6075ff;color:#fff;transform:rotate(-4deg);box-shadow:0 10px 40px rgba(82,103,255,.55)}
+.b3::after{border-right-color:#6075ff}
+.who{margin-top:8px;display:flex;align-items:baseline;gap:10px}
+.who b{font-size:19px;font-weight:600}
+.who span{font:600 11px var(--mono);letter-spacing:.12em;color:var(--eyebrow)}
+.quote{margin-top:12px;padding-top:12px;border-top:1px solid var(--line);font-size:14.5px;line-height:1.55;color:var(--muted)}
+.quote b{color:var(--ink);font-weight:600}
+.quote small{display:block;margin-top:6px;font:500 10px/1.4 var(--mono);color:var(--faint)}
+
+/* right · the curve + numbers */
+.right{display:flex;flex-direction:column;gap:14px;min-width:0}
+.trend{flex:1;padding:14px 20px 4px;display:flex;flex-direction:column;min-height:0}
+.trend .top{display:flex;align-items:center;gap:10px}
+.trend .top img{width:20px;height:20px}
+.trend .top .ttl{font-size:17px;font-weight:600}
+.trend svg{display:block;margin-top:22px;width:100%;height:auto;overflow:visible}
+.trend svg text{font-family:var(--mono)}
+.trend svg .ev text{font-family:var(--sans);font-size:13px;font-weight:600}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.stat{padding:14px 22px;display:flex;align-items:center;gap:22px}
+.stat .n{font-size:34px;line-height:1;font-weight:600;letter-spacing:-.03em;color:var(--blue-bright);white-space:nowrap}
+.stat .n small{font-size:16px;letter-spacing:0;margin-left:3px}
+.stat .n.red{color:var(--warn)}
+.stat .t{margin-top:0;font-size:14.5px;font-weight:600;line-height:1.3}
+.stat .s{margin-top:3px;font:500 10.5px/1.45 var(--mono);color:var(--faint)}
+.stat .s b{color:var(--ink);font-weight:600}
+</style>
+</head>
+<body>
+<section class="slide">
+  <div class="eyebrow"><span class="dot"></span><span class="brand">ECHO</span><span>第一幕 · The world we are in</span></div>
+  <h1>Agent 写代码，<em>爆了。</em></h1>
+  <div class="sub">全世界放代码的地方——GitHub，<b>第一个被撑爆。</b></div>
+
+  <div class="body">
+    <div class="cto card">
+      <div class="stage">
+        <div class="head">
+          <img src="deck_assets/direct/fedorov_head.png" alt="Vlad Fedorov">
+          <div class="gh"><img src="deck_assets/direct/github.svg" alt="GitHub"></div>
+        </div>
+        <div class="sweat">💦</div>
+        <div class="bubble b1">得扩容 10 倍……</div>
+        <div class="bubble b2">不不不——</div>
+        <div class="bubble b3">30 倍！</div>
+      </div>
+      <div class="who"><b>Vlad Fedorov</b><span>GITHUB CTO</span></div>
+      <div class="quote">“到 2 月已经很清楚：我们必须按<b>今天 30 倍</b>的规模来设计。”
+        <small>对白为漫画演绎 · 原话见 GitHub Blog 2026-04-28</small></div>
+    </div>
+
+    <div class="right">
+      <div class="trend card">
+        <div class="top"><img src="deck_assets/direct/github.svg" alt=""><span class="ttl">agent 时代的暴增曲线</span><span class="mono" style="font-size:11px;color:var(--faint);margin-left:4px">agent 提交的 PR · 以 2025.09 为 1×</span></div>
+        <svg viewBox="0 0 660 258">
+          <defs>
+            <linearGradient id="fb" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#6075ff" stop-opacity=".34"/><stop offset="1" stop-color="#6075ff" stop-opacity="0"/></linearGradient>
+            <linearGradient id="lg" gradientUnits="userSpaceOnUse" x1="50" y1="0" x2="525" y2="0"><stop offset="0" stop-color="#6075ff" stop-opacity=".5"/><stop offset=".6" stop-color="#aeb9f5"/><stop offset=".8" stop-color="#d8a6c6"/><stop offset=".95" stop-color="#ff8a7a"/></linearGradient>
+          </defs>
+          <g stroke="rgba(220,227,255,.09)" stroke-width="1">
+            <line x1="50" x2="640" y1="171" y2="171"/><line x1="50" x2="640" y1="137" y2="137"/><line x1="50" x2="640" y1="103" y2="103"/><line x1="50" x2="640" y1="69" y2="69"/>
+          </g>
+          <line x1="50" x2="640" y1="205" y2="205" stroke="rgba(220,227,255,.2)"/>
+          <g fill="rgba(211,217,235,.45)" font-size="11" text-anchor="end">
+            <text x="40" y="175">1×</text><text x="40" y="141">2×</text><text x="40" y="107">3×</text><text x="40" y="73">4×</text>
+          </g>
+          <!-- event markers -->
+          <g stroke-dasharray="3 4" stroke-width="1">
+            <line x1="115.6" x2="115.6" y1="14" y2="205" stroke="rgba(174,185,245,.28)"/>
+            <line x1="246.7" x2="246.7" y1="14" y2="205" stroke="rgba(174,185,245,.28)"/>
+            <line x1="377.8" x2="377.8" y1="14" y2="205" stroke="rgba(255,138,122,.35)"/>
+            <line x1="508.9" x2="508.9" y1="14" y2="205" stroke="rgba(255,138,122,.35)"/>
+          </g>
+          <!-- blue: measured -->
+          <path d="M50.0 171.0 C60.9 170.5 93.7 169.4 115.6 168.3 C137.4 167.1 159.3 166.6 181.1 164.2 C203.0 161.8 224.8 159.1 246.7 154.0 C268.5 148.9 290.4 141.5 312.2 133.6 C334.1 125.7 355.9 118.6 377.8 106.4 C399.6 94.2 432.4 68.2 443.3 60.5 L443.3 205 L50 205Z" fill="url(#fb)"/>
+          <path d="M50.0 171.0 C60.9 170.5 93.7 169.4 115.6 168.3 C137.4 167.1 159.3 166.6 181.1 164.2 C203.0 161.8 224.8 159.1 246.7 154.0 C268.5 148.9 290.4 141.5 312.2 133.6 C334.1 125.7 355.9 118.6 377.8 106.4 C399.6 94.2 432.4 68.2 443.3 60.5 C470 41 496 26 508 2 C516 -14 519 -50 521 -92" fill="none" stroke="url(#lg)" stroke-width="4" stroke-linecap="round" style="filter:drop-shadow(0 0 7px rgba(255,138,122,.45))"/>
+          <polygon points="521,-106 512,-86 530,-86" fill="#ff8a7a"/>
+          <circle cx="443.3" cy="60.5" r="6" fill="#f3f5fa" stroke="#6075ff" stroke-width="3"/>
+          <text x="424" y="40" text-anchor="end" font-size="30" font-weight="700" fill="#f3f5fa" style="font-family:var(--sans)">4×</text>
+          <text x="536" y="-18" font-size="14" font-weight="700" fill="#ff8a7a" style="font-family:var(--sans)">还在往上冲</text>
+          <!-- month axis -->
+          <g fill="rgba(211,217,235,.45)" font-size="10.5" text-anchor="middle">
+            <text x="50" y="222">2025.09</text><text x="115.6" y="222">10</text><text x="181.1" y="222">11</text><text x="246.7" y="222">12</text><text x="312.2" y="222">2026.01</text><text x="377.8" y="222">02</text><text x="443.3" y="222">03</text><text x="508.9" y="222">04</text><text x="574.4" y="222">05</text><text x="640" y="222">06</text>
+          </g>
+          <g class="ev" text-anchor="middle">
+            <text x="115.6" y="250" fill="#aeb9f5">定下扩容 10×</text>
+            <text x="246.7" y="250" fill="#aeb9f5">agent 用量陡增</text>
+            <text x="377.8" y="250" fill="#ff8a7a">改成扩容 30×</text>
+            <text x="508.9" y="250" fill="#ff8a7a">CTO：扛不住了</text>
+          </g>
+        </svg>
+      </div>
+
+      <div class="stats">
+        <div class="stat card"><div class="n">140<small>亿</small></div><div><div class="t">今年的代码提交</div><div class="s">去年全年约 <b>10 亿</b> · 现在每周 2.75 亿</div></div></div>
+        <div class="stat card"><div class="n red">257<small>次</small></div><div><div class="t">事故，一年之内</div><div class="s">其中 <b>48 次重大故障</b> · 约每周一次</div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="closer" style="margin-top:22px">
+    <div class="line-copy">这不是哪个产品火了。<b>是整套基础设施，跟不上 agent 了。</b></div>
+    <div class="foot">GitHub Blog · Vlad Fedorov · 2026-04-28 · GitHub 公开数据汇总 · 4 月后为趋势示意 · 02</div>
+  </div>
+</section>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1280, initial-scale=1">
+<title>Echo — Narrative · Inside real teams</title>
+<link rel="stylesheet" href="v2.css">
+<style>
+.body{display:grid;grid-template-columns:1fr 330px;gap:24px;margin-top:26px}
+.scenes{display:flex;flex-direction:column;gap:12px}
+.scene{padding:16px 22px;display:grid;grid-template-columns:130px 1fr;gap:18px;align-items:start}
+.scene .team{font:700 11px/1.4 var(--mono);letter-spacing:.12em;color:var(--eyebrow)}
+.scene .act{font-size:14px;line-height:1.5;color:var(--muted)}
+.scene .say{margin-top:6px;font-size:19px;line-height:1.35;font-weight:600;letter-spacing:-.01em}
+.scene .say em{font-style:normal;color:var(--blue-bright)}
+.scene .ctx{margin-top:6px;font:500 11px/1.4 var(--mono);color:var(--faint)}
+.checks{padding:22px 24px;display:flex;flex-direction:column}
+.checks ol{margin-top:14px;list-style:none;counter-reset:c;display:flex;flex-direction:column;gap:13px}
+.checks li{counter-increment:c;display:grid;grid-template-columns:24px 1fr;gap:8px;font-size:14.5px;line-height:1.45}
+.checks li::before{content:counter(c);font:700 12px/20px var(--mono);color:var(--blue-bright)}
+.checks .note{margin-top:auto;padding-top:14px;border-top:1px solid var(--line);font-size:13px;line-height:1.5;color:var(--muted)}
+</style>
+</head>
+<body>
+<section class="slide">
+  <div class="eyebrow"><span class="dot"></span><span class="brand">ECHO</span><span>Act III · Inside real teams</span></div>
+  <h1>Every team has <em>a gap it can’t bridge.</em></h1>
+  <div class="sub">Not “chats aren’t shared,” but <b>decisions a human already confirmed that never reach the next agent.</b></div>
+
+  <div class="body">
+    <div class="scenes">
+      <div class="scene card"><div class="team">SUPPORT</div><div>
+        <div class="act">A debugs a customer issue with an agent; B takes the next shift with their own agent</div>
+        <div class="say">The next shift’s agent <em>stops re-checking what was already checked.</em></div>
+        <div class="ctx">Carried over: ruled-out causes · repro conditions · promises to the customer</div>
+      </div></div>
+      <div class="scene card"><div class="team">SALES</div><div>
+        <div class="act">The CRO corrects an agent’s deal call; an AE preps the next meeting with their own agent</div>
+        <div class="say">Your correction <em>is there when the AE has AI draft the follow-up.</em></div>
+        <div class="ctx">Carried over: what changed · why · which claims are approved</div>
+      </div></div>
+      <div class="scene card"><div class="team">AI PRODUCT</div><div>
+        <div class="act">An evaluator and an agent pin down a failure; a developer has a coding agent fix it</div>
+        <div class="say">The coding agent knows where, <em>why, and what “fixed” means.</em></div>
+        <div class="ctx">Carried over: failure rationale · counterexamples · acceptance criteria</div>
+      </div></div>
+    </div>
+
+    <div class="checks card">
+      <div class="label">How a pilot is judged</div>
+      <ol>
+        <li>Fewer turns spent re-explaining?</li>
+        <li>Fewer hours copying and forwarding context?</li>
+        <li>Does the agent still suggest rejected options?</li>
+        <li>Do corrected mistakes return in new sessions?</li>
+        <li>Does a teammate’s agent get to a usable result sooner?</li>
+      </ol>
+      <div class="note">Each one can be counted straight from agent logs.</div>
+    </div>
+  </div>
+
+  <div class="closer" style="margin-top:20px">
+    <div class="line-copy">“You just spent an hour figuring this out. <b>How long until your teammate’s agent catches up?</b>”</div>
+    <div class="foot">Scenarios in validation with target customers · 10</div>
+  </div>
+</section>
+</body>
+</html>

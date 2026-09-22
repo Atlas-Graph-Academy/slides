@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Echo Direct Deck — Bilingual Live Review</title>
+  <style>
+    :root{color-scheme:dark;--bg:#07080d;--panel:#0d1019;--line:#252b3d;--text:#f4f6ff;--muted:#929bb8;--blue:#5267ff;--blue2:#8b9cff}
+    *{box-sizing:border-box}
+    html,body{margin:0;min-height:100%;background:var(--bg);color:var(--text);font:14px/1.4 Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+    body{display:grid;grid-template-columns:280px minmax(0,1fr);height:100vh;overflow:hidden}
+    aside{display:flex;flex-direction:column;min-height:0;border-right:1px solid var(--line);background:linear-gradient(180deg,#10131d,#090b12)}
+    header{padding:22px 20px 16px;border-bottom:1px solid var(--line)}
+    .brand{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:.12em}.dot{width:10px;height:10px;border-radius:50%;background:var(--blue);box-shadow:0 0 18px var(--blue)}
+    h1{font-size:18px;line-height:1.2;margin:14px 0 6px}.meta{color:var(--muted);font-size:12px}
+    .lang{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:16px;padding:4px;border:1px solid var(--line);border-radius:10px;background:#080a10}
+    button,a{font:inherit}.lang button{border:0;border-radius:7px;padding:8px;background:transparent;color:var(--muted);cursor:pointer}.lang button.active{background:var(--blue);color:white}
+    nav{min-height:0;overflow:auto;padding:10px}
+    .slide-button{width:100%;display:grid;grid-template-columns:34px 1fr;gap:10px;align-items:center;text-align:left;border:1px solid transparent;border-radius:9px;padding:9px 10px;background:transparent;color:var(--muted);cursor:pointer}
+    .slide-button:hover{background:#131725;color:var(--text)}.slide-button.active{border-color:#4050c8;background:#18204b;color:white}.num{font-variant-numeric:tabular-nums;color:var(--blue2);font-weight:800}.label{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .aside-footer{padding:14px 16px;border-top:1px solid var(--line);display:grid;grid-template-columns:1fr 1fr;gap:8px}
+    .aside-footer a{display:block;text-align:center;text-decoration:none;color:white;border:1px solid var(--line);border-radius:8px;padding:8px;background:#121624}.aside-footer a:hover{border-color:var(--blue)}
+    main{min-width:0;display:flex;flex-direction:column;padding:18px 22px 20px;gap:12px}
+    .toolbar{display:flex;align-items:center;gap:10px;min-height:34px}.toolbar .title{font-weight:700;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.counter{color:var(--muted);font-variant-numeric:tabular-nums}.toolbutton,.open{border:1px solid var(--line);background:#121624;color:white;border-radius:8px;padding:7px 11px;cursor:pointer;text-decoration:none}.toolbutton:hover,.open:hover{border-color:var(--blue)}
+    .stage{position:relative;flex:1;min-height:0;display:flex;align-items:center;justify-content:center;overflow:hidden;border:1px solid var(--line);border-radius:13px;background:#030409;box-shadow:0 24px 80px rgba(0,0,0,.35)}
+    iframe{position:absolute;width:1280px;height:768px;border:0;transform-origin:center center;background:#050609}
+    .hint{font-size:12px;color:var(--muted);text-align:right}
+    .live{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:800;letter-spacing:.1em;color:#6f7a99;border:1px solid var(--line);border-radius:8px;padding:6px 9px;user-select:none}
+    .live::before{content:"";width:7px;height:7px;border-radius:50%;background:#39406b;transition:background .2s,box-shadow .2s}
+    .live.on::before{background:#3ddc84;box-shadow:0 0 10px #3ddc84}
+    .live.hit{color:var(--text);border-color:var(--blue)}
+    @media(max-width:860px){body{grid-template-columns:1fr;grid-template-rows:auto 1fr}aside{min-height:auto;border-right:0;border-bottom:1px solid var(--line)}header{padding:12px 14px}.brand,h1,.meta{display:none}.lang{margin:0}nav{display:none}.aside-footer{display:none}main{padding:10px}.hint{display:none}}
+  </style>
+</head>
+<body>
+  <aside>
+    <header>
+      <div class="brand"><span class="dot"></span>ECHO</div>
+      <h1>Narrative Deck<br>2026-09-16 · 叙事版</h1>
+      <div class="meta">22 页正文 + 4 页附录<br>中文先行 · 英文待同步</div>
+      <div class="lang" role="group" aria-label="Language">
+        <button id="enButton" class="active" type="button">English</button>
+        <button id="zhButton" type="button">中文</button>
+      </div>
+    </header>
+    <nav id="slideNav" aria-label="Slides"></nav>
+    <div class="aside-footer">
+      <a href="pdf/Echo_Direct_Deck_EN_14P_ViewerSafe.pdf">EN PDF</a>
+      <a href="pdf/Echo_Direct_Deck_ZH_14P_ViewerSafe.pdf">中文 PDF</a>
+    </div>
+  </aside>
+  <main>
+    <div class="toolbar">
+      <button class="toolbutton" id="prevButton" type="button" aria-label="Previous slide">←</button>
+      <button class="toolbutton" id="nextButton" type="button" aria-label="Next slide">→</button>
+      <div class="title" id="slideTitle"></div>
+      <div class="counter" id="counter"></div>
+      <button class="toolbutton" id="reloadButton" type="button" title="重新加载当前页 (R)">⟳</button>
+      <span class="live" id="liveBadge" title="自动刷新">LIVE</span>
+      <a class="open" id="openSlide" target="_blank" rel="noopener">Open HTML</a>
+    </div>
+    <div class="stage" id="stage"><iframe id="viewer" title="Echo pitch deck slide"></iframe></div>
+    <div class="hint">← → navigate · E English · C 中文 · R 重新加载 · 源文件变更自动刷新 · 刷新后停留在上次页面（默认 中文 P6）· “Open HTML” 打开源文件</div>
+  </main>
+  <script>
+    const files={"en": ["N01_cover.html", "N02_infra.html", "03_P3.html", "04_P4.html", "N05_context.html", "06_P5.html", "N07_meta.html", "N08_value.html", "N09_product.html", "N11_scenes.html", "05_P4_5.html", "10_P9.html", "09_P8.html", "11_P10.html", "13_P11_5.html", "14_P11_2.html", "14_P12_5.html", "12_P11.html", "15_P13.html", "16_P14.html", "17_P15.html"], "zh": ["N01_cover_ZH.html", "N02_infra_ZH.html", "03_P3_ZH.html", "04_P4_ZH.html", "N05_context_ZH.html", "06_P5_ZH.html", "N07_meta_ZH.html", "N08_value_ZH.html", "N09_product_ZH.html", "N11_scenes_ZH.html", "05_P4_5_ZH.html", "10_P9_ZH.html", "09_P8_ZH.html", "11_P10_ZH.html", "13_P11_5_ZH.html", "14_P11_2_ZH.html", "14_P12_5_ZH.html", "12_P11_ZH.html", "15_P13_ZH.html", "16_P14_ZH.html", "17_P15_ZH.html"]};
+    const labels={"en": ["Cover · Trend / Problem / Product / Ask", "I · Infrastructure overrun", "I · The demand side", "I · Three trends", "II · The most important context", "II · Agents remember badly", "II · Meta paid the tuition", "II · What it's worth", "III · What Echo is", "III · The A→B handoff", "III · Real teams", "III · The team product", "IV · Why nobody built it", "IV · Agent Context Control", "IV · The moat", "V · Three-week traction", "V · ≈85,000 seats", "V · 10,000 seats → $600M", "VI · Where this ends up", "VI · Why we exist · Team", "VI · Use of funds", "VI · The ask", "Appendix · Why investors bet early", "Appendix · Risk", "Appendix · Old fix page", "Appendix · Old cover"], "zh": ["封面 · 趋势 / 问题 / 产品 / 融资", "一 · 基础设施被挤爆", "一 · 钱和人都进来了", "一 · 没有一家模型能独占", "二 · 最重要的 context", "二 · agent 记性太差", "二 · Meta 交过学费", "二 · 这个问题值多少钱", "三 · Echo 是什么", "三 · A 到 B 的交接", "三 · 真实团队里的断点", "三 · 团队记忆", "四 · 为什么没人做", "四 · 硬性门槛对比", "四 · 护城河", "五 · 三周战绩", "五 · 8.5 万席位", "五 · 1 万席位 → $600M", "六 · 终局", "六 · 为什么存在 · 团队", "六 · 资金用途", "六 · 融资", "附录 · 投资人为什么提前下注", "附录 · 风险", "附录 · 旧版解法页", "附录 · 旧版封面"]};
+    const DEFAULT_LANG="zh",DEFAULT_INDEX=0; // 中文 P6 (18-page sequence, P4.5 = logical 5, P11.2 = logical 14)
+    const STORAGE_KEY="echo-deck-narrative-2026-09-16";
+    let lang=DEFAULT_LANG,index=DEFAULT_INDEX;
+    function parseState(raw){const m=/^(en|zh)[\/:-](\d{1,2})$/.exec(String(raw||"").trim());if(!m)return null;const i=Number(m[2])-1;return i>=0&&i<files.zh.length?{lang:m[1],index:i}:null}
+    function loadState(){
+      const fromHash=parseState(location.hash.replace(/^#/,""));if(fromHash)return fromHash;
+      try{const fromStore=parseState(localStorage.getItem(STORAGE_KEY));if(fromStore)return fromStore}catch(e){}
+      return {lang:DEFAULT_LANG,index:DEFAULT_INDEX};
+    }
+    function saveState(){const state=`${lang}/${index+1}`;try{localStorage.setItem(STORAGE_KEY,state)}catch(e){}if(location.hash.replace(/^#/,"")!==state)history.replaceState(null,"",`#${state}`)}
+    ({lang,index}=loadState());
+    const viewer=document.getElementById("viewer"),stage=document.getElementById("stage"),nav=document.getElementById("slideNav"),title=document.getElementById("slideTitle"),counter=document.getElementById("counter"),openSlide=document.getElementById("openSlide");
+    function resize(){const scale=Math.min(stage.clientWidth/1280,stage.clientHeight/768);viewer.style.transform=`scale(${scale})`}
+    function renderNav(){nav.innerHTML="";labels[lang].forEach((label,i)=>{const b=document.createElement("button");b.type="button";b.className="slide-button"+(i===index?" active":"");b.innerHTML=`<span class="num">${String(i+1).padStart(2,"0")}</span><span class="label"></span>`;b.querySelector(".label").textContent=label;b.onclick=()=>{index=i;render()};nav.appendChild(b)})}
+    function render(){saveState();const file=files[lang][index];if(!file){viewer.removeAttribute("src");viewer.srcdoc=`<body style="margin:0;background:#050609;color:#929bb8;font:600 22px/1.4 -apple-system,sans-serif;display:flex;align-items:center;justify-content:center;height:100vh;letter-spacing:.02em">English mirror pending · 中文版已就绪</body>`;openSlide.removeAttribute("href")}else{viewer.removeAttribute("srcdoc");const path=`${lang}/${file}`;viewer.src=`${path}?v=${Date.now()}`;openSlide.href=path}title.textContent=labels[lang][index];counter.textContent=`${String(index+1).padStart(2,"0")} / ${files[lang].length}`;document.documentElement.lang=lang==="zh"?"zh-CN":"en";document.getElementById("enButton").classList.toggle("active",lang==="en");document.getElementById("zhButton").classList.toggle("active",lang==="zh");renderNav();setTimeout(resize,0)}
+    function move(delta){const n=files[lang].length;index=(index+delta+n)%n;render()}
+    document.getElementById("prevButton").onclick=()=>move(-1);document.getElementById("nextButton").onclick=()=>move(1);
+    document.getElementById("enButton").onclick=()=>{lang="en";render()};document.getElementById("zhButton").onclick=()=>{lang="zh";render()};
+    addEventListener("resize",resize);addEventListener("keydown",e=>{if(e.key==="ArrowLeft")move(-1);if(e.key==="ArrowRight")move(1);if(e.key.toLowerCase()==="e"){lang="en";render()}if(e.key.toLowerCase()==="c"){lang="zh";render()}});
+    addEventListener("hashchange",()=>{const st=parseState(location.hash.replace(/^#/,""));if(st&&(st.lang!==lang||st.index!==index)){lang=st.lang;index=st.index;render()}});
+    render();
+
+    // ---- live reload -------------------------------------------------------
+    // work/dev-sync.mjs rewrites live-reload.js with a fresh build id after every
+    // sync. Poll it with a classic <script> tag so this also works over file://
+    // where fetch() is blocked by CORS.
+    const liveBadge=document.getElementById("liveBadge");
+    let lastBuild=null,liveMisses=0;
+    function reloadSlide(){const file=files[lang][index];if(!file)return;viewer.src=`${lang}/${file}?v=${Date.now()}`;liveBadge.classList.add("hit");setTimeout(()=>liveBadge.classList.remove("hit"),900)}
+    window.__echoBuildTick=function(token){
+      if(!token||typeof token.build!=="number")return;
+      liveMisses=0;liveBadge.classList.add("on");
+      if(lastBuild===null){lastBuild=token.build;return}
+      if(token.build!==lastBuild){lastBuild=token.build;reloadSlide()}
+    };
+    function pollBuild(){
+      const s=document.createElement("script");
+      s.src=`live-reload.js?v=${Date.now()}`;
+      s.onerror=()=>{if(++liveMisses>2)liveBadge.classList.remove("on");s.remove()};
+      s.onload=()=>s.remove();
+      document.head.appendChild(s);
+    }
+    pollBuild();setInterval(pollBuild,1000);
+    document.getElementById("reloadButton").onclick=reloadSlide;
+    addEventListener("keydown",e=>{if(e.key.toLowerCase()==="r"&&!e.metaKey&&!e.ctrlKey)reloadSlide()});
+  </script>
+</body>
+</html>

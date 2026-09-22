@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1280, initial-scale=1">
+<title>Echo — 叙事版 · Echo 是什么</title>
+<link rel="stylesheet" href="v2.css">
+<style>
+.body{display:flex;flex-direction:column;gap:18px}
+.grid{flex:1;display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.f{padding:24px 22px;display:flex;flex-direction:column}
+.f .n{font-size:52px;line-height:1;font-weight:600;letter-spacing:-.05em;color:var(--blue-bright);white-space:nowrap}
+.f h3{margin-top:16px;font-size:21px;line-height:1.25;font-weight:600;letter-spacing:-.015em}
+.f p{margin-top:10px;font-size:14.5px;line-height:1.55;color:var(--muted)}
+.f p b{color:var(--ink);font-weight:600}
+.f .src{margin-top:auto;padding-top:14px;font:500 10px/1.4 var(--mono);color:var(--faint);letter-spacing:.03em}
+.f.goal{border-color:rgba(96,117,255,.55);background:radial-gradient(circle at 50% 0%,rgba(82,103,255,.22),transparent 70%),rgba(255,255,255,.02)}
+.f.goal .tag{display:inline-block;margin-left:8px;font:700 10px var(--mono);letter-spacing:.14em;color:var(--eyebrow);vertical-align:middle}
+.strip{display:flex;align-items:center;gap:10px;flex-wrap:nowrap;padding:14px 18px}
+.strip .label{margin-right:8px}
+.chip{border:1px solid var(--line-strong);border-radius:999px;padding:6px 12px;font-size:13.5px;white-space:nowrap}
+.chip img{width:14px;height:14px;vertical-align:-2px;margin-right:6px}
+</style>
+</head>
+<body>
+<section class="slide">
+  <div class="eyebrow"><span class="dot"></span><span class="brand">ECHO</span><span>第三幕 · 产品</span></div>
+  <h1>Echo：<em>给 agent 会话的企业连续性层。</em></h1>
+  <div class="sub">一个人和 agent 做过的工作，<b>下一个人、下一个 agent 接着做。</b></div>
+
+  <div class="body" style="margin-top:26px">
+    <div class="grid">
+      <div class="f card">
+        <div class="n">−60–70%</div>
+        <h3>token 省下来</h3>
+        <p>不再重读、重搜、重讲。<b>每轮输入 token 实测 −60%</b>；团队共用上下文后，测算可到 −66–70%。</p>
+        <div class="src">828 个会话实测 · 5 人团队模型测算</div>
+      </div>
+      <div class="f card">
+        <div class="n">3.2×</div>
+        <h3>业务跑得更快</h3>
+        <p>agent 第一轮就开始干活。每天产出的会话从 1.5 个到 <b>4.8 个</b>；同时推进的项目从 7 个到 <b>17 个</b>。</p>
+        <div class="src">创始团队实测 · 使用 Echo 前后对比</div>
+      </div>
+      <div class="f card">
+        <div class="n">成本→资产</div>
+        <h3>浪费的 token，变成资产</h3>
+        <p>每一次推理都留下来：<b>谁判断的、依据是什么、在什么条件下成立</b>。花出去的钱，沉淀成能调度的记忆。</p>
+        <div class="src">来源 · 负责人 · 时间 · 理由</div>
+      </div>
+      <div class="f card goal">
+        <div class="n">10×<span class="tag">目标</span></div>
+        <h3>团队效率放大十倍</h3>
+        <p>一个人和 AI 弄清楚的事，<b>整个团队都能接着往前做</b>。把个人的 AI 提速，变成团队的产出。</p>
+        <div class="src">以 3–5 人试点逐步验证</div>
+      </div>
+    </div>
+
+    <div class="strip card">
+      <span class="label">装上就能用</span>
+      <span class="chip"><img src="deck_assets/direct/claude.svg" alt="">Claude Code</span>
+      <span class="chip"><img src="deck_assets/direct/openai.svg" alt="">Codex · ChatGPT</span>
+      <span class="chip">MCP 接入</span>
+      <span class="chip">逐条授权分享</span>
+      <span class="chip">来源可追溯 · 可审计</span>
+      <span class="chip">加密</span>
+    </div>
+  </div>
+
+  <div class="closer" style="margin-top:18px">
+    <div class="line-copy">token 是成本。<b>能被调度的记忆，才是资产。</b></div>
+    <div class="foot">echoknows.com/research · 09</div>
+  </div>
+</section>
+</body>
+</html>
