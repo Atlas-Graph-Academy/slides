@@ -74,16 +74,12 @@ h1{font-size:43px}
 .cap .h small{font:600 11px var(--mono);letter-spacing:.14em;color:var(--blue-bright);opacity:.8;margin-right:8px;vertical-align:3px}
 .cap p{margin-top:4px;font-size:14px;color:var(--muted);white-space:nowrap}
 
-/* ── proof ── */
-.proof{margin-top:34px;padding-top:16px;border-top:1px solid var(--line);display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr}
-.pf{display:flex;align-items:baseline;gap:10px;padding:0 8px 0 22px;border-left:1px solid var(--line)}
+/* ── outcomes: one large number and one plain label per measure ── */
+.proof{margin-top:31px;padding-top:19px;border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(4,minmax(0,1fr))}
+.pf{min-width:0;display:flex;flex-direction:column;align-items:flex-start;gap:8px;padding:0 18px 0 24px;border-left:1px solid var(--line)}
 .pf:first-child{padding-left:0;border-left:0}
-.pf .n{font-size:40px;font-weight:700;letter-spacing:-.05em;line-height:1;white-space:nowrap;
-  background:linear-gradient(180deg,#fff 20%,#aeb9f5);-webkit-background-clip:text;background-clip:text;color:transparent}
-.pf .l{font-size:14px;line-height:1.3;color:var(--muted)}
-.pf .l b{display:block;color:var(--ink);font-weight:600}
-
-.src{position:absolute;left:76px;right:76px;bottom:11px;display:flex;justify-content:space-between;font:500 9.5px var(--mono);color:var(--faint);letter-spacing:.03em}
+.pf .n{font-size:47px;font-weight:700;letter-spacing:-.05em;line-height:1;white-space:nowrap;background:linear-gradient(180deg,#fff 20%,#aeb9f5);-webkit-background-clip:text;background-clip:text;color:transparent}
+.pf .l{font-size:20px;font-weight:600;line-height:1.2;letter-spacing:-.015em;color:var(--ink);white-space:nowrap}
 </style>
 </head>
 <body>
@@ -123,14 +119,14 @@ h1{font-size:43px}
     <div class="cap" style="left:856px;width:272px"><div class="h"><small>03</small>Resume</div><p>The next agent starts on turn one.</p></div>
   </div>
 
-  <div class="proof">
-    <div class="pf"><div class="n">−60–70%</div><div class="l"><b>total token spend</b>no repeated context</div></div>
-    <div class="pf"><div class="n">−50%</div><div class="l"><b>time per task</b>fewer, faster turns</div></div>
-    <div class="pf"><div class="n">3.2×</div><div class="l"><b>effective output</b>1.5 → 4.8 a day</div></div>
-    <div class="pf"><div class="n">2.4×</div><div class="l"><b>projects in parallel</b>7 → 17, same team</div></div>
+  <div class="proof" aria-label="Echo team outcomes across 828 sessions">
+    <div class="pf"><div class="n">60–70%</div><div class="l">less token spend</div></div>
+    <div class="pf"><div class="n">50%</div><div class="l">less time per task</div></div>
+    <div class="pf"><div class="n">3.2×</div><div class="l">more output</div></div>
+    <div class="pf"><div class="n">2.4×</div><div class="l">more projects in parallel</div></div>
   </div>
 
-  <div class="src"><span>Echo founding team, before vs. after · 828 sessions · −60% measured, −70% modeled with shared context · time: 11.5→8 turns × 7.3→5.1 min/turn · Photos: Unsplash</span><span>09</span></div>
+  <!-- Outcomes: Echo founding team, 828 sessions; 60% token reduction measured, 70% modeled with shared context. -->
 </section>
 
 <script>
